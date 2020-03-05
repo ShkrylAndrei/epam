@@ -6,51 +6,46 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-public class ServiceWorkWithDB implements WorkWithDB<HumanDto>{
+//Это реализация репозитория для Human
+//работает с сущностью Human
+public class HumanRepoImpl implements EntityRepo<Human> {
 
-
+    private Random rnd = new Random();
     @Override
-    public HumanDto getOneEntity() {
+    public Human getOneEntity() {
         return generateHuman();
     }
 
     @Override
-    public List<HumanDto> getAllEntity() {
-        //почему сюда не передался тип T из объявления интерфейса????
-        //по идее надо подставлять T подставил HumanDto
-        List<HumanDto> listHumanDto=new ArrayList<>();
-        for (int i=0;i<10;i++){
-            listHumanDto.add(generateHuman());
+    public List<Human> getAllEntity() {
+        List<Human> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add(generateHuman());
         }
-
-        return listHumanDto;
+        return list;
     }
 
     @Override
-    public void saveOneEntity(HumanDto dto) {
-         Converter<HumanDto,HumanEntity> converter = new Converter<>();
-         HumanEntity entity = converter.convertToEntity(dto);
-         System.out.println(entity);
+    public void saveOneEntity(Human entity) {
+        System.out.println("Human entity saved:");
+        System.out.println(entity);
     }
 
     @Override
-    public void saveAllEntity(List<HumanDto> dtoList) {
-        Converter<HumanDto, HumanEntity> converter = new Converter<>();
-        for (int i = 0; i < dtoList.size(); i++) {
-            HumanEntity humanEntity = converter.convertToEntity(dtoList.get(i));
-            System.out.println(humanEntity);
+    public void saveAllEntity(List<Human> listEntity) {
+        for(Human human : listEntity){
+            saveOneEntity(human);
         }
     }
 
-    public HumanDto generateHuman(){
-
+    private Human generateHuman(){
         Random rnd=new Random();
         String[] name_array={"Андрей", "Максим", "Петр", "Семен", "Михаил"};
 
         int id=rnd.nextInt(1000);
         int name_random=rnd.nextInt(5);
         String name = name_array[name_random];
-        AddressEntity tmpAddress=new AddressEntity();
+        Address tmpAddress=new Address();
         String[] city_array={"Тольятти","Москва","Сызрань","Ульяновск","Чебоксары"};
         int city_random=rnd.nextInt(5);
         tmpAddress.setCity(city_array[city_random]);
@@ -72,10 +67,7 @@ public class ServiceWorkWithDB implements WorkWithDB<HumanDto>{
         }catch(Exception e){
 
         }
-        HumanEntity humanEntity = new HumanEntity(id, name, tmpAddress, birthDate);
-
-        Converter<HumanEntity, HumanDto> converter = new Converter<>();
-        return converter.convertToDTO(humanEntity);
+        return new Human(id, name, tmpAddress, birthDate);
 
     }
 }

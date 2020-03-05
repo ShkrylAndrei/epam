@@ -1,15 +1,15 @@
 package shkryl.task2;
 
-public class AddressEntity {
+public class Address {
     private String city;
     private String street;
     private int house;
     private int room;
 
-    public AddressEntity() {
+    public Address() {
     }
 
-    public AddressEntity(String city, String street, int house, int room) {
+    public Address(String city, String street, int house, int room) {
         this.city = city;
         this.street = street;
         this.house = house;

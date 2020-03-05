@@ -1,16 +1,21 @@
 package shkryl.task2;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        ServiceWorkWithDB rDB=new ServiceWorkWithDB();
-        HumanDto humanDto=rDB.getOneEntity();
-        System.out.println("Выводим одну сущность");
-        rDB.saveOneEntity(humanDto);
 
-        System.out.println("--------------------");
-        System.out.println("Выводим все сущности");
+        HumanServiceImpl service = new HumanServiceImpl();
+        System.out.println("GENERATE ONE ENTITY");
+        HumanDto dto = service.getOneEntity();
+        service.saveOneEntity(dto);
 
-        rDB.saveAllEntity(rDB.getAllEntity());
+        System.out.println();
+
+        System.out.println("GENERATE LIST ENTITIES");
+        List<HumanDto> listDTO = service.getAllEntity();
+        service.saveAllEntity(listDTO);
+
     }
 
 

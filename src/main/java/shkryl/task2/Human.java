@@ -3,17 +3,17 @@ package shkryl.task2;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class HumanEntity {
+public class Human {
     private int id;
     private String name;
-    private AddressEntity address;
+    private Address address;
     //Как правильно дату сделать, сделал пока String
     private Date birthDate;
 
-    public HumanEntity() {
+    public Human() {
     }
 
-    public HumanEntity(int id, String name, AddressEntity address, Date birthDate) {
+    public Human(int id, String name, Address address, Date birthDate) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -37,11 +37,11 @@ public class HumanEntity {
         this.name = name;
     }
 
-    public AddressEntity getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(AddressEntity address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
