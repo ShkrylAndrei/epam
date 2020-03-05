@@ -11,10 +11,10 @@ public class Main {
         service.saveOneEntity(dto);
 
         System.out.println();
-
         System.out.println("GENERATE LIST ENTITIES");
         List<HumanDto> listDTO = service.getAllEntity();
         service.saveAllEntity(listDTO);
+
 
     }
 
