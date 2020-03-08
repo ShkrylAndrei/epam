@@ -141,6 +141,7 @@ public class Main {
         u2.greeting();
         u3.greeting();
 
+
         //9. Написать программу сортирующую HashMap по ключу. (Создание и генерация данными какими захотите)
         Map<Integer,String> map=new HashMap<>();
         map.put(11,"Молоко");
