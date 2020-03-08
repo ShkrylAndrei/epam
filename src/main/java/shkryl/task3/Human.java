@@ -52,8 +52,6 @@ public class Human {
 
     @Override
     public int hashCode() {
-        //Пока так оставил это стандартные hashCode сгенерировала IIdea чтобы время не тратить
-        //потом переделать
         return Objects.hash(fio, age, address);
     }
 

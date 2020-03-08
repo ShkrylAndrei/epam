@@ -71,19 +71,7 @@ public class Main {
         }
 
 
-
-
-        //3. Удалить дубли из коллекции.
-        //не понял почему у key тип object и почему у keySet вызывается toArray
-        //я бы просто написл key-Human и без toArray сделал
-        //и не будет ошибкой вызывать toArray внутри foreach
-//        for (Object key : mapHuman.keySet().toArray()) {
-//            if (mapHuman.get(key) > 1) {
-//                mapHuman.remove(key);
-//            }
-//        }
-
-        for (Map.Entry<Human, Integer> entry : mapHuman.entrySet()) {
+       for (Map.Entry<Human, Integer> entry : mapHuman.entrySet()) {
             if (entry.getValue()>1) {
                 Human h = entry.getKey();
                 listHuman.remove(h);
