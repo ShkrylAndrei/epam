@@ -1,4 +1,4 @@
-package shkryl.task2;
+package shkryl.task4;
 
 public class Address {
     private String city;

@@ -1,5 +1,8 @@
-package shkryl.task2;
+package shkryl.task4;
 
+import jdk.nashorn.internal.runtime.regexp.joni.constants.EncloseType;
+
+import javax.swing.text.html.parser.Entity;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,24 +12,37 @@ import java.util.Random;
 //Это реализация репозитория для Human
 //работает с сущностью Human
 public class HumanRepoImpl implements EntityRepo<Human> {
-
+    private final int criticalValueGenerate = 500;
+    private final int criticalValueSave = 300;
     private Random rnd = new Random();
     @Override
-    public Human getOneEntity() {
-        return generateHuman();
+    public Human getOneEntity() throws EntityNotFound {
+
+        Human entity = generateHuman();
+        if(entity.getId()>criticalValueGenerate){
+            throw new EntityNotFound("Сущность с id "+ entity.getId()+" не найдена");
+        }
+        return entity;
     }
 
     @Override
-    public List<Human> getAllEntity() {
+    public List<Human> getAllEntity()  {
         List<Human> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            list.add(generateHuman());
+            try {
+                list.add(getOneEntity());
+            }catch (EntityNotFound e){
+                System.out.println("EXCEPTION: "+e.toString());
+            }
         }
         return list;
     }
 
     @Override
     public void saveOneEntity(Human entity) {
+        if(entity.getId()>criticalValueSave){
+            throw new CanNotSaveEntity("Entity with id="+entity.getId()+" can not be saves");
+        }
         System.out.println("Human entity saved:");
         System.out.println(entity);
     }

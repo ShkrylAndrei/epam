@@ -1,4 +1,4 @@
-package shkryl.task2;
+package shkryl.task4;
 
 //E - entity
 //D - dto

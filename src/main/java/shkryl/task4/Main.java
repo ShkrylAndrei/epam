@@ -1,4 +1,4 @@
-package shkryl.task2;
+package shkryl.task4;
 
 import java.util.List;
 
@@ -7,14 +7,19 @@ public class Main {
 
         HumanServiceImpl service = new HumanServiceImpl();
         System.out.println("GENERATE ONE ENTITY");
+
         HumanDto dto = service.getOneEntity();
-        service.saveOneEntity(dto);
+        if(dto!=null) {
+            service.saveOneEntity(dto);
+        }
 
         System.out.println();
 
         System.out.println("GENERATE LIST ENTITIES");
         List<HumanDto> listDTO = service.getAllEntity();
-        service.saveAllEntity(listDTO);
+        if (listDTO!=null) {
+            service.saveAllEntity(listDTO);
+        }
 
     }
 
