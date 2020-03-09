@@ -72,6 +72,7 @@ public class Main {
 
         //11. Заполнить рандомными значениями LinkedList, вывести содержимое каждого элемента и его индекс.
         helper.generateLinkedList();
+
     }
 
 
