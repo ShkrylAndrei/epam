@@ -5,50 +5,11 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-        //три дубля как по условию задачи
-        Address a1=new Address("Тольятти","Ленинградская",43,45);
-        Human h1=new Human("Шкрыль А.А.",37,a1);
 
-        Address a2=new Address("Тольятти","Ленинградская",43,45);
-        Human h2=new Human("Шкрыль А.А.",37,a2);
-
-        Address a3=new Address("Самара","Мира",13,15);
-        Human h3=new Human("Пучков В.С.",42,a3);
-
-        Address a4=new Address("Самара","Мира",13,15);
-        Human h4=new Human("Пучков В.С.",42,a4);
-
-        Address a5=new Address("Ульяновск","Ленина",76,2);
-        Human h5=new Human("Елизаров К.Г.",53,a5);
-
-        Address a6=new Address("Ульяновск","Ленина",76,2);
-        Human h6=new Human("Елизаров К.Г.",53,a6);
-
-        //не дублирующиеся объекты
-        Address a7=new Address("Москва","Западная",23,102);
-        Human h7=new Human("Абрамян Д.А.",30,a7);
-
-        Address a8=new Address("Санкт-Петербург","Кирова",88,1);
-        Human h8=new Human("Фенов М.Д.",25,a8);
-
-        Address a9=new Address("Сызрань","Осенняя",5,67);
-        Human h9=new Human("Кутуков А.К.",25,a9);
-
-        Address a10=new Address("Чебоксары","Чебоксарская",115,27);
-        Human h10=new Human("Плотников И.П.",48,a10);
-
+        Helper helper = new Helper();
         //1. Заполнить ArrayList этими объектами.
         List<Human> listHuman=new ArrayList<>();
-        listHuman.add(h1);
-        listHuman.add(h2);
-        listHuman.add(h3);
-        listHuman.add(h4);
-        listHuman.add(h5);
-        listHuman.add(h6);
-        listHuman.add(h7);
-        listHuman.add(h8);
-        listHuman.add(h9);
-        listHuman.add(h10);
+        helper.fillList(listHuman);
         System.out.println("--------------------------------------");
         System.out.println("Коллекция с дублями:");
 
@@ -57,41 +18,23 @@ public class Main {
         }
 
         //2. Найти дубли в коллекции и вывести их в консоль.
-        Map<Human, Integer> mapHuman = new HashMap<>();
-        for (Human h : listHuman) {
-            mapHuman.put(h,mapHuman.get(h)==null?1:mapHuman.get(h)+1);
+        Map<Human, Integer> mapHuman = helper.getDuplicateWithMap(listHuman);
 
-        }
+        //2.2 а давай попробуем без дополнительной коллекции еще? (вывести дубли без доп коллекции)
         System.out.println("--------------------------------------");
-        System.out.println("Выводим дубли коллекции");
-        for (Map.Entry<Human, Integer> entry : mapHuman.entrySet()) {
-            if (entry.getValue()>1) {
-                System.out.println(entry.getKey());
-            }
+        System.out.println("Выводим дубли коллекции без доп. коллекции");
+        List<Human> dublicateList = helper.getDuplicateList(listHuman);
+        System.out.println("Количество дубликатов: "+dublicateList.size());
+        for(Human human : dublicateList){
+            System.out.println(human);
         }
 
+        //3.Выводим коллекцию без дубей
+        helper.printWithoutDublicate(listHuman,mapHuman);
 
-       for (Map.Entry<Human, Integer> entry : mapHuman.entrySet()) {
-            if (entry.getValue()>1) {
-                Human h = entry.getKey();
-                listHuman.remove(h);
-            }
-        }
-
-        System.out.println("--------------------------------------");
-        System.out.println("Выводим коллекцию без дублей(они удалены)");
-        for (int i = 0; i < listHuman.size(); i++) {
-            System.out.println((i+1)+" "+listHuman.get(i));
-        }
 
         //4. Отсортировать людей по ФИО
-        ComparatorFio comparatorFio=new ComparatorFio();
-        Collections.sort(listHuman, comparatorFio);
-        System.out.println("--------------------------------------");
-        System.out.println("Выводим коллекцию отсортированную по FIO");
-        for (int i = 0; i < listHuman.size(); i++) {
-            System.out.println((i+1)+" "+listHuman.get(i));
-        }
+        helper.sortHumanFio(listHuman);
 
         //5. Отсортировать людей по возрасту
         ComparatorAge comparatorAge=new ComparatorAge();
