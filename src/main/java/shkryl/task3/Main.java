@@ -37,26 +37,13 @@ public class Main {
         helper.sortHumanFio(listHuman);
 
         //5. Отсортировать людей по возрасту
-        ComparatorAge comparatorAge=new ComparatorAge();
-        Collections.sort(listHuman, comparatorAge);
-        System.out.println("--------------------------------------");
-        System.out.println("Выводим коллекцию отсортированную по возрасту");
-        for (int i = 0; i < listHuman.size(); i++) {
-            System.out.println((i+1)+" "+listHuman.get(i));
-        }
+        helper.sortHumanAge(listHuman);
 
         //6. Отсортировать людей по адресу (лексикографическая сортировка полного адреса)
-        ComparatorAddress comparatorAddress=new ComparatorAddress();
-        Collections.sort(listHuman, comparatorAddress);
-        System.out.println("--------------------------------------");
-        System.out.println("Выводим коллекцию отсортированную по адресу");
-        for (int i = 0; i < listHuman.size(); i++) {
-            System.out.println((i+1)+" "+listHuman.get(i));
-        }
+       helper.sortHumanAddress(listHuman);
 
         //7. Создать класс User добавить в него поля ФИО, и роль которое является перечислением и
         //содержит в себе ADMIN, USER, MODERATOR
-
         User u1=new User("Шкрыль Андрей", Role.ADMIN);
         User u2=new User("Иванов Иван", Role.USER);
         User u3=new User("Петров Семен", Role.MODERATOR);
@@ -94,18 +81,7 @@ public class Main {
         System.out.println(sortedSet);
 
         //11. Заполнить рандомными значениями LinkedList, вывести содержимое каждого элемента и его индекс.
-        List<Integer> linkedList = new LinkedList<>();
-        Random rnd = new Random();
-        for (int i = 0; i < 100; i++) {
-            linkedList.add(rnd.nextInt(100));
-        }
-        System.out.println("--------------------------------------");
-        System.out.println("Выводим значения и номера элементов LinkedList");
-        for (int i = 0; i < linkedList.size(); i++) {
-            System.out.println("Элемент № "+i+" со значением "+linkedList.get(i));
-
-
-        }
+        helper.generateLinkedList();
     }
 
 

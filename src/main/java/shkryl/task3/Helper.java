@@ -107,4 +107,37 @@ public class Helper {
         }
     }
 
+    public void sortHumanAge(List<Human> listHuman){
+        ComparatorAge comparatorAge=new ComparatorAge();
+        Collections.sort(listHuman, comparatorAge);
+        System.out.println("--------------------------------------");
+        System.out.println("Выводим коллекцию отсортированную по возрасту");
+        for (int i = 0; i < listHuman.size(); i++) {
+            System.out.println((i+1)+" "+listHuman.get(i));
+        }
+    }
+
+    public void sortHumanAddress(List<Human> listHuman){
+        ComparatorAddress comparatorAddress=new ComparatorAddress();
+        Collections.sort(listHuman, comparatorAddress);
+        System.out.println("--------------------------------------");
+        System.out.println("Выводим коллекцию отсортированную по адресу");
+        for (int i = 0; i < listHuman.size(); i++) {
+            System.out.println((i+1)+" "+listHuman.get(i));
+        }
+    }
+
+    public void generateLinkedList(){
+        List<Integer> linkedList = new LinkedList<>();
+        Random rnd = new Random();
+        for (int i = 0; i < 100; i++) {
+            linkedList.add(rnd.nextInt(100));
+        }
+        System.out.println("--------------------------------------");
+        System.out.println("Выводим значения и номера элементов LinkedList");
+        for (int i = 0; i < linkedList.size(); i++) {
+            System.out.println("Элемент № "+i+" со значением "+linkedList.get(i));
+        }
+    }
+
 }
