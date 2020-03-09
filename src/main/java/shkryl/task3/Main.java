@@ -10,6 +10,7 @@ public class Main {
         //1. Заполнить ArrayList этими объектами.
         List<Human> listHuman=new ArrayList<>();
         helper.fillList(listHuman);
+
         System.out.println("--------------------------------------");
         System.out.println("Коллекция с дублями:");
 
@@ -62,23 +63,12 @@ public class Main {
 
         //9. Написать программу сортирующую HashMap по ключу. (Создание и генерация данными какими захотите)
         Map<Integer,String> map=new HashMap<>();
-        map.put(11,"Молоко");
-        map.put(5,"Батон");
-        map.put(3,"Чипсы");
-        map.put(42,"Сметана");
-        map.put(4,"Абрикосы");
-        map.put(6,"Яблоки");
-        Map<Integer, String> treeMap = new TreeMap<Integer, String>(map);
-        System.out.println("--------------------------------------");
-        System.out.println("Выводим map отсортированную по ключу");
-        System.out.println(treeMap);
+        helper.sortedMapOnKey(map);
+
 
         //10. Написать программу сортирующую HashMap по значнию. (Создание и генерация данными какими захотите)
         //используем туже самую Map<Integer,String> map
-        SortedSet<String> sortedSet = new TreeSet<String>(map.values());
-        System.out.println("--------------------------------------");
-        System.out.println("Выводим map отсортированную по значению");
-        System.out.println(sortedSet);
+        helper.sortedMapOnvalue(map);
 
         //11. Заполнить рандомными значениями LinkedList, вывести содержимое каждого элемента и его индекс.
         helper.generateLinkedList();

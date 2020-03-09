@@ -127,6 +127,26 @@ public class Helper {
         }
     }
 
+    public void sortedMapOnKey(Map<Integer,String> map){
+        map.put(11,"Молоко");
+        map.put(5,"Батон");
+        map.put(3,"Чипсы");
+        map.put(42,"Сметана");
+        map.put(4,"Абрикосы");
+        map.put(6,"Яблоки");
+        Map<Integer, String> treeMap = new TreeMap<Integer, String>(map);
+        System.out.println("--------------------------------------");
+        System.out.println("Выводим map отсортированную по ключу");
+        System.out.println(treeMap);
+    }
+
+    public void sortedMapOnvalue(Map<Integer,String> map){
+        SortedSet<String> sortedSet = new TreeSet<String>(map.values());
+        System.out.println("--------------------------------------");
+        System.out.println("Выводим map отсортированную по значению");
+        System.out.println(sortedSet);
+    }
+
     public void generateLinkedList(){
         List<Integer> linkedList = new LinkedList<>();
         Random rnd = new Random();
