@@ -1,6 +1,8 @@
 package shkryl.task4;
 
 import jdk.nashorn.internal.runtime.regexp.joni.constants.EncloseType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.text.html.parser.Entity;
 import java.text.SimpleDateFormat;
@@ -15,13 +17,17 @@ public class HumanRepoImpl implements EntityRepo<Human> {
     private final int criticalValueGenerate = 500;
     private final int criticalValueSave = 300;
     private Random rnd = new Random();
+    private Logger consoleAndFileLogger = LoggerFactory.getLogger(HumanRepoImpl.class);
+
     @Override
     public Human getOneEntity() throws EntityNotFound {
 
         Human entity = generateHuman();
         if(entity.getId()>criticalValueGenerate){
+            consoleAndFileLogger.debug("entity with id="+entity.getId()+" not found");
             throw new EntityNotFound("Сущность с id "+ entity.getId()+" не найдена");
         }
+        consoleAndFileLogger.debug("entity with id="+entity.getId()+" is generated in Repo");
         return entity;
     }
 
@@ -32,18 +38,22 @@ public class HumanRepoImpl implements EntityRepo<Human> {
             try {
                 list.add(getOneEntity());
             }catch (EntityNotFound e){
+                consoleAndFileLogger.debug("error when try add entity to List<Human> in Repo");
                 System.out.println("EXCEPTION: "+e.toString());
             }
         }
+        consoleAndFileLogger.debug("all entity was generated in Repo");
         return list;
     }
 
     @Override
     public void saveOneEntity(Human entity) {
         if(entity.getId()>criticalValueSave){
+            consoleAndFileLogger.debug("entity with id="+entity.getId()+" can not saves from Repo");
             throw new CanNotSaveEntity("Entity with id="+entity.getId()+" can not be saves");
         }
         System.out.println("Human entity saved:");
+        consoleAndFileLogger.debug("human entity with id="+entity.getId()+" saved");
         System.out.println(entity);
     }
 
@@ -81,7 +91,7 @@ public class HumanRepoImpl implements EntityRepo<Human> {
             int year = rnd.nextInt(6)+2015;
             birthDate = sdf.parse(String.format("%d.%d.%d", day, month, year));
         }catch(Exception e){
-
+            System.out.println(e.toString());
         }
         return new Human(id, name, tmpAddress, birthDate);
 

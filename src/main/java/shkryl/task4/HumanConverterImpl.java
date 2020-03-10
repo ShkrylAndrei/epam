@@ -1,6 +1,11 @@
 package shkryl.task4;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class HumanConverterImpl implements Converter<Human, HumanDto> {
+    private Logger onlyFileLogger = LoggerFactory.getLogger(HumanConverterImpl.class);
+
     @Override
     public HumanDto convetToDTO(Human entity) {
         HumanDto dto = new HumanDto();
@@ -14,6 +19,9 @@ public class HumanConverterImpl implements Converter<Human, HumanDto> {
 
 
         dto.setBirthDate(entity.getBirthDate());
+
+        onlyFileLogger.debug("Human entity with id="+entity.getId()+" was converted to DTO");
+
         return dto;
     }
 
@@ -30,6 +38,9 @@ public class HumanConverterImpl implements Converter<Human, HumanDto> {
 
         entity.setAddress(address);
         entity.setBirthDate(dto.getBirthDate());
+
+        onlyFileLogger.debug("DTO entity with id="+dto.getId()+" was converted to Human entity");
+
         return entity;
     }
 }

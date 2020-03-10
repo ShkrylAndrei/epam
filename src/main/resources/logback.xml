@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--<configuration>-->
-<!--    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
-<!--        <encoder>-->
-<!--            <pattern>%d{HH:mm:ss.SSS}[%thread]%-5level %logger{36} - %msg%n</pattern>-->
-<!--        </encoder>-->
-<!--    </appender>-->
-<!--    <logger name="logs" level="WARN"/>-->
 
-<!--    <root level="debug">-->
-<!--        <appender-ref ref="STDOUT"/>-->
-<!--    </root>-->
-<!--</configuration>-->
 <configuration>
     <!-- В консоль -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -31,25 +20,8 @@
     </root>
 
 
-    <!-- В консоль класс Test -->
-<!--    <appender name="CONSOLE_TEST" class="ch.qos.logback.core.ConsoleAppender">-->
-<!--        <layout class="ch.qos.logback.classic.PatternLayout">-->
-<!--            <Pattern>-->
-<!--                %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n-->
-<!--            </Pattern>-->
-<!--        </layout>-->
-<!--    </appender>-->
-
-<!--    <logger name="ru.andrei.Test" level="debug" additivity="false">-->
-<!--        <appender-ref ref="CONSOLE_TEST"/>-->
-<!--    </logger>-->
-
-<!--    <root level="info">-->
-<!--        <appender-ref ref="CONSOLE_TEST"/>-->
-<!--    </root>-->
-
     <!-- В файл и на консоль -->
-    <appender name="FILE-AUDIT"
+    <appender name="FILE-CONSOLE"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>c:/log/debug.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -69,9 +41,9 @@
 
     </appender>
 
-    <logger name="logFileConsole" level="debug" additivity="false">
+    <logger name="shkryl.task4.HumanRepoImpl" level="debug" additivity="false">
         <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE-AUDIT"/>
+        <appender-ref ref="FILE-CONSOLE"/>
     </logger>
 
     <!-- Только в файл -->
@@ -95,7 +67,7 @@
 
     </appender>
 
-    <logger name="shkryl.task4.Main2" level="debug" additivity="false">
+    <logger name="shkryl.task4.HumanConverterImpl" level="debug" additivity="false">
         <appender-ref ref="ONLY-FILE"/>
     </logger>
 </configuration>
