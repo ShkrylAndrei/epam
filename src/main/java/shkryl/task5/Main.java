@@ -28,11 +28,38 @@ public class Main {
             System.out.println("3. вывести на экран строку, формат команды print НОМЕР_СТРОКИ ИМЯ_ФАЙЛА");
             System.out.println("4. Выход");           
             
-            Scanner sc=new Scanner(System.in);
-            int parameter=sc.nextInt();
+            Scanner sc;
+            int parameter=-1;
+            while (parameter==-1) {
+                sc=new Scanner(System.in);
+                try {
+                   parameter = sc.nextInt();
+                } catch (Exception e) {
+                    System.out.println("Неверно выбранный пункт меню, повторите попытку");
+                }
+            }// end while
             
             if (parameter==1){
                 System.out.println("Введите комманду для добавления - формат команды add НОМЕР_СТРОКИ ИМЯ_ФАЙЛА \"ТЕКСТ\"");
+                Scanner add_sc=new Scanner(System.in);
+                String command = add_sc.nextLine();
+
+                System.out.println("Введенная комманда "+command);
+                filter.execute(command);
+            }
+
+
+            if (parameter==2){
+                System.out.println("Введите комманду для удаления - формат команды delete НОМЕР_СТРОКИ ИМЯ_ФАЙЛА ");
+                Scanner add_sc=new Scanner(System.in);
+                String command = add_sc.nextLine();
+
+                System.out.println("Введенная комманда "+command);
+                filter.execute(command);
+            }
+
+            if (parameter==3){
+                System.out.println("Введите комманду для печати - формат команды print НОМЕР_СТРОКИ ИМЯ_ФАЙЛА ");
                 Scanner add_sc=new Scanner(System.in);
                 String command = add_sc.nextLine();
 

@@ -19,11 +19,43 @@ public class ParseCommand {
 
 
     public CommandArgs parsePrintDeleteCommand(String str){
-        return null;
+        //вынести в отдельное поле
+        CommandArgs ca = new CommandArgs();
+        String parameters[] = str.split(" ");
+
+        //Если удаляем
+        if (parameters[0].equals("delete")) {
+            ca.command = "delete";
+            //Если переданно имя файла
+            if (parameters.length > 2) {
+                ca.lineNumber = parameters[1];
+                ca.fileName = parameters[2];
+            } else {
+                ca.lineNumber = null;
+                ca.fileName = parameters[1];
+            }
+        }
+
+        //Если распечатываем
+        if (parameters[0].equals("print")) {
+            ca.command = "print";
+            //Если переданно имя файла
+            if (parameters.length > 2) {
+                ca.lineNumber = parameters[1];
+                ca.fileName = parameters[2];
+            } else {
+                ca.lineNumber = null;
+                ca.fileName = parameters[1];
+            }
+        }
+
+        return ca;
     }
 
     public CommandArgs parseAddCommand(String str){
         CommandArgs ca = new CommandArgs();
+
+        ca.command="add";
 
         int separateIndex = -1;
         for (int i = 0; i < str.length(); i++) {
@@ -36,7 +68,8 @@ public class ParseCommand {
         String subStringWithSeparator = str.substring(separateIndex);
         String[] arrString = subStringWithoutSeparator.split(" ");
         int index = 1;
-        String secondArgument = arrString[index++];
+        //String secondArgument = arrString[index++];
+        String secondArgument = arrString[index];
 
         int linesCount = -1;
         String fileName = null;
@@ -44,6 +77,7 @@ public class ParseCommand {
         if(secondArgument.matches("\\d+")){
             linesCount = Integer.valueOf(secondArgument);
             ca.lineNumber =  String.valueOf(linesCount);
+            index++;
         }
 
 
