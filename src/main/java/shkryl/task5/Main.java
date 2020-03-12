@@ -6,6 +6,8 @@
 
 package shkryl.task5;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import shkryl.task5.filter.Filter;
 
 import java.util.Scanner;
@@ -15,8 +17,10 @@ import java.util.Scanner;
  * @author Admin
  */
 public class Main {
-    public static void main(String[] args) {
 
+
+    public static void main(String[] args) {
+        Logger logger = LoggerFactory.getLogger(Main.class);
 
         Filter filter = new Filter();
         boolean m=true;
@@ -36,6 +40,7 @@ public class Main {
                    parameter = sc.nextInt();
                 } catch (Exception e) {
                     System.out.println("Неверно выбранный пункт меню, повторите попытку");
+                    logger.debug("EXCEPTION: Неверно выбранный пункт меню, повторите попытку");
                 }
             }// end while
             
@@ -45,6 +50,7 @@ public class Main {
                 String command = add_sc.nextLine();
 
                 System.out.println("Введенная комманда "+command);
+                logger.debug("Пользователь ввел комманду {}",command);
                 filter.execute(command);
             }
 
@@ -55,6 +61,7 @@ public class Main {
                 String command = add_sc.nextLine();
 
                 System.out.println("Введенная комманда "+command);
+                logger.debug("Пользователь ввел комманду {}",command);
                 filter.execute(command);
             }
 
@@ -64,11 +71,13 @@ public class Main {
                 String command = add_sc.nextLine();
 
                 System.out.println("Введенная комманда "+command);
+                logger.debug("Пользователь ввел комманду {}",command);
                 filter.execute(command);
             }
 
             if (parameter==4){
                 m=false;
+                logger.debug("Произошел выход из системы");
             }
         
     }
