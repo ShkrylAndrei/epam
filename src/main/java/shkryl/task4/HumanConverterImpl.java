@@ -41,7 +41,6 @@ public class HumanConverterImpl implements Converter<Human, HumanDto> {
 
         onlyFileLogger.debug("DTO entity with id= {} was converted to Human entity",dto.getId());
 
-
         return entity;
     }
 }
