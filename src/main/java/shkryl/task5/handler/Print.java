@@ -16,27 +16,37 @@ import java.util.Scanner;
 public class Print implements HandlerCommand {
     @Override
     public String handler(String command) {
+        //Отладочная информация
+        System.out.println("Мы в методе handler класса Print получили комманду "+command);
 
         ParseCommand parseCommand = new ParseCommand();
         CommandArgs ca  = parseCommand.parsePrintDeleteCommand(command);
 
-        int numberString=-1;
-        if (ca.lineNumber!=null) {
-            numberString = Integer.parseInt(ca.lineNumber);
-        }
+        if(ca.fileName.matches(".+\\.txt")) {
+            int numberString = -1;
+            if (ca.lineNumber != null) {
+                numberString = Integer.parseInt(ca.lineNumber);
+            }
 
-        Helper.checkFileExist(ca.fileName);
-        List<String> listString = Helper.readFileStrings(ca.fileName);
-        Helper.checkInvalidNumberStringException(listString, numberString);
+            Helper.checkFileExist(ca.fileName);
+            List<String> listString = Helper.readFileStrings(ca.fileName);
+            Helper.checkInvalidNumberStringException(listString, numberString);
 
-        if(numberString==-1){
-            int lastIndex = listString.size()-1;
-            System.out.println("Печатаем строку: "+listString.get(lastIndex));
+            if (listString.size() > 0) {
+                if (numberString == -1) {
+                    int lastIndex = listString.size() - 1;
+                    System.out.println("Печатаем строку: " + listString.get(lastIndex));
+                } else {
+                    System.out.println("Печатаем строку: " + listString.get(numberString - 1));
+                }
+
+                return "string  was print";
+            }
         }else{
-            System.out.println("Печатаем строку: "+listString.get(numberString-1));
+            Helper.checkInvalidFileName();
         }
 
-        return "string  was print";
+        return "can not print line";
 
 
     }

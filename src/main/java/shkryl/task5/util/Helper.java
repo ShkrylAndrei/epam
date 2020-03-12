@@ -10,6 +10,8 @@ import java.util.Scanner;
 
 public class Helper {
     public static void checkFileExist(String nameFile){
+        //Если файла не передан в параметр выбрасываем исключение
+
         //Проверяем если файл не существует создаем пустой
         File fileForWork = new File(nameFile);
         if(!fileForWork.exists()) {
@@ -19,7 +21,17 @@ public class Helper {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            //и записываем в него одну строчку, чтобы было что удалять и читать
+            try (PrintWriter pw=new PrintWriter(nameFile)){
+                  pw.println("");
+            }catch (IOException e){
+                e.printStackTrace();
+            }
         }
+
+
+
     }
 
     public static List<String> readFileStrings(String fileName){
@@ -36,6 +48,15 @@ public class Helper {
         }catch (IOException e){
             e.printStackTrace();
         }
+
+        if (listString.size()==0){
+            try {
+                throw new EmptyFileException("Файл пустой операции с ним невозможны");
+            } catch (EmptyFileException e) {
+                System.out.println("Файл пустой операции с ним невозможны");
+            }
+        }
+
         return listString;
     }
 
@@ -63,6 +84,14 @@ public class Helper {
                 //добавить логгер;
                 System.out.println("Такой строки не существует. Операция невозможна.");
             }
+        }
+    }
+
+    public static void checkInvalidFileName(){
+        try {
+            throw new InvalidFileName("Некорректное расширение файла. Файл должен быть с расширением txb. Операция невозможна");
+        } catch (InvalidFileName invalidFileName) {
+            System.out.println("Некорректное расширение файла. Файл должен быть с расширением txt. Операция невозможна");;
         }
     }
 

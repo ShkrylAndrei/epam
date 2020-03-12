@@ -29,37 +29,7 @@ public class Filter {
 
     }
     public void execute(String command){
-        //ParseCommand parseCommand = new ParseCommand();
-        //String[] listParam = parseCommand.parse(command);
-        
-        //отладочная информация
-//        System.out.println("Filter -listParam");
-//        for (int i = 0; i < listParam.length; i++) {
-//            System.out.println(listParam[i]);
-//
-//        }
-//
-        
-//        String operation = listParam[0];
-//        int numberString = Integer.parseInt(listParam[1]);
-//        String nameFile = listParam[2];
-//
-//        //StringBuilder textAdd = new StringBuilder();
-//        String textAdd = null;
-//        if (operation.equals("add")){
-//             textAdd = listParam[3];
-//
-////
-////        for (int i=1;i<listParam[3].length()-1;i++){
-////            textAdd.append(listParam[3].charAt(i));
-////        }
-//            if (nameFile == null || nameFile.equals("")){
-//                nameFile = "add.txt";
-//            }
-//        }//end - if (operation=="add")
-//
-//        //отладочная информация
-//        System.out.println("operation = "+operation);
+
 
 
         String[] args = command.split(" ");
@@ -75,7 +45,7 @@ public class Filter {
         }else {
             String operation = args[0];
             if(operation.equals("add") || operation.equals("print") || operation.equals("delete")){
-                handlerMap.get(operation).handler(command);
+                System.out.println(handlerMap.get(operation).handler(command));
             }else{
                 //++ вывести через логгер без исключения:
                 System.out.println("Некорректная команда");

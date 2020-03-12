@@ -66,6 +66,10 @@ public class Main {
                 System.out.println("Введенная комманда "+command);
                 filter.execute(command);
             }
+
+            if (parameter==4){
+                m=false;
+            }
         
     }
     }

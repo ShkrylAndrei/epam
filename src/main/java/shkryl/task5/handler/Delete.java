@@ -16,30 +16,39 @@ import java.util.Scanner;
 public class Delete implements HandlerCommand {
     @Override
     public String handler(String command) {
+        //Отладочная информация
+        System.out.println("Мы в методе handler класса Delete получили комманду "+command);
 
         ParseCommand parseCommand = new ParseCommand();
         CommandArgs ca  = parseCommand.parsePrintDeleteCommand(command);
 
+        if(ca.fileName.matches(".+\\.txt")) {
+            int numberString = -1;
+            if (ca.lineNumber != null) {
+                numberString = Integer.parseInt(ca.lineNumber);
+            }
 
-        int numberString=-1;
-        if (ca.lineNumber!=null) {
-            numberString = Integer.parseInt(ca.lineNumber);
+            Helper.checkFileExist(ca.fileName);
+            List<String> listString = Helper.readFileStrings(ca.fileName);
+            if (numberString == -1) {
+                numberString = listString.size();
+            }
+            Helper.checkInvalidNumberStringException(listString, numberString);
+
+            if (listString.size() > 0) {
+                listString.remove(numberString - 1);
+                Helper.writeFile(listString, ca.fileName);
+
+                return "string  was delete";
+            }
+
+
+        }else{
+            Helper.checkInvalidFileName();
         }
 
-        Helper.checkFileExist(ca.fileName);
-        List<String> listString = Helper.readFileStrings(ca.fileName);
-        if (numberString==-1){
-            numberString=listString.size();
-        }
-        Helper.checkInvalidNumberStringException(listString, numberString);
 
+        return "can not delete line";
 
-        listString.remove(numberString-1);
-        Helper.writeFile(listString, ca.fileName);
-
-
-
-
-        return "string  was delete";
     }
 }

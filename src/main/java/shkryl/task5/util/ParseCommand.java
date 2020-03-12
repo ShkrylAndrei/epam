@@ -40,7 +40,7 @@ public class ParseCommand {
         if (parameters[0].equals("print")) {
             ca.command = "print";
             //Если переданно имя файла
-            if (parameters.length > 2) {
+            if (parameters.length> 2) {
                 ca.lineNumber = parameters[1];
                 ca.fileName = parameters[2];
             } else {
@@ -56,6 +56,7 @@ public class ParseCommand {
         CommandArgs ca = new CommandArgs();
 
         ca.command="add";
+
 
         int separateIndex = -1;
         for (int i = 0; i < str.length(); i++) {
@@ -74,11 +75,13 @@ public class ParseCommand {
         int linesCount = -1;
         String fileName = null;
         String text = null;
-        if(secondArgument.matches("\\d+")){
+
+        if(secondArgument.matches("\\d+") && arrString.length>2){
             linesCount = Integer.valueOf(secondArgument);
             ca.lineNumber =  String.valueOf(linesCount);
             index++;
         }
+
 
 
         fileName = arrString[index++];
@@ -89,14 +92,6 @@ public class ParseCommand {
         ca.text = text;
 
 
-
-
-
-        //отладочная информация
-//        System.out.println("Parse command");
-//        for (int i = 0; i < listString.length; i++) {
-//            System.out.println(listString[i]);
-//        }
         return ca;
     }
 }
