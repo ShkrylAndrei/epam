@@ -21,7 +21,7 @@ public class HumanServiceImpl implements Service<HumanDto>{
         Human human=null;
         try {
             human = humanRepo.getOneEntity();
-            consoleLogger.debug("entity with id="+human.getId()+" is generated");
+            consoleLogger.debug("entity with id={} is generated",human.getId());
         }catch(EntityNotFound e){
             consoleLogger.debug("EXCEPTION: "+e.toString());
             return null;
@@ -46,7 +46,7 @@ public class HumanServiceImpl implements Service<HumanDto>{
         Human human = converter.convertToEntity(dto);
         try {
             humanRepo.saveOneEntity(human);
-            consoleLogger.debug("entity with id="+human.getId()+" is saved");
+            consoleLogger.debug("entity with id={} is saved",human.getId());
         }catch(CanNotSaveEntity e){
             consoleLogger.debug("EXCEPTION: "+e.toString());
         }

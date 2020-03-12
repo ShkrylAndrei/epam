@@ -25,10 +25,10 @@ public class HumanRepoImpl implements EntityRepo<Human> {
 
         Human entity = generateHuman();
         if(entity.getId()>CRITICAL_VALUE_GENERATE){
-            consoleAndFileLogger.debug("entity with id="+entity.getId()+" not found");
+            consoleAndFileLogger.debug("entity with id={} not found",entity.getId());
             throw new EntityNotFound("Сущность с id "+ entity.getId()+" не найдена");
         }
-        consoleAndFileLogger.debug("entity with id="+entity.getId()+" is generated in Repo");
+        consoleAndFileLogger.debug("entity with id={} is generated in Repo",entity.getId());
         return entity;
     }
 
@@ -49,10 +49,10 @@ public class HumanRepoImpl implements EntityRepo<Human> {
     @Override
     public void saveOneEntity(Human entity) {
         if(entity.getId()>CRITICAL_VALUE_SAVE){
-            consoleAndFileLogger.debug("entity with id="+entity.getId()+" can not saves from Repo");
+            consoleAndFileLogger.debug("entity with id={} can not saves from Repo",entity.getId());
             throw new CanNotSaveEntity("Entity with id="+entity.getId()+" can not be saves");
         }
-        consoleAndFileLogger.debug("human entity with id="+entity.getId()+" saved");
+        consoleAndFileLogger.debug("human entity with id={} saved",entity.getId());
         //System.out.println(entity);
     }
 
