@@ -14,8 +14,9 @@ import java.util.Random;
 //Это реализация репозитория для Human
 //работает с сущностью Human
 public class HumanRepoImpl implements EntityRepo<Human> {
-    private final int criticalValueGenerate = 500;
-    private final int criticalValueSave = 300;
+    private final int CRITICAL_VALUE_GENERATE = 500;
+    private final int CRITICAL_VALUE_SAVE = 300;
+
     private Random rnd = new Random();
     private Logger consoleAndFileLogger = LoggerFactory.getLogger(HumanRepoImpl.class);
 
@@ -23,7 +24,7 @@ public class HumanRepoImpl implements EntityRepo<Human> {
     public Human getOneEntity() throws EntityNotFound {
 
         Human entity = generateHuman();
-        if(entity.getId()>criticalValueGenerate){
+        if(entity.getId()>CRITICAL_VALUE_GENERATE){
             consoleAndFileLogger.debug("entity with id="+entity.getId()+" not found");
             throw new EntityNotFound("Сущность с id "+ entity.getId()+" не найдена");
         }
@@ -48,7 +49,7 @@ public class HumanRepoImpl implements EntityRepo<Human> {
 
     @Override
     public void saveOneEntity(Human entity) {
-        if(entity.getId()>criticalValueSave){
+        if(entity.getId()>CRITICAL_VALUE_SAVE){
             consoleAndFileLogger.debug("entity with id="+entity.getId()+" can not saves from Repo");
             throw new CanNotSaveEntity("Entity with id="+entity.getId()+" can not be saves");
         }

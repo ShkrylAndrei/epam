@@ -20,7 +20,7 @@ public class HumanConverterImpl implements Converter<Human, HumanDto> {
 
         dto.setBirthDate(entity.getBirthDate());
 
-        onlyFileLogger.debug("Human entity with id="+entity.getId()+" was converted to DTO");
+        onlyFileLogger.debug("human entity with id = {} was converted to DTO", entity.getId());
 
         return dto;
     }
@@ -39,7 +39,8 @@ public class HumanConverterImpl implements Converter<Human, HumanDto> {
         entity.setAddress(address);
         entity.setBirthDate(dto.getBirthDate());
 
-        onlyFileLogger.debug("DTO entity with id="+dto.getId()+" was converted to Human entity");
+        onlyFileLogger.debug("DTO entity with id= {} was converted to Human entity",dto.getId());
+
 
         return entity;
     }
