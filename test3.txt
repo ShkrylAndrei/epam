@@ -1,0 +1,13 @@
+null text
+one
+two
+text
+hello
+three string
+before 4
+four
+five
+six string
+seven
+eight
+last string
