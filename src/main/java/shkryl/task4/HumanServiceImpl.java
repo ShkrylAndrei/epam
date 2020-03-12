@@ -23,7 +23,6 @@ public class HumanServiceImpl implements Service<HumanDto>{
             human = humanRepo.getOneEntity();
             consoleLogger.debug("entity with id="+human.getId()+" is generated");
         }catch(EntityNotFound e){
-            System.out.println("EXCEPTION: "+e.toString());
             consoleLogger.debug("EXCEPTION: "+e.toString());
             return null;
         }
@@ -49,7 +48,6 @@ public class HumanServiceImpl implements Service<HumanDto>{
             humanRepo.saveOneEntity(human);
             consoleLogger.debug("entity with id="+human.getId()+" is saved");
         }catch(CanNotSaveEntity e){
-            System.out.println("EXCEPTION: "+e.toString());
             consoleLogger.debug("EXCEPTION: "+e.toString());
         }
     }
@@ -60,7 +58,6 @@ public class HumanServiceImpl implements Service<HumanDto>{
             try {
                 humanRepo.saveOneEntity(converter.convertToEntity(dto));
             }catch(CanNotSaveEntity e){
-                System.out.println("EXCEPTION: "+e.toString());
                 consoleLogger.debug("EXCEPTION: "+e.toString());
             }
         }

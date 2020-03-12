@@ -14,8 +14,8 @@ import java.util.Random;
 //Это реализация репозитория для Human
 //работает с сущностью Human
 public class HumanRepoImpl implements EntityRepo<Human> {
-    private final int CRITICAL_VALUE_GENERATE = 500;
-    private final int CRITICAL_VALUE_SAVE = 300;
+    private static final int CRITICAL_VALUE_GENERATE = 500;
+    private static final int CRITICAL_VALUE_SAVE = 300;
 
     private Random rnd = new Random();
     private Logger consoleAndFileLogger = LoggerFactory.getLogger(HumanRepoImpl.class);
@@ -39,8 +39,7 @@ public class HumanRepoImpl implements EntityRepo<Human> {
             try {
                 list.add(getOneEntity());
             }catch (EntityNotFound e){
-                consoleAndFileLogger.debug("error when try add entity to List<Human> in Repo");
-                System.out.println("EXCEPTION: "+e.toString());
+                consoleAndFileLogger.debug("EXCEPTION: error when try add entity to List<Human> in Repo");
             }
         }
         consoleAndFileLogger.debug("all entity was generated in Repo");
@@ -53,9 +52,8 @@ public class HumanRepoImpl implements EntityRepo<Human> {
             consoleAndFileLogger.debug("entity with id="+entity.getId()+" can not saves from Repo");
             throw new CanNotSaveEntity("Entity with id="+entity.getId()+" can not be saves");
         }
-        System.out.println("Human entity saved:");
         consoleAndFileLogger.debug("human entity with id="+entity.getId()+" saved");
-        System.out.println(entity);
+        //System.out.println(entity);
     }
 
     @Override
@@ -92,7 +90,7 @@ public class HumanRepoImpl implements EntityRepo<Human> {
             int year = rnd.nextInt(6)+2015;
             birthDate = sdf.parse(String.format("%d.%d.%d", day, month, year));
         }catch(Exception e){
-            System.out.println(e.toString());
+            consoleAndFileLogger.debug("EXCEPTION: invalid date");
         }
         return new Human(id, name, tmpAddress, birthDate);
 
