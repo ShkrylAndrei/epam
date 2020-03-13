@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book bookid="1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="book.xsd">
+    <author>
+        <firstname>Andrei</firstname>
+        <lastname>Shkryl</lastname>
+        <secondname>Aleksandrovich</secondname>
+    </author>
+    <pagecount>300</pagecount>
+    <namebook>Fairy tail</namebook>
+    <publisher>Fakel</publisher>
+</book>
+<!--Проверял на https://www.freeformatter.com/xml-validator-xsd.html-->
+
