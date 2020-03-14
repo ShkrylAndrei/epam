@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Print implements HandlerCommand {
+    public static Print typeCommand(){
+        return new Print();
+    }
+
     @Override
     public String handler(String command) {
         //Отладочная информация
@@ -26,6 +30,11 @@ public class Print implements HandlerCommand {
             int numberString = -1;
             if (ca.lineNumber != null) {
                 numberString = Integer.parseInt(ca.lineNumber);
+                if (numberString<0){
+                    numberString=-2;
+                    //Здесь обрабатываю сразу так как метод унаследованный от интерфейса
+                    Helper.checkMinusNumberString();
+                }
             }
 
             Helper.checkFileExist(ca.fileName);
@@ -36,7 +45,10 @@ public class Print implements HandlerCommand {
                 if (numberString == -1) {
                     int lastIndex = listString.size() - 1;
                     System.out.println("Печатаем строку: " + listString.get(lastIndex));
-                } else {
+                } else if (numberString == -2){
+                    System.out.println("Нечего выводить строка имеет отрицательное значение");
+                    return "can not print line";
+                }else {
                     System.out.println("Печатаем строку: " + listString.get(numberString - 1));
                 }
 

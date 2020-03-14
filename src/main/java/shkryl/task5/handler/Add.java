@@ -25,6 +25,10 @@ import java.util.Scanner;
  */
 public class Add implements HandlerCommand {
 
+    public static Add typeCommand(){
+        return new Add();
+    }
+
     @Override
     public String handler(String command) {        
         //Отладочная информация
@@ -32,11 +36,18 @@ public class Add implements HandlerCommand {
 
         ParseCommand parseCommand = new ParseCommand();
         CommandArgs ca  = parseCommand.parseAddCommand(command);
+
+
         if(ca.fileName.matches(".+\\.txt")) {
             int numberString = -1;
             String operation = ca.command;
             if (ca.lineNumber != null) {
                 numberString = Integer.parseInt(ca.lineNumber);
+                if (numberString<0){
+                    Helper.checkMinusNumberString();
+                    return "can not add operation";
+
+                }
             }
 
             String nameFile = ca.fileName;

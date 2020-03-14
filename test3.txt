@@ -1,3 +1,5 @@
+line_line1
+text
 null text
 one
 two
@@ -8,6 +10,8 @@ before 4
 four
 five
 six string
+line 13
 seven
 eight
 last string
+final_line

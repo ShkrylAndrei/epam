@@ -20,12 +20,12 @@ import java.util.Map;
  * @author Admin
  */
 public class Filter {
-    private Map<String, HandlerCommand> handlerMap;
+   // private Map<String, HandlerCommand> handlerMap;
     public Filter(){
-        handlerMap = new HashMap<>();
-        handlerMap.put("add", new Add());
-        handlerMap.put("delete", new Delete());
-        handlerMap.put("print", new Print());
+//        handlerMap = new HashMap<>();
+//        handlerMap.put("add", new Add());
+//        handlerMap.put("delete", new Delete());
+//        handlerMap.put("print", new Print());
 
     }
     public void execute(String command){
@@ -45,7 +45,15 @@ public class Filter {
         }else {
             String operation = args[0];
             if(operation.equals("add") || operation.equals("print") || operation.equals("delete")){
-                System.out.println(handlerMap.get(operation).handler(command));
+                //System.out.println(handlerMap.get(operation).handler(command));
+                if (operation.equals("add")){
+                    System.out.println(Add.typeCommand().handler(command));
+                }else if (operation.equals("print")){
+                    System.out.println(Print.typeCommand().handler(command));
+                }else if (operation.equals("delete")){
+                    System.out.println(Delete.typeCommand().handler(command));
+                }
+
             }else{
                 //++ вывести через логгер без исключения:
                 System.out.println("Некорректная команда");

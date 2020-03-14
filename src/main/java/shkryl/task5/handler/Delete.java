@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Delete implements HandlerCommand {
+    public static Delete typeCommand(){
+        return new Delete();
+    }
+
     @Override
     public String handler(String command) {
         //Отладочная информация
@@ -26,6 +30,9 @@ public class Delete implements HandlerCommand {
             int numberString = -1;
             if (ca.lineNumber != null) {
                 numberString = Integer.parseInt(ca.lineNumber);
+                if (numberString<0){
+                    numberString=-2;
+                }
             }
 
             Helper.checkFileExist(ca.fileName);
@@ -35,7 +42,7 @@ public class Delete implements HandlerCommand {
             }
             Helper.checkInvalidNumberStringException(listString, numberString);
 
-            if (listString.size() > 0) {
+            if (listString.size() > 0 && numberString!=-2) {
                 listString.remove(numberString - 1);
                 Helper.writeFile(listString, ca.fileName);
 

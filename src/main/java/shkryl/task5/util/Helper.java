@@ -77,7 +77,7 @@ public class Helper {
 
 
     public static void checkInvalidNumberStringException(List<String> listString, int numberString){
-        if (listString.size()<numberString){
+        if (listString.size()<numberString || numberString == -2){
             try {
                 throw new InvalidNumberStringException("Такой строки не существует. Операция невозможна.");
             } catch (InvalidNumberStringException e) {
@@ -92,6 +92,14 @@ public class Helper {
             throw new InvalidFileName("Некорректное расширение файла. Файл должен быть с расширением txb. Операция невозможна");
         } catch (InvalidFileName invalidFileName) {
             System.out.println("Некорректное расширение файла. Файл должен быть с расширением txt. Операция невозможна");;
+        }
+    }
+
+    public static void checkMinusNumberString(){
+        try {
+            throw new InvalidNumberStringException("Некорректный номер строки. Строка не может быть отрицательной");
+        } catch (InvalidNumberStringException e) {
+            System.out.println("Некорректный номер строки. Строка не может быть отрицательной");
         }
     }
 

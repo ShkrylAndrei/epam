@@ -82,6 +82,12 @@ public class ParseCommand {
             index++;
         }
 
+        if(secondArgument.matches("[-]\\d+") && arrString.length>2){
+            linesCount = 0;
+            ca.lineNumber =  "-2";
+            index++;
+        }
+
 
 
         fileName = arrString[index++];
