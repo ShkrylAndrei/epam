@@ -6,10 +6,9 @@
 
 package shkryl.task5.handler;
 
-import shkryl.task5.util.CommandArgs;
-import shkryl.task5.util.Helper;
-import shkryl.task5.util.InvalidFileName;
-import shkryl.task5.util.ParseCommand;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import shkryl.task5.util.*;
 
 import java.io.File;
 import java.io.FileReader;
@@ -30,7 +29,9 @@ public class Add implements HandlerCommand {
     }
 
     @Override
-    public String handler(String command) {        
+    public String handler(String command) {
+        Logger logger = LoggerFactory.getLogger(GenerateMainMenu.class);
+
         //Отладочная информация
         System.out.println("Мы в методе handler класса Add получили комманду "+command);
 
@@ -55,6 +56,7 @@ public class Add implements HandlerCommand {
 
             //Проверяем если файл не существует создаем пустой
             Helper.checkFileExist(ca.fileName);
+            logger.info("Пользователь ввел не существующий файл {} создали новый",ca.fileName);
 
             //Сначала считываем весь файл и считаем кол-во строк
             //чтобы потом можно было понять куда и как вставлять новую информацию
@@ -78,12 +80,14 @@ public class Add implements HandlerCommand {
             }
 
             Helper.writeFile(listString, ca.fileName);
+            logger.info("Добавили данные в файл {}",ca.fileName);
 
 
             return "string " + textAdd + " was added";
         }//end  if(ca.fileName.matches(".+\\.txt"))
         else{
             Helper.checkInvalidFileName();
+            logger.info("Некорректное расширение файла {} операция не была произведена",ca.fileName);
 
             return "can not add operation";
         }

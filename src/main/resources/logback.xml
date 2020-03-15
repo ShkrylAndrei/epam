@@ -32,6 +32,22 @@
         <appender-ref ref="ONLY-FILE"/>
     </logger>
 
+    <logger name="shkryl.task5.handler.Add" level="debug" additivity="false">
+        <appender-ref ref="ONLY-FILE"/>
+    </logger>
+
+    <logger name="shkryl.task5.handler.Delete" level="debug" additivity="false">
+        <appender-ref ref="ONLY-FILE"/>
+    </logger>
+
+    <logger name="shkryl.task5.handler.Print" level="debug" additivity="false">
+        <appender-ref ref="ONLY-FILE"/>
+    </logger>
+
+    <logger name="shkryl.task5.filter.Filter" level="debug" additivity="false">
+        <appender-ref ref="ONLY-FILE"/>
+    </logger>
+
     <root level="info">
         <appender-ref ref="ONLY-FILE"/>
     </root>

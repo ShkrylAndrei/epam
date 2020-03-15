@@ -6,10 +6,13 @@
 
 package shkryl.task5.filter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import shkryl.task5.handler.Add;
 import shkryl.task5.handler.Delete;
 import shkryl.task5.handler.HandlerCommand;
 import shkryl.task5.handler.Print;
+import shkryl.task5.util.GenerateMainMenu;
 import shkryl.task5.util.InvalidCommandException;
 
 import java.util.HashMap;
@@ -29,7 +32,7 @@ public class Filter {
 
     }
     public void execute(String command){
-
+        Logger logger = LoggerFactory.getLogger(Filter.class);
 
 
         String[] args = command.split(" ");
@@ -40,6 +43,7 @@ public class Filter {
             }catch(InvalidCommandException e){
                 //++ вывести через логгер c исключением:
                 System.out.println("Строка команды имеет неверный формат");
+                logger.info("Строка команды имеет неверный формат, количество параметров не может быть меньше 2");
             }
 
         }else {
@@ -55,8 +59,8 @@ public class Filter {
                 }
 
             }else{
-                //++ вывести через логгер без исключения:
                 System.out.println("Некорректная команда");
+                logger.info("Некорректная комманда");
             }
         }
     }

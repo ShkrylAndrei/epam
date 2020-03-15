@@ -23,20 +23,23 @@ public class GenerateMainMenu {
 
             Scanner sc;
             int parameter=-1;
+
             while (parameter==-1) {
-                sc=new Scanner(System.in);
                 try {
+                    sc=new Scanner(System.in);
                     parameter = sc.nextInt();
                 } catch (Exception e) {
                     System.out.println("Неверно выбранный пункт меню, повторите попытку");
-                    logger.debug("EXCEPTION: Неверно выбранный пункт меню, повторите попытку");
+                    logger.debug("EXCEPTION: Неверно выбранный пункт меню, повторите попытку, пользователь ввел {}",parameter);
                 }
+
             }// end while
 
             if (parameter==1){
-                System.out.println("Введите комманду для добавления - формат команды add НОМЕР_СТРОКИ ИМЯ_ФАЙЛА \"ТЕКСТ\"");
-                Scanner add_sc=new Scanner(System.in);
-                String command = add_sc.nextLine();
+                //System.out.println("Введите комманду для добавления - формат команды add НОМЕР_СТРОКИ ИМЯ_ФАЙЛА \"ТЕКСТ\"");
+                //Scanner add_sc=new Scanner(System.in);
+                //String command = add_sc.nextLine();
+                String command = Helper.getCommandFromUser("Введите комманду для добавления - формат команды add НОМЕР_СТРОКИ ИМЯ_ФАЙЛА \"ТЕКСТ\"");
 
                 System.out.println("Введенная комманда "+command);
                 logger.debug("Пользователь ввел комманду {}",command);
@@ -45,9 +48,11 @@ public class GenerateMainMenu {
 
 
             if (parameter==2){
-                System.out.println("Введите комманду для удаления - формат команды delete НОМЕР_СТРОКИ ИМЯ_ФАЙЛА ");
-                Scanner add_sc=new Scanner(System.in);
-                String command = add_sc.nextLine();
+//                System.out.println("Введите комманду для удаления - формат команды delete НОМЕР_СТРОКИ ИМЯ_ФАЙЛА ");
+//                Scanner add_sc=new Scanner(System.in);
+//                String command = add_sc.nextLine();
+                String command = Helper.getCommandFromUser("Введите комманду для удаления - формат команды delete НОМЕР_СТРОКИ ИМЯ_ФАЙЛА ");
+
 
                 System.out.println("Введенная комманда "+command);
                 logger.debug("Пользователь ввел комманду {}",command);
@@ -55,9 +60,11 @@ public class GenerateMainMenu {
             }
 
             if (parameter==3){
-                System.out.println("Введите комманду для печати - формат команды print НОМЕР_СТРОКИ ИМЯ_ФАЙЛА ");
-                Scanner add_sc=new Scanner(System.in);
-                String command = add_sc.nextLine();
+//                System.out.println("Введите комманду для печати - формат команды print НОМЕР_СТРОКИ ИМЯ_ФАЙЛА ");
+//                Scanner add_sc=new Scanner(System.in);
+//                String command = add_sc.nextLine();
+                String command = Helper.getCommandFromUser("Введите комманду для печати - формат команды print НОМЕР_СТРОКИ ИМЯ_ФАЙЛА ");
+
 
                 System.out.println("Введенная комманда "+command);
                 logger.debug("Пользователь ввел комманду {}",command);

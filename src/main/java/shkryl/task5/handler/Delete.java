@@ -1,9 +1,8 @@
 package shkryl.task5.handler;
 
-import shkryl.task5.util.CommandArgs;
-import shkryl.task5.util.Helper;
-import shkryl.task5.util.InvalidNumberStringException;
-import shkryl.task5.util.ParseCommand;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import shkryl.task5.util.*;
 
 import java.io.File;
 import java.io.FileReader;
@@ -20,6 +19,8 @@ public class Delete implements HandlerCommand {
 
     @Override
     public String handler(String command) {
+        Logger logger = LoggerFactory.getLogger(GenerateMainMenu.class);
+
         //Отладочная информация
         System.out.println("Мы в методе handler класса Delete получили комманду "+command);
 
@@ -30,8 +31,10 @@ public class Delete implements HandlerCommand {
             int numberString = -1;
             if (ca.lineNumber != null) {
                 numberString = Integer.parseInt(ca.lineNumber);
-                if (numberString<0){
+                if (numberString<=0){
                     numberString=-2;
+                    //Здесь обрабатываю сразу так как метод унаследованный от интерфейса
+                    Helper.checkMinusNumberString();
                 }
             }
 
@@ -41,20 +44,23 @@ public class Delete implements HandlerCommand {
                 numberString = listString.size();
             }
             Helper.checkInvalidNumberStringException(listString, numberString);
+            logger.info("Некорректный номер строки {}",ca.lineNumber);
 
             if (listString.size() > 0 && numberString!=-2) {
                 listString.remove(numberString - 1);
                 Helper.writeFile(listString, ca.fileName);
 
+                logger.info("Строка {} была удалена из файла",numberString);
                 return "string  was delete";
             }
 
 
         }else{
             Helper.checkInvalidFileName();
+            logger.info("Некорректное расширение файла {} операция не была произведена",ca.fileName);
         }
 
-
+        logger.info("Строка {} не была удалена из файла",ca.lineNumber);
         return "can not delete line";
 
     }

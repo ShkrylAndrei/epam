@@ -97,10 +97,17 @@ public class Helper {
 
     public static void checkMinusNumberString(){
         try {
-            throw new InvalidNumberStringException("Некорректный номер строки. Строка не может быть отрицательной");
+            throw new InvalidNumberStringException("Некорректный номер строки. Строка не может быть отрицательной или равна 0");
         } catch (InvalidNumberStringException e) {
-            System.out.println("Некорректный номер строки. Строка не может быть отрицательной");
+            System.out.println("Некорректный номер строки. Строка не может быть отрицательной или равна 0");
         }
+    }
+
+    public static String getCommandFromUser(String str){
+        System.out.println(str);
+        Scanner add_sc=new Scanner(System.in);
+        String command = add_sc.nextLine();
+        return command;
     }
 
 }
