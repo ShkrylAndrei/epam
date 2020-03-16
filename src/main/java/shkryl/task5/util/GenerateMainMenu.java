@@ -30,7 +30,7 @@ public class GenerateMainMenu {
                     parameter = sc.nextInt();
                 } catch (Exception e) {
                     System.out.println("Неверно выбранный пункт меню, повторите попытку");
-                    logger.debug("EXCEPTION: Неверно выбранный пункт меню, повторите попытку, пользователь ввел {}",parameter);
+                    logger.error("EXCEPTION: Неверно выбранный пункт меню, повторите попытку, пользователь ввел {}",parameter);
                 }
 
             }// end while
@@ -42,7 +42,7 @@ public class GenerateMainMenu {
                 String command = Helper.getCommandFromUser("Введите комманду для добавления - формат команды add НОМЕР_СТРОКИ ИМЯ_ФАЙЛА \"ТЕКСТ\"");
 
                 System.out.println("Введенная комманда "+command);
-                logger.debug("Пользователь ввел комманду {}",command);
+                logger.info("Пользователь ввел комманду {}",command);
                 filter.execute(command);
             }
 
@@ -55,7 +55,7 @@ public class GenerateMainMenu {
 
 
                 System.out.println("Введенная комманда "+command);
-                logger.debug("Пользователь ввел комманду {}",command);
+                logger.info("Пользователь ввел комманду {}",command);
                 filter.execute(command);
             }
 
@@ -67,13 +67,13 @@ public class GenerateMainMenu {
 
 
                 System.out.println("Введенная комманда "+command);
-                logger.debug("Пользователь ввел комманду {}",command);
+                logger.info("Пользователь ввел комманду {}",command);
                 filter.execute(command);
             }
 
             if (parameter==4){
                 m=false;
-                logger.debug("Произошел выход из системы");
+                logger.info("Произошел выход из системы");
             }
 
         }//end - while (m)

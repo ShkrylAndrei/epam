@@ -65,38 +65,49 @@ public class ParseCommand {
                 break;
             }
         }
-        String subStringWithoutSeparator = str.substring(0, separateIndex);
-        String subStringWithSeparator = str.substring(separateIndex);
-        String[] arrString = subStringWithoutSeparator.split(" ");
-        int index = 1;
-        //String secondArgument = arrString[index++];
-        String secondArgument = arrString[index];
 
-        int linesCount = -1;
-        String fileName = null;
-        String text = null;
+        if (separateIndex==-1){
+            try {
+                throw new InvalidCommandException("Строка команды имеет неверный формат");
+            }catch(InvalidCommandException e){
+                System.out.println("Строка команды имеет неверный формат");
+            }
 
-        if(secondArgument.matches("\\d+") && arrString.length>2){
-            linesCount = Integer.valueOf(secondArgument);
-            ca.lineNumber =  String.valueOf(linesCount);
-            index++;
+            ca.text=null;
         }
+        else {
 
-        if(secondArgument.matches("[-]\\d+") && arrString.length>2){
-            linesCount = 0;
-            ca.lineNumber =  "-2";
-            index++;
-        }
+            String subStringWithoutSeparator = str.substring(0, separateIndex);
+            String subStringWithSeparator = str.substring(separateIndex);
+            String[] arrString = subStringWithoutSeparator.split(" ");
+            int index = 1;
+            //String secondArgument = arrString[index++];
+            String secondArgument = arrString[index];
+
+            int linesCount = -1;
+            String fileName = null;
+            String text = null;
+
+            if (secondArgument.matches("\\d+") && arrString.length > 2) {
+                linesCount = Integer.valueOf(secondArgument);
+                ca.lineNumber = String.valueOf(linesCount);
+                index++;
+            }
+
+            if (secondArgument.matches("[-]\\d+") && arrString.length > 2) {
+                linesCount = 0;
+                ca.lineNumber = "-2";
+                index++;
+            }
 
 
+            fileName = arrString[index++];
+            ca.fileName = fileName;
 
-        fileName = arrString[index++];
-        ca.fileName= fileName;
 
-
-        text = subStringWithSeparator.replace("\"", "");
-        ca.text = text;
-
+            text = subStringWithSeparator.replace("\"", "");
+            ca.text = text;
+        }//end else  if (separateIndex==-1)
 
         return ca;
     }

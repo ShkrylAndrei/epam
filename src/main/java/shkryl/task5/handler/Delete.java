@@ -44,7 +44,6 @@ public class Delete implements HandlerCommand {
                 numberString = listString.size();
             }
             Helper.checkInvalidNumberStringException(listString, numberString);
-            logger.info("Некорректный номер строки {}",ca.lineNumber);
 
             if (listString.size() > 0 && numberString!=-2) {
                 listString.remove(numberString - 1);
@@ -57,7 +56,7 @@ public class Delete implements HandlerCommand {
 
         }else{
             Helper.checkInvalidFileName();
-            logger.info("Некорректное расширение файла {} операция не была произведена",ca.fileName);
+            logger.error("Некорректное расширение файла {} операция не была произведена",ca.fileName);
         }
 
         logger.info("Строка {} не была удалена из файла",ca.lineNumber);

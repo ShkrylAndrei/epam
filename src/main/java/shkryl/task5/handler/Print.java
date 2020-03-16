@@ -42,7 +42,6 @@ public class Print implements HandlerCommand {
             Helper.checkFileExist(ca.fileName);
             List<String> listString = Helper.readFileStrings(ca.fileName);
             Helper.checkInvalidNumberStringException(listString, numberString);
-            logger.info("Некорректный номер строки {}",ca.lineNumber);
 
             if (listString.size() > 0) {
                 if (numberString == -1) {
@@ -55,7 +54,6 @@ public class Print implements HandlerCommand {
                     return "can not print line";
                 }else {
                     System.out.println("Печатаем строку: " + listString.get(numberString - 1));
-                    logger.info("Строка {} была выведена на экран",ca.lineNumber);
                 }
 
                 logger.info("Строка {} была выведена на экран",ca.lineNumber);
@@ -63,7 +61,7 @@ public class Print implements HandlerCommand {
             }
         }else{
             Helper.checkInvalidFileName();
-            logger.info("Некорректное расширение файла {} операция не была произведена",ca.fileName);
+            logger.error("Некорректное расширение файла {} операция не была произведена",ca.fileName);
         }
 
         logger.info("Строка не была напечатана на экране");

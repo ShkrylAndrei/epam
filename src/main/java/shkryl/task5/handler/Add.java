@@ -39,12 +39,19 @@ public class Add implements HandlerCommand {
         CommandArgs ca  = parseCommand.parseAddCommand(command);
 
 
+        if (ca.text==null){
+            System.out.println("Не введен добавляемый текст, операция невозможна");
+            logger.error("Не введен добавляемый текст, операция невозможна");
+            return "can not add operation";
+        }
+
+
         if(ca.fileName.matches(".+\\.txt")) {
             int numberString = -1;
             String operation = ca.command;
             if (ca.lineNumber != null) {
                 numberString = Integer.parseInt(ca.lineNumber);
-                if (numberString<0){
+                if (numberString<=0){
                     Helper.checkMinusNumberString();
                     return "can not add operation";
 
@@ -87,7 +94,7 @@ public class Add implements HandlerCommand {
         }//end  if(ca.fileName.matches(".+\\.txt"))
         else{
             Helper.checkInvalidFileName();
-            logger.info("Некорректное расширение файла {} операция не была произведена",ca.fileName);
+            logger.error("Некорректное расширение файла {} операция не была произведена",ca.fileName);
 
             return "can not add operation";
         }
