@@ -45,7 +45,7 @@ public class Delete implements HandlerCommand {
             }
             Helper.checkInvalidNumberStringException(listString, numberString);
 
-            if (listString.size() > 0 && numberString!=-2) {
+            if (listString.size() > 0 && numberString!=-2 && listString.size()>=numberString) {
                 listString.remove(numberString - 1);
                 Helper.writeFile(listString, ca.fileName);
 

@@ -34,7 +34,7 @@ public class Print implements HandlerCommand {
                 if (numberString<=0){
                     numberString=-2;
                     //Здесь обрабатываю сразу так как метод унаследованный от интерфейса
-                    //Helper.checkMinusNumberString();
+                    Helper.checkMinusNumberString();
                     //logger.info("Некорректный номер строки {}",ca.lineNumber);
                 }
             }
@@ -43,7 +43,7 @@ public class Print implements HandlerCommand {
             List<String> listString = Helper.readFileStrings(ca.fileName);
             Helper.checkInvalidNumberStringException(listString, numberString);
 
-            if (listString.size() > 0) {
+            if (listString.size() > 0 && listString.size()>=numberString) {
                 if (numberString == -1) {
                     int lastIndex = listString.size() - 1;
                     System.out.println("Печатаем строку: " + listString.get(lastIndex));
