@@ -130,12 +130,19 @@ public class Main {
         return plantList;
     }
 
+
+
+
     //DOM
     private static Plant getPlant(Node node) {
         Plant plant = new Plant();
         if (node.getNodeType() == Node.ELEMENT_NODE) {
             Element element = (Element) node;
             plant.setCommon(getTagValue("COMMON", element));
+            plant.setBotanical(getTagValue("BOTANICAL", element));
+            plant.setZone(getTagValue("ZONE", element));
+
+
             //lang.setAge(Integer.parseInt(getTagValue("age", element)));
         }
 

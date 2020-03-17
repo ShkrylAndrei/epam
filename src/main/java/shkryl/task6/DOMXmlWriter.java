@@ -14,8 +14,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import java.io.File;
-
 public class DOMXmlWriter {
 
     public static void main(String[] args) {
@@ -29,15 +27,23 @@ public class DOMXmlWriter {
             Document doc = builder.newDocument();
             // создаем корневой элемент
             Element rootElement =
-                    doc.createElementNS("https://javadevblog.com/language", "Languages");
+                    doc.createElementNS("", "books");
+
+            //тестовый код
+            rootElement.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+            rootElement.setAttribute("xsi:noNamespaceSchemaLocation", "book.xsd");
+            //конец тестового кода
+
+
             // добавляем корневой элемент в объект Document
             doc.appendChild(rootElement);
 
             // добавляем первый дочерний элемент к корневому
-            rootElement.appendChild(getLanguage(doc, "1", "Java", "21"));
+            Node book1 = rootElement.appendChild(getBook(doc, "1", "Andrei", "Shkryl", "Aleksandrovich",
+                    "300", "Fairy tail", "Fakel"));
 
-            //добавляем второй дочерний элемент к корневому
-            rootElement.appendChild(getLanguage(doc, "2", "C", "44"));
+            Node book2 = rootElement.appendChild(getBook(doc, "2", "Andrei", "Shkryl", "Aleksandrovich",
+                    "350", "Fairy tail2", "Fakel2"));
 
             //создаем объект TransformerFactory для печати в консоль
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -48,7 +54,7 @@ public class DOMXmlWriter {
 
             //печатаем в консоль или файл
             StreamResult console = new StreamResult(System.out);
-            StreamResult file = new StreamResult(new File("languages.xml"));
+            StreamResult file = new StreamResult(new File("book_temp.xml"));
 
             //записываем данные
             transformer.transform(source, console);
@@ -61,26 +67,51 @@ public class DOMXmlWriter {
     }
 
     // метод для создания нового узла XML-файла
-    private static Node getLanguage(Document doc, String id, String name, String age) {
-        Element language = doc.createElement("Language");
+    private static Node getBook(Document doc, String id, String firstname, String lastName, String secondname, String pagecount, String namebook, String publisher) {
+        Element book = doc.createElement("book");
+
 
         // устанавливаем атрибут id
-        language.setAttribute("id", id);
+        book.setAttribute("bookid", id);
 
-        // создаем элемент name
-        language.appendChild(getLanguageElements(doc, language, "name", name));
+        book.appendChild(getAuthor(doc, firstname, lastName, secondname));
 
-        // создаем элемент age
-        language.appendChild(getLanguageElements(doc, language, "age", age));
-        return language;
+        book.appendChild(getParam(doc, "pagecount", pagecount));
+        book.appendChild(getParam(doc, "namebook", namebook));
+        book.appendChild(getParam(doc, "publisher", publisher));
+//        // создаем элемент name
+//        language.appendChild(getLanguageElements(doc, language, "name", name));
+//
+//        // создаем элемент age
+//        language.appendChild(getLanguageElements(doc, language, "age", age));
+        return book;
     }
 
 
-    // утилитный метод для создание нового узла XML-файла
-    private static Node getLanguageElements(Document doc, Element element, String name, String value) {
-        Element node = doc.createElement(name);
+    private static Node getAuthor(Document doc, String firstname, String lastname, String secondname){
+        Element author = doc.createElement("author");
+
+        // создаем элемент name
+        author.appendChild(getParam(doc, "firstname", firstname));
+        author.appendChild(getParam(doc, "lastname", lastname));
+        author.appendChild(getParam(doc, "secondname", secondname));
+
+        return author;
+    }
+
+
+    private static Node getParam(Document doc, String paramName, String value){
+        Element node = doc.createElement(paramName);
         node.appendChild(doc.createTextNode(value));
         return node;
     }
+
+
+//    // утилитный метод для создание нового узла XML-файла
+//    private static Node getLanguageElements(Document doc, Element element, String name, String value) {
+//        Element node = doc.createElement(name);
+//        node.appendChild(doc.createTextNode(value));
+//        return node;
+//    }
 
 }
