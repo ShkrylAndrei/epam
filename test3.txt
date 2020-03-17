@@ -1,0 +1,18 @@
+line_line1
+text
+null text
+two
+line 5
+hello
+three string
+before 4
+four
+five
+six string
+line 13
+seven
+eight
+last string
+line_17
+final_line
+test
