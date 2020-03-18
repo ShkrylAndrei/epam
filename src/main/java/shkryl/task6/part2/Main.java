@@ -1,4 +1,4 @@
-package shkryl.task6;
+package shkryl.task6.part2;
 
 import java.io.File;
 
@@ -14,9 +14,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-public class DOMXmlWriter {
+public class Main {
 
     public static void main(String[] args) {
+        String nameXmlFileForCreate = "book_create_by_Java.xml";
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
         try {
@@ -29,10 +30,10 @@ public class DOMXmlWriter {
             Element rootElement =
                     doc.createElementNS("", "books");
 
-            //тестовый код
+
             rootElement.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
             rootElement.setAttribute("xsi:noNamespaceSchemaLocation", "book.xsd");
-            //конец тестового кода
+
 
 
             // добавляем корневой элемент в объект Document
@@ -54,7 +55,7 @@ public class DOMXmlWriter {
 
             //печатаем в консоль или файл
             StreamResult console = new StreamResult(System.out);
-            StreamResult file = new StreamResult(new File("book_temp.xml"));
+            StreamResult file = new StreamResult(new File(nameXmlFileForCreate));
 
             //записываем данные
             transformer.transform(source, console);
@@ -64,6 +65,9 @@ public class DOMXmlWriter {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        System.out.println(CheckValidateXml.check("book.xsd",nameXmlFileForCreate));
+
     }
 
     // метод для создания нового узла XML-файла
@@ -79,11 +83,7 @@ public class DOMXmlWriter {
         book.appendChild(getParam(doc, "pagecount", pagecount));
         book.appendChild(getParam(doc, "namebook", namebook));
         book.appendChild(getParam(doc, "publisher", publisher));
-//        // создаем элемент name
-//        language.appendChild(getLanguageElements(doc, language, "name", name));
-//
-//        // создаем элемент age
-//        language.appendChild(getLanguageElements(doc, language, "age", age));
+
         return book;
     }
 
@@ -107,11 +107,5 @@ public class DOMXmlWriter {
     }
 
 
-//    // утилитный метод для создание нового узла XML-файла
-//    private static Node getLanguageElements(Document doc, Element element, String name, String value) {
-//        Element node = doc.createElement(name);
-//        node.appendChild(doc.createTextNode(value));
-//        return node;
-//    }
 
 }

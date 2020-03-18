@@ -1,4 +1,4 @@
-package shkryl.task6;
+package shkryl.task6.part2;
 
 
 import java.io.File;
@@ -13,10 +13,14 @@ import org.xml.sax.SAXException;
 
 public class CheckValidateXml
 {
-    public static void main(String[] args)
-    {
-        boolean answer = validateXMLSchema("book.xsd", "book_temp.xml");
-        System.out.println("Result:" + answer);
+    public static String check(String xsd,String xml){
+        boolean answer = validateXMLSchema(xsd, xml);
+        if (answer == true){
+            return "Файл "+xml+" успешно прошел валидацию";
+        }else{
+            return "Файл "+xml+" не прошел валидацию";
+        }
+
     }
 
     public static boolean validateXMLSchema(String xsdPath, String xmlPath)
