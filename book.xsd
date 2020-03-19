@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="books">
+
+            <xs:complexType>
+                <xs:sequence>
+                    <xs:element name="book" maxOccurs="unbounded">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="author">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="firstname" type="xs:string"/>
+                                            <xs:element name="lastname" type="xs:string"/>
+                                            <xs:element name="secondname" type="xs:string"/>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="pagecount" type="xs:string"/>
+                                <xs:element name="namebook" type="xs:string"/>
+                                <xs:element name="publisher" type="xs:string"/>
+                            </xs:sequence>
+                            <xs:attribute name="bookid" type="xs:string" use="required"/>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+    </xs:element>
+</xs:schema>
