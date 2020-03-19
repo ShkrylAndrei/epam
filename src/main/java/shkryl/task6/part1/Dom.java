@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Dom {
 
-    public static List<Plant> parseXmlFile(String file){
+    public static List<Plant> parseXmlFile(String file) {
         String filepath = file;
         File xmlFile = new File(filepath);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -40,7 +40,6 @@ public class Dom {
         return null;
 
     }
-
 
 
     private static Plant getPlant(Node node) {

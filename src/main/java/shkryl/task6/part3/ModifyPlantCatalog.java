@@ -5,8 +5,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import shkryl.task6.Plant;
 import shkryl.task6.part1.Dom;
-import shkryl.task6.part2.CheckValidateXml;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -33,16 +31,14 @@ public class ModifyPlantCatalog {
                     doc.createElementNS("", "CATALOG");
 
 
-
-
             // добавляем корневой элемент в объект Document
             doc.appendChild(rootElement);
 
             //Читаем plant_catalog.xml
             List<Plant> listPlant = Dom.parseXmlFile("plant_catalog.xml");
             //Обрабатываем listPlant и записываем все в новый файл
-            for (Plant plant : listPlant){
-               //Редактируем xml загруженный в listPlant
+            for (Plant plant : listPlant) {
+                //Редактируем xml загруженный в listPlant
                 if (!plant.getZone().equals("4")) {
                     rootElement.appendChild(getPlant(doc, plant.getCommon(), plant.getBotanical(), plant.getZone(),
                             plant.getLight(), plant.getPrice(), plant.getAvailability()));
@@ -69,8 +65,6 @@ public class ModifyPlantCatalog {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
 
@@ -89,8 +83,7 @@ public class ModifyPlantCatalog {
     }
 
 
-
-    private static Node getParam(Document doc, String paramName, String value){
+    private static Node getParam(Document doc, String paramName, String value) {
         Element node = doc.createElement(paramName);
         node.appendChild(doc.createTextNode(value));
         return node;

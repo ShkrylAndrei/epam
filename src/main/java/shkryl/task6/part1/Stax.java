@@ -43,7 +43,7 @@ public class Stax {
                     } else if (startElement.getName().getLocalPart().equals("BOTANICAL")) {
                         xmlEvent = reader.nextEvent();
                         plant.setBotanical(xmlEvent.asCharacters().getData());
-                    }  else if (startElement.getName().getLocalPart().equals("ZONE")) {
+                    } else if (startElement.getName().getLocalPart().equals("ZONE")) {
                         xmlEvent = reader.nextEvent();
                         plant.setZone(xmlEvent.asCharacters().getData());
                     } else if (startElement.getName().getLocalPart().equals("LIGHT")) {

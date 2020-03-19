@@ -11,20 +11,18 @@ import javax.xml.validation.Validator;
 
 import org.xml.sax.SAXException;
 
-public class CheckValidateXml
-{
-    public static String check(String xsd,String xml){
+public class CheckValidateXml {
+    public static String check(String xsd, String xml) {
         boolean answer = validateXMLSchema(xsd, xml);
-        if (answer == true){
-            return "Файл "+xml+" успешно прошел валидацию";
-        }else{
-            return "Файл "+xml+" не прошел валидацию";
+        if (answer == true) {
+            return "Файл " + xml + " успешно прошел валидацию";
+        } else {
+            return "Файл " + xml + " не прошел валидацию";
         }
 
     }
 
-    public static boolean validateXMLSchema(String xsdPath, String xmlPath)
-    {
+    public static boolean validateXMLSchema(String xsdPath, String xmlPath) {
         try {
             // Получить фабрику для схемы
             SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);

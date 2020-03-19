@@ -35,7 +35,6 @@ public class Main {
             rootElement.setAttribute("xsi:noNamespaceSchemaLocation", "book.xsd");
 
 
-
             // добавляем корневой элемент в объект Document
             doc.appendChild(rootElement);
 
@@ -66,7 +65,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        System.out.println(CheckValidateXml.check("book.xsd",nameXmlFileForCreate));
+        System.out.println(CheckValidateXml.check("book.xsd", nameXmlFileForCreate));
 
     }
 
@@ -88,7 +87,7 @@ public class Main {
     }
 
 
-    private static Node getAuthor(Document doc, String firstname, String lastname, String secondname){
+    private static Node getAuthor(Document doc, String firstname, String lastname, String secondname) {
         Element author = doc.createElement("author");
 
         // создаем элемент name
@@ -100,12 +99,11 @@ public class Main {
     }
 
 
-    private static Node getParam(Document doc, String paramName, String value){
+    private static Node getParam(Document doc, String paramName, String value) {
         Element node = doc.createElement(paramName);
         node.appendChild(doc.createTextNode(value));
         return node;
     }
-
 
 
 }
