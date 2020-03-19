@@ -5,11 +5,8 @@ import java.io.*;
 public class Utils {
     public static String getFileExtension(File file) {
         String fileName = file.getName();
-        // если в имени файла есть точка и она не является первым символом в названии файла
         if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
-            // то вырезаем все знаки после последней точки в названии файла, то есть ХХХХХ.txt -> txt
             return fileName.substring(fileName.lastIndexOf(".")+1);
-            // в противном случае возвращаем заглушку, то есть расширение не найдено
         else return "";
     }
 
@@ -22,11 +19,8 @@ public class Utils {
 
     public static String getFileAbsolutePathWithoutExtension(File file) {
         String filePath = file.getAbsolutePath();
-        // если в имени файла есть точка и она не является первым символом в названии файла
         if(filePath.lastIndexOf(".") != -1 && filePath.lastIndexOf(".") != 0)
-            // то вырезаем все знаки после последней точки в названии файла, то есть ХХХХХ.txt -> txt
             return filePath.substring(0, filePath.lastIndexOf("."));
-            // в противном случае возвращаем заглушку, то есть расширение не найдено
         else return "";
     }
 
