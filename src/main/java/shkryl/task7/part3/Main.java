@@ -20,6 +20,7 @@ public class Main {
 
 
         CustomClassLoader classLoader = new CustomClassLoader();
+
         List<Class> listClasses = new ArrayList();
         try {
             File root = new File(folderPath);
