@@ -2,11 +2,9 @@ package shkryl.task7.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import shkryl.task7.part3.CustomClassLoader;
 
 import java.io.*;
 
-import static org.slf4j.LoggerFactory.getLogger;
 
 public final class Utils {
     private static Logger logger = LoggerFactory.getLogger(Utils.class);;
@@ -14,14 +12,6 @@ public final class Utils {
     private Utils() {
 
     }
-
-    public static String getFileExtension(File file) {
-        String fileName = file.getName();
-        if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0) {
-            return fileName.substring(fileName.lastIndexOf(".") + 1);
-        } else return "";
-    }
-
 
     public static String getFileNameFromAbsoluteFileName(String path) {
         File f = new File(path);
