@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<configuration>
+
+    <!-- Только в файл -->
+    <appender name="ONLY-FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>c:/log/lab7.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} - %msg%n
+            </Pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>c:/log/lab7.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+
+    </appender>
+
+    <logger name="shkryl.task7.part3.CustomClassLoader" level="debug" additivity="false">
+        <appender-ref ref="ONLY-FILE"/>
+    </logger>
+
+    <logger name="shkryl.task7.part3.Main" level="debug" additivity="false">
+        <appender-ref ref="ONLY-FILE"/>
+    </logger>
+
+    <logger name="shkryl.task7.util.Utils" level="debug" additivity="false">
+        <appender-ref ref="ONLY-FILE"/>
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="ONLY-FILE"/>
+    </root>
+</configuration>
