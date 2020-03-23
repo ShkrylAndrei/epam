@@ -19,21 +19,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
- * @author Admin
+ * Класс Filter предоставляет метод парсинга команды, введенной с консоли
  */
 public class Filter {
-   // private Map<String, HandlerCommand> handlerMap;
-    public Filter(){
-//        handlerMap = new HashMap<>();
-//        handlerMap.put("add", new Add());
-//        handlerMap.put("delete", new Delete());
-//        handlerMap.put("print", new Print());
 
+    /**
+     * Консруктор по умолчанию
+     */
+    public Filter(){
     }
+
+    /**
+     * Парсит команду command, проверяет ее на корректность
+     * Если command имеет неверный формат, генерирует {@link InvalidCommandException}
+     * запускает выполнение команды
+     * @param command команда, введенная с консоли
+     */
     public void execute(String command){
         Logger logger = LoggerFactory.getLogger(Filter.class);
-
 
         String[] args = command.split(" ");
         if(args.length<2){

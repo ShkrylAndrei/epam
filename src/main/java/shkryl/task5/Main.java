@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import shkryl.task5.filter.Filter;
 import shkryl.task5.util.GenerateMainMenu;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -18,7 +19,6 @@ import java.util.Scanner;
  * @author Admin
  */
 public class Main {
-
 
     public static void main(String[] args) {
         Logger logger = LoggerFactory.getLogger(Main.class);

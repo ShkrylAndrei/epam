@@ -12,7 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Класс-обработчик команды печати выбранной строки, реализует интерфейст {@link HandlerCommand}
+ */
 public class Print implements HandlerCommand {
+    /**
+     * Создает объект класса Print
+     * @return возвращает объект класса Print
+     */
     public static Print typeCommand(){
         return new Print();
     }

@@ -12,12 +12,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Класс для парсинга комманд удаления и печати
  *
- * @author Admin
  */
 public class ParseCommand {
 
-
+    /**
+     * Парсит комманду удаления и печати
+      * @param str
+     * @return
+     */
     public CommandArgs parsePrintDeleteCommand(String str){
         //вынести в отдельное поле
         CommandArgs ca = new CommandArgs();

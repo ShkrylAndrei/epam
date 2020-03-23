@@ -12,7 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Класс-обработчик команды удаления строки, реализует интерфейст {@link HandlerCommand}
+ */
 public class Delete implements HandlerCommand {
+    /**
+     * Создает объект класса Delete
+     * @return возвращает созданный объект класса Delete
+     */
     public static Delete typeCommand(){
         return new Delete();
     }

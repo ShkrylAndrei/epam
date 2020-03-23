@@ -19,11 +19,14 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- *
- * @author Admin
+ * Класс-обработчик команды добавления новой строки, реализует интерфейст {@link HandlerCommand}
  */
 public class Add implements HandlerCommand {
 
+    /**
+     * Создает объект класса Add
+     * @return созданный объект класса Add
+     */
     public static Add typeCommand(){
         return new Add();
     }
