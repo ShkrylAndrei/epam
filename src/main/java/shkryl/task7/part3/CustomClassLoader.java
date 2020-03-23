@@ -18,6 +18,7 @@ public class CustomClassLoader extends ClassLoader {
 
     /**
      * Считывает класс по его абсолютному пути absoluteFileName и генерирует Class объект на основе данного класса
+     *
      * @param absoluteFileName абсолютный путь к файлу
      * @return возвращает Class объект
      * @throws ClassNotFoundException

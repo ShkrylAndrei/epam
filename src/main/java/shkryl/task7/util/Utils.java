@@ -14,7 +14,8 @@ public final class Utils {
     /**
      * Логгер
      */
-    private static Logger logger = LoggerFactory.getLogger(Utils.class);;
+    private static Logger logger = LoggerFactory.getLogger(Utils.class);
+    ;
 
     /**
      * Приватный конструктор по умолчанию
@@ -25,6 +26,7 @@ public final class Utils {
 
     /**
      * Возращает имя файл из абсолютного пути
+     *
      * @param path абсолютный путь к файлу
      * @return имя файла
      */
@@ -35,6 +37,7 @@ public final class Utils {
 
     /**
      * Возращает имя файла без расширения из абсолютного пути или пустую строку если путь неккореткный
+     *
      * @param file файл
      * @return абсолютный путь к указанному файлу без расширения
      */
@@ -48,6 +51,7 @@ public final class Utils {
     /**
      * Читает файл скомпилированного класса и возращаем в виде массива байт
      * или null если считать не удалось
+     *
      * @param fileName имя файла
      * @return массив байт
      * @throws ClassNotFoundException
