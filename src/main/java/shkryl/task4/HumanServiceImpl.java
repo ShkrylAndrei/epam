@@ -20,7 +20,7 @@ public class HumanServiceImpl implements Service<HumanDto>{
      */
     private HumanConverterImpl converter = new HumanConverterImpl();
     /**
-     * Логгер для калсса HumanServiceImpl
+     * Логгер для класса HumanServiceImpl
      */
     private Logger consoleLogger = LoggerFactory.getLogger(HumanServiceImpl.class);
 

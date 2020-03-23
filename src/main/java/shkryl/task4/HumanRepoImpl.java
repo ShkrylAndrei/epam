@@ -25,7 +25,7 @@ public class HumanRepoImpl implements EntityRepo<Human> {
      */
     private Random rnd = new Random();
     /**
-     * Логгер для калсса HumanRepoImpl
+     * Логгер для класса HumanRepoImpl
      */
     private Logger consoleAndFileLogger = LoggerFactory.getLogger(HumanRepoImpl.class);
 
