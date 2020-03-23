@@ -1,8 +1,16 @@
 package shkryl.task7.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import shkryl.task7.part3.CustomClassLoader;
+
 import java.io.*;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 public final class Utils {
+    private static Logger logger = LoggerFactory.getLogger(Utils.class);;
+
     private Utils() {
 
     }
@@ -42,12 +50,14 @@ public final class Utils {
             ins.read(b);
             return b;
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.toString());
+            System.out.println(e.toString());
         } finally {
             try {
                 ins.close();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error(e.toString());
+                System.out.println(e.toString());
             }
             ;
         }
