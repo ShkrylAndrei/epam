@@ -8,11 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Утилитарный класс помошник
+ */
 public class Helper {
+    /**
+     * Проверяет наличие файла, если его нет создаем пустой
+     * @param nameFile принимает имя проверяемого файла
+     */
     public static void checkFileExist(String nameFile){
-        //Если файла не передан в параметр выбрасываем исключение
-
-        //Проверяем если файл не существует создаем пустой
         File fileForWork = new File(nameFile);
         if(!fileForWork.exists()) {
 
@@ -22,29 +26,26 @@ public class Helper {
                 e.printStackTrace();
             }
 
-            //и записываем в него одну строчку, чтобы было что удалять и читать
             try (PrintWriter pw=new PrintWriter(nameFile)){
                   pw.println("");
             }catch (IOException e){
                 e.printStackTrace();
             }
         }
-
-
-
     }
 
+    /**
+     * Считывает файл в коллекцию построчно
+     * @param fileName имя файла
+     * @return коллекция строк считанных из переданного файла
+     */
     public static List<String> readFileStrings(String fileName){
-        //Список строчек файла
         List<String> listString = new ArrayList<>();
-        //Сначала считываем весь файл и считаем кол-во строк
-        //чтобы потом можно было понять куда и как удалять информацию
         try (FileReader fr = new FileReader(fileName)) {
             Scanner scan = new Scanner(fr);
             while (scan.hasNextLine()) {
                 listString.add(scan.nextLine());
             }
-
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -60,6 +61,11 @@ public class Helper {
         return listString;
     }
 
+    /**
+     * Запись данных в файл
+     * @param listString коллекция для записи в файл
+     * @param fileName имя файла
+     */
     public static void writeFile(List<String> listString, String fileName){
         try (PrintWriter pw=new PrintWriter(fileName)){
             for (int i = 0; i < listString.size(); i++) {
@@ -75,7 +81,11 @@ public class Helper {
         }
     }
 
-
+    /**
+     * Исключение на проверку корректного номера строки
+     * @param listString коллекция содержащая строки
+     * @param numberString номер обрабатываемой строки
+     */
     public static void checkInvalidNumberStringException(List<String> listString, int numberString){
         if (listString.size()<numberString || numberString == -2){
             try {
@@ -87,6 +97,9 @@ public class Helper {
         }
     }
 
+    /**
+     * Исключение на проверку корректного расширения файла
+     */
     public static void checkInvalidFileName(){
         try {
             throw new InvalidFileName("Некорректное расширение файла. Файл должен быть с расширением txb. Операция невозможна");
@@ -95,6 +108,9 @@ public class Helper {
         }
     }
 
+    /**
+     * Исключение на проверку отрицательной или нулевой строки
+     */
     public static void checkMinusNumberString(){
         try {
             throw new InvalidNumberStringException("Некорректный номер строки. Строка не может быть отрицательной или равна 0");
@@ -103,6 +119,11 @@ public class Helper {
         }
     }
 
+    /**
+     * Запрос комманды от пользователя с клавиатуры
+     * @param str комментарий к запрашиваемому действию
+     * @return строка, введенная пользователм
+     */
     public static String getCommandFromUser(String str){
         System.out.println(str);
         Scanner add_sc=new Scanner(System.in);

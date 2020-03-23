@@ -18,9 +18,10 @@ import java.util.Map;
 public class ParseCommand {
 
     /**
-     * Парсит комманду удаления и печати
-      * @param str
-     * @return
+     * Парсит комманду удаления и печати строки
+      * @param str комманда
+     * @return экземпляр класса CommandArgs который содержит распарсенную строку по полям
+     * lineNumber, fileName, command, text
      */
     public CommandArgs parsePrintDeleteCommand(String str){
         //вынести в отдельное поле
@@ -56,6 +57,13 @@ public class ParseCommand {
         return ca;
     }
 
+    /**
+     *
+     ** Парсит комманду добавления строки
+     *       * @param str комманда
+     *      * @return экземпляр класса CommandArgs который содержит распарсенную строку по полям
+     *      * lineNumber, fileName, command, text
+     */
     public CommandArgs parseAddCommand(String str){
         CommandArgs ca = new CommandArgs();
 
