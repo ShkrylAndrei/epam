@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+    /**
+     * Логгер
+     */
     private static Logger logger;
 
     public static void main(String[] args) throws IllegalAccessException, InstantiationException {
