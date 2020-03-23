@@ -3,6 +3,9 @@ package shkryl.task4;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Класс описывающий сущность Human
+ */
 public class Human {
     private int id;
     private String name;
@@ -10,6 +13,9 @@ public class Human {
     //Как правильно дату сделать, сделал пока String
     private Date birthDate;
 
+    /**
+     * Конструктор без параметров
+     */
     public Human() {
     }
 
@@ -53,6 +59,10 @@ public class Human {
         this.birthDate = birthDate;
     }
 
+    /**
+     * Формирует строку содержащую поля id,name,address,birthDate
+     * @return возвращает сформированную строку
+     */
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");

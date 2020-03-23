@@ -3,6 +3,9 @@ package shkryl.task4;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Реализует интерфейс конвертер для сущности Human
+ */
 public class HumanConverterImpl implements Converter<Human, HumanDto> {
     private Logger onlyFileLogger = LoggerFactory.getLogger(HumanConverterImpl.class);
 

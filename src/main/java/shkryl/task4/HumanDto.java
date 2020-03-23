@@ -3,11 +3,13 @@ package shkryl.task4;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * DTO для сущности Human
+ */
 public class HumanDto {
 
     private int id;
     private String name;
-    //Как правильно указывать дату, пока указал String
     private Date birthDate;
 
     private String city;
@@ -15,10 +17,22 @@ public class HumanDto {
     private int house;
     private int room;
 
-
+    /**
+     * Конструктор без параметров
+     */
     public HumanDto() {
     }
 
+    /**
+     * Конструктор с параметрами
+     * @param id - id
+     * @param name - имя
+     * @param birthDate - дата рождения
+     * @param city - город
+     * @param street - улица
+     * @param house - номер дома
+     * @param room - квартира
+     */
     public HumanDto(int id, String name, Date birthDate, String city, String street, int house, int room) {
         this.id = id;
         this.name = name;
@@ -87,7 +101,10 @@ public class HumanDto {
     }
 
 
-
+    /**
+     * Формирует строку содержащую поля id,name,birthDate,city,street,house,room
+     * @return возвращает сформированную строку
+     */
     @Override
     public String toString() {
         SimpleDateFormat sdf=new SimpleDateFormat("dd.MM.yyyy");

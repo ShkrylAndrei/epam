@@ -6,13 +6,22 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-//Этот сервис работает с репозиторием
-//через конвертер
+/**
+ * Реализация сервиса для HumanDto, работает с репозитарием через конвертер
+ */
 public class HumanServiceImpl implements Service<HumanDto>{
 
-
+    /**
+     * Репозиторий для сущности Human
+     */
     private HumanRepoImpl humanRepo = new HumanRepoImpl();
+    /**
+     * Конвертер для сущности Human
+     */
     private HumanConverterImpl converter = new HumanConverterImpl();
+    /**
+     * Логгер для калсса HumanServiceImpl
+     */
     private Logger consoleLogger = LoggerFactory.getLogger(HumanServiceImpl.class);
 
 

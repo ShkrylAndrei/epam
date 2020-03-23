@@ -1,23 +1,32 @@
 package shkryl.task4;
 
-import jdk.nashorn.internal.runtime.regexp.joni.constants.EncloseType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.swing.text.html.parser.Entity;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-//Это реализация репозитория для Human
-//работает с сущностью Human
+/**
+ * Реализует интерфейс EntityRepo для сущности Human
+ */
 public class HumanRepoImpl implements EntityRepo<Human> {
+    /**
+     * Максимальная величина для создания сущности
+     */
     private static final int CRITICAL_VALUE_GENERATE = 500;
+    /**
+     * Максимальная величина для сохранения сущности
+     */
     private static final int CRITICAL_VALUE_SAVE = 300;
-
+    /**
+     * Генератор случайных чисел
+     */
     private Random rnd = new Random();
+    /**
+     * Логгер для калсса HumanRepoImpl
+     */
     private Logger consoleAndFileLogger = LoggerFactory.getLogger(HumanRepoImpl.class);
 
     @Override
@@ -63,6 +72,11 @@ public class HumanRepoImpl implements EntityRepo<Human> {
         }
     }
 
+    /**
+     * Генерирует сущность Human
+     *
+     * @return возращает сгенерированную сущность Human
+     */
     private Human generateHuman(){
         Random rnd=new Random();
         String[] name_array={"Андрей", "Максим", "Петр", "Семен", "Михаил"};
