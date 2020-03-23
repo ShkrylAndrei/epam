@@ -1,5 +1,8 @@
 package shkryl.task3;
 
+/**
+ * Описывает класс User
+ */
 public class User {
     private String fio;
     private Role role;
@@ -25,7 +28,10 @@ public class User {
         this.role = role;
     }
 
-    public void greeting(){
+    /**
+     * Осуществляет приветствие пользователя с выбранной ролью
+     */
+    public void greeting() {
         System.out.println("Приветствуем ФИО с ролью " + role);
     }
 }
