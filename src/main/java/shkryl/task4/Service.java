@@ -5,5 +5,4 @@ package shkryl.task4;
  * @param <T> тип сущности
  */
 public interface Service<T> extends EntityRepo<T>{
-
 }
