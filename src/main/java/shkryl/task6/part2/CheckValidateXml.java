@@ -11,7 +11,16 @@ import javax.xml.validation.Validator;
 
 import org.xml.sax.SAXException;
 
+/**
+ * Класс на валидацию XML файла
+ */
 public class CheckValidateXml {
+    /**
+     * Проверка XML файла
+     * @param xsd xsd схема
+     * @param xml xml файл
+     * @return строка валидный или не валидный файл
+     */
     public static String check(String xsd, String xml) {
         boolean answer = validateXMLSchema(xsd, xml);
         if (answer == true) {
@@ -22,6 +31,12 @@ public class CheckValidateXml {
 
     }
 
+    /**
+     * Валидация файла
+     * @param xsdPath xsd файл
+     * @param xmlPath xml файл
+     * @return
+     */
     public static boolean validateXMLSchema(String xsdPath, String xmlPath) {
         try {
             // Получить фабрику для схемы

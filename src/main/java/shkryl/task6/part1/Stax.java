@@ -13,7 +13,15 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс для работы со Stax
+ */
 public class Stax {
+    /**
+     * Парсит XML файл
+     * @param fileName имя файла
+     * @return коллекция объектов Plant
+     */
     public static List<Plant> parseXmlFile(String fileName) {
         List<Plant> plantList = new ArrayList<>();
         Plant plant = null;
@@ -73,5 +81,5 @@ public class Stax {
             e.printStackTrace();
         }
         return plantList;
-    }//end private static List<Plant> parseXMLfile(String fileName)
+    }
 }
