@@ -1,5 +1,9 @@
 package shkryl.task2;
 
+/**
+ * Класс описывающий адрес для класса {@link Human}
+ *
+ */
 public class Address {
     private String city;
     private String street;

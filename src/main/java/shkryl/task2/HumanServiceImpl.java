@@ -3,12 +3,18 @@ package shkryl.task2;
 import java.util.ArrayList;
 import java.util.List;
 
-//Этот сервис работает с репозиторием
-//через конвертер
-public class HumanServiceImpl implements Service<HumanDto>{
+/**
+ * Реализация сервиса для HumanDto, работает с репозитарием через конвертер
+ */
+public class HumanServiceImpl implements Service<HumanDto> {
 
-
+    /**
+     * Репозиторий для сущности Human
+     */
     private HumanRepoImpl humanRepo = new HumanRepoImpl();
+    /**
+     * Конвертер для сущности Human
+     */
     private HumanConverterImpl converter = new HumanConverterImpl();
 
     @Override
@@ -21,7 +27,7 @@ public class HumanServiceImpl implements Service<HumanDto>{
     public List<HumanDto> getAllEntity() {
         List<Human> listEntity = humanRepo.getAllEntity();
         List<HumanDto> listDTO = new ArrayList<>();
-        for(Human human : listEntity){
+        for (Human human : listEntity) {
             listDTO.add(converter.convetToDTO(human));
         }
         return listDTO;
@@ -35,7 +41,7 @@ public class HumanServiceImpl implements Service<HumanDto>{
 
     @Override
     public void saveAllEntity(List<HumanDto> listDTO) {
-        for(HumanDto dto : listDTO){
+        for (HumanDto dto : listDTO) {
             humanRepo.saveOneEntity(converter.convertToEntity(dto));
         }
     }
