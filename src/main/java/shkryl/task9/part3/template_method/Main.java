@@ -9,11 +9,11 @@ public class Main {
         MakeEngine engine;
         
         engine = new EnginePetrol();
-        engine.loadEngine();
+        engine.processEngine();
         System.out.println("");
         
         engine = new EngineGas();
-        engine.loadEngine();
+        engine.processEngine();
         System.out.println("");
         
     }

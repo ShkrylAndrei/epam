@@ -37,13 +37,13 @@ public class EngineGas extends MakeEngine{
     
     
     @Override
-    public void getEngine() {
+    public void deliverEngine() {
         setTypeEngine("Газовый двигатель");
         System.out.println("Получаем со склада "+getTypeEngine());
     }
 
     @Override
-    public void setEngine() {
+    public void installEngine() {
         setModelCar("Nissan");
         setMaxSpeed(280);
         System.out.println(getTypeEngine()+" установлен на модель "+getModelCar()+

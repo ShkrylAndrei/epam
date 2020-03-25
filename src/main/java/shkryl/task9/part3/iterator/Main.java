@@ -1,5 +1,10 @@
 package shkryl.task9.part3.iterator;
 
+import shkryl.task9.part3.iterator.author.Author;
+import shkryl.task9.part3.iterator.author.Library;
+import shkryl.task9.part3.iterator.database.Database;
+import shkryl.task9.part3.iterator.myiterator.MyIterator;
+
 /**
  *
  * @author Admin
@@ -7,12 +12,19 @@ package shkryl.task9.part3.iterator;
 public class Main {
     public static void main(String[] args) {
         Database database = new Database();
-        IIterator iterator = database.getIterator();
+        MyIterator<String> iterator = database.getIterator();
         while (iterator.hasNext()){
-        //for (IIterator iterator = database.getIterator();iterator.hasNext();){
-            String item = String.valueOf(iterator.next());
+            String item = iterator.getNext();
             System.out.println("Элемент базы данных "+item);
             
+        }
+        System.out.println("#################");
+
+        //Перебор книг в библиотеке по авторам в прямом и обратном порядке через итератор
+        Library library = new Library();
+        MyIterator<Author> iter1 = library.getIterator();
+        while(iter1.hasNext()){
+            System.out.println(iter1.getNext());
         }
         
     }
