@@ -42,7 +42,7 @@ public class Helper {
         Human human9 = new Human("Кутуков А.К.", 25, address9);
 
         Address address10 = new Address("Чебоксары", "Чебоксарская", 115, 27);
-        Human humna10 = new Human("Плотников И.П.", 48, address10);
+        Human human10 = new Human("Плотников И.П.", 48, address10);
 
         listHuman.add(human1);
         listHuman.add(human2);
@@ -53,7 +53,7 @@ public class Helper {
         listHuman.add(human7);
         listHuman.add(human8);
         listHuman.add(human9);
-        listHuman.add(humna10);
+        listHuman.add(human10);
 
     }
 

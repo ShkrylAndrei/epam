@@ -56,12 +56,7 @@ public class Address implements Comparable<Address> {
         this.room = room;
     }
 
-    /**
-     * Сравнивает объекты класса Address на равенство
-     *
-     * @param o объект класса Address для сравнения
-     * @return возвращает true, если у обоих объектов совпадает city, street, house и room, иначе - false
-     */
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -76,22 +71,14 @@ public class Address implements Comparable<Address> {
         return false;
     }
 
-    /**
-     * Генерирует hash code на основе city, street, house, room
-     *
-     * @return вовзращает сгенерированный hash code
-     */
+
     @Override
     public int hashCode() {
         return 31 * (city.charAt(0) + street.charAt(0) + house + room);
 
     }
 
-    /**
-     * Формирует строку, описывающий объект класса Address, содержащую поля city, street, house, room
-     *
-     * @return возвращает сформированную строку
-     */
+
     @Override
     public String toString() {
         return "Address{" +
@@ -102,14 +89,7 @@ public class Address implements Comparable<Address> {
                 '}';
     }
 
-    /**
-     * Сравнивает два объекта класса Address на основе полей city, street, house, room для их сортировки
-     *
-     * @param o объект класса Address
-     * @return возвращает 0, если значения полей равны
-     * возвращает число больше нуля, если адрес в параметре больше текущего адреса
-     * в остальных случаях - число меньше нуля
-     */
+
     @Override
     public int compareTo(Address o) {
         int diff = city.compareTo(o.city);

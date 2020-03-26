@@ -1,7 +1,7 @@
 package shkryl.task3;
 
 /**
- * Описывает Role на основе enum
+ * Роль пользователя
  */
 public enum Role {
     ADMIN, USER, MODERATOR

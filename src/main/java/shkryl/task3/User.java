@@ -1,7 +1,7 @@
 package shkryl.task3;
 
 /**
- * Описывает класс User
+ * Описывает пользователя
  */
 public class User {
     private String fio;
