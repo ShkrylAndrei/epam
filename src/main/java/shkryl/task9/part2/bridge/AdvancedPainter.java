@@ -6,8 +6,7 @@ public class AdvancedPainter extends Painter {
         super(carBody);
     }
 
-
     public void paintGold() {
-        System.out.println("Кузов площадью "+carBody.getSquare()+" покрашен в золотой");
+        System.out.println("Кузов площадью " + carBody.getSquare() + " покрашен в золотой");
     }
 }

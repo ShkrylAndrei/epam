@@ -1,10 +1,5 @@
 package shkryl.task9.part1.prototype;
 
-
-/**
- *
- * @author Admin
- */
 public class IndividualCar implements MyClonable {
     private String model;
     private String color;
@@ -21,11 +16,10 @@ public class IndividualCar implements MyClonable {
     public void setMaxSpeed(int maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
-    
-    
-    
+
+
     @Override
-    public MyClonable getCopy()  {
+    public MyClonable getCopy() {
         IndividualCar cloneObject = new IndividualCar();
         cloneObject.setModel(model);
         cloneObject.setColor(color);
@@ -37,8 +31,4 @@ public class IndividualCar implements MyClonable {
     public String toString() {
         return "IndividualCar{" + "model=" + model + ", color=" + color + ", maxSpeed=" + maxSpeed + '}';
     }
-    
-    
-    
-    
 }

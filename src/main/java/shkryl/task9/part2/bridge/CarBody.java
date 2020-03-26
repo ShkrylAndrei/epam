@@ -5,7 +5,6 @@ package shkryl.task9.part2.bridge;
  */
 public interface CarBody {
     /**
-     *
      * @return возвращает площадь кузова
      */
     int getSquare();

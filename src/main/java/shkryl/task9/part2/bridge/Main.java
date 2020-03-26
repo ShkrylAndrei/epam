@@ -11,5 +11,4 @@ public class Main {
         painter.paintRed();
         advancedPainter.paintGold();
     }
-
 }

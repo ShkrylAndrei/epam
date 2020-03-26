@@ -1,6 +1,6 @@
 package shkryl.task9.part1.prototype;
 
-public class Phone implements MyClonable{
+public class Phone implements MyClonable {
     private String model;
     private int price;
 

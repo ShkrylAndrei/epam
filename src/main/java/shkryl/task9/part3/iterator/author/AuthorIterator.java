@@ -17,7 +17,7 @@ public class AuthorIterator implements MyIterator<Author> {
 
     @Override
     public boolean hasNext() {
-        return currentIndex< authorsList.size();
+        return currentIndex < authorsList.size();
     }
 
     @Override

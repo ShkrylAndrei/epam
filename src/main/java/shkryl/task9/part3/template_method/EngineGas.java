@@ -1,14 +1,11 @@
 package shkryl.task9.part3.template_method;
 
-/**
- *
- * @author Admin
- */
-public class EngineGas extends MakeEngine{
+
+public class EngineGas extends MakeEngine {
     private String typeEngine;
     private String modelCar;
     private int maxSpeed;
-   
+
 
     public String getTypeEngine() {
         return typeEngine;
@@ -33,21 +30,20 @@ public class EngineGas extends MakeEngine{
     public void setModelCar(String modelCar) {
         this.modelCar = modelCar;
     }
-    
-    
-    
+
+
     @Override
     public void deliverEngine() {
         setTypeEngine("Газовый двигатель");
-        System.out.println("Получаем со склада "+getTypeEngine());
+        System.out.println("Получаем со склада " + getTypeEngine());
     }
 
     @Override
     public void installEngine() {
         setModelCar("Nissan");
         setMaxSpeed(280);
-        System.out.println(getTypeEngine()+" установлен на модель "+getModelCar()+
-                           " макс. скорость "+getMaxSpeed());
-        
-    }   
+        System.out.println(getTypeEngine() + " установлен на модель " + getModelCar() +
+                " макс. скорость " + getMaxSpeed());
+
+    }
 }
