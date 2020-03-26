@@ -10,19 +10,14 @@ import java.io.*;
  * Содержит вспомогательные методы
  */
 public final class Utils {
-    /**
-     * Логгер
-     */
+
     private static Logger logger = LoggerFactory.getLogger(Utils.class);
-   
 
     /**
      * Приватный конструктор по умолчанию
      */
     private Utils() {
-
     }
-
 
     /**
      * Возращает имя файл из абсолютного пути
@@ -80,7 +75,6 @@ public final class Utils {
                 logger.error(e.toString());
                 System.out.println(e.toString());
             }
-            ;
         }
         return null;
     }
