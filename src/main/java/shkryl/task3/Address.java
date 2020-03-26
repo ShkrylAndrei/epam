@@ -3,7 +3,7 @@ package shkryl.task3;
 /**
  * Описывает адрес для Human
  */
-public class Address implements Comparable<Address>{
+public class Address implements Comparable<Address> {
     private String city;
     private String street;
     private int house;
@@ -11,10 +11,11 @@ public class Address implements Comparable<Address>{
 
     /**
      * Конструктор инициализирует поля класса
-     * @param city название города
+     *
+     * @param city   название города
      * @param street улица
-     * @param house номер дома
-     * @param room квартира
+     * @param house  номер дома
+     * @param room   квартира
      */
     public Address(String city, String street, int house, int room) {
         this.city = city;
@@ -57,18 +58,19 @@ public class Address implements Comparable<Address>{
 
     /**
      * Сравнивает объекты класса Address на равенство
+     *
      * @param o объект класса Address для сравнения
      * @return возвращает true, если у обоих объектов совпадает city, street, house и room, иначе - false
      */
     @Override
-    public boolean equals(Object o){
-        if (this==o) return true;
-        if (o instanceof Address){
-            Address address=(Address)o;
-            return  city.equals(address.city) &&
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o instanceof Address) {
+            Address address = (Address) o;
+            return city.equals(address.city) &&
                     street.equals(address.street) &&
-                    house==address.house &&
-                    room==address.room;
+                    house == address.house &&
+                    room == address.room;
 
         }
         return false;
@@ -76,16 +78,18 @@ public class Address implements Comparable<Address>{
 
     /**
      * Генерирует hash code на основе city, street, house, room
+     *
      * @return вовзращает сгенерированный hash code
      */
     @Override
     public int hashCode() {
-        return 31*(city.charAt(0)+street.charAt(0)+house+room);
+        return 31 * (city.charAt(0) + street.charAt(0) + house + room);
 
     }
 
     /**
      * Формирует строку, описывающий объект класса Address, содержащую поля city, street, house, room
+     *
      * @return возвращает сформированную строку
      */
     @Override
@@ -100,6 +104,7 @@ public class Address implements Comparable<Address>{
 
     /**
      * Сравнивает два объекта класса Address на основе полей city, street, house, room для их сортировки
+     *
      * @param o объект класса Address
      * @return возвращает 0, если значения полей равны
      * возвращает число больше нуля, если адрес в параметре больше текущего адреса
@@ -108,11 +113,11 @@ public class Address implements Comparable<Address>{
     @Override
     public int compareTo(Address o) {
         int diff = city.compareTo(o.city);
-        if(diff == 0){
+        if (diff == 0) {
             diff = street.compareTo(o.street);
-            if(diff==0){
+            if (diff == 0) {
                 diff = house - o.house;
-                if(diff==0){
+                if (diff == 0) {
                     return room - o.room;
                 }
                 return diff;

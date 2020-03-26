@@ -7,7 +7,7 @@ public class Main {
 
 
         Helper helper = new Helper();
-        //1. Заполнить ArrayList этими объектами.
+        //1. Заполнить ArrayList объектами.
         List<Human> listHuman = new ArrayList<>();
         helper.fillList(listHuman);
 
@@ -63,12 +63,12 @@ public class Main {
 
         //9. Написать программу сортирующую HashMap по ключу. (Создание и генерация данными какими захотите)
         Map<Integer, String> map = new HashMap<>();
-        helper.sortedMapOnKey(map);
+        helper.fillAndsortMapOnKey(map);
 
 
         //10. Написать программу сортирующую HashMap по значнию. (Создание и генерация данными какими захотите)
         //используем туже самую Map<Integer,String> map
-        helper.sortedMapOnvalue(map);
+        helper.sortMapOnvalue(map);
 
         //11. Заполнить рандомными значениями LinkedList, вывести содержимое каждого элемента и его индекс.
         helper.generateLinkedList();

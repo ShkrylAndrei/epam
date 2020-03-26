@@ -8,6 +8,7 @@ import java.util.Comparator;
 public class ComparatorAge implements Comparator<Human> {
     /**
      * Сравнивает два объекта класса Human
+     *
      * @param o1 объект Human
      * @param o2 объект Human
      * @return возвращает 0, если возраст объектов равен, число больше нуля, если возраст o1 больше o2, иначе - число меньше нуля

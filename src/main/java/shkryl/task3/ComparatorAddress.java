@@ -8,6 +8,7 @@ import java.util.Comparator;
 public class ComparatorAddress implements Comparator<Human> {
     /**
      * Сравнивает два объекта класса Human
+     *
      * @param o1 объект Human
      * @param o2 объект Human
      * @return возвращает 0, если адреса объектов равны, число больше нуля, если адрес o1 больше o2, иначе - число меньше нуля

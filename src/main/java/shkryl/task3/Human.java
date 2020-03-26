@@ -12,8 +12,9 @@ public class Human {
 
     /**
      * Конструктор, инициализирует поля класса
-     * @param fio фио
-     * @param age возраст
+     *
+     * @param fio     фио
+     * @param age     возраст
      * @param address адрес
      */
     public Human(String fio, int age, Address address) {
@@ -48,6 +49,7 @@ public class Human {
 
     /**
      * Сравнивает объекты класса Human на равенство
+     *
      * @param o объект класса Human для сравнения
      * @return возвращает true, если у обоих объектов совпадает fio, age, address, иначе - false
      */
@@ -65,6 +67,7 @@ public class Human {
 
     /**
      * Генерирует hash code на основе fio, age, address
+     *
      * @return вовзращает сгенерированный hash code
      */
     @Override
@@ -74,6 +77,7 @@ public class Human {
 
     /**
      * Формирует строку, описывающий объект класса Human, содержащую поля fio, age, address
+     *
      * @return возвращает сформированную строку
      */
     @Override
