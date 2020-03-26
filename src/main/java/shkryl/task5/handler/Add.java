@@ -25,9 +25,10 @@ public class Add implements HandlerCommand {
 
     /**
      * Создает объект класса Add
+     *
      * @return созданный объект класса Add
      */
-    public static Add typeCommand(){
+    public static Add typeCommand() {
         return new Add();
     }
 
@@ -36,28 +37,26 @@ public class Add implements HandlerCommand {
         Logger logger = LoggerFactory.getLogger(GenerateMainMenu.class);
 
         //Отладочная информация
-        System.out.println("Мы в методе handler класса Add получили комманду "+command);
+        System.out.println("Мы в методе handler класса Add получили комманду " + command);
 
         ParseCommand parseCommand = new ParseCommand();
-        CommandArgs ca  = parseCommand.parseAddCommand(command);
+        CommandArgs ca = parseCommand.parseAddCommand(command);
 
 
-        if (ca.text==null){
+        if (ca.text == null) {
             System.out.println("Не введен добавляемый текст, операция невозможна");
             logger.error("Не введен добавляемый текст, операция невозможна");
             return "can not add operation";
         }
 
-
-        if(ca.fileName.matches(".+\\.txt")) {
+        if (ca.fileName.matches(".+\\.txt")) {
             int numberString = -1;
             String operation = ca.command;
             if (ca.lineNumber != null) {
                 numberString = Integer.parseInt(ca.lineNumber);
-                if (numberString<=0){
+                if (numberString <= 0) {
                     Helper.checkMinusNumberString();
                     return "can not add operation";
-
                 }
             }
 
@@ -66,7 +65,7 @@ public class Add implements HandlerCommand {
 
             //Проверяем если файл не существует создаем пустой
             Helper.checkFileExist(ca.fileName);
-            logger.info("Пользователь ввел не существующий файл {} создали новый",ca.fileName);
+            logger.info("Пользователь ввел не существующий файл {} создали новый", ca.fileName);
 
             //Сначала считываем весь файл и считаем кол-во строк
             //чтобы потом можно было понять куда и как вставлять новую информацию
@@ -90,17 +89,14 @@ public class Add implements HandlerCommand {
             }
 
             Helper.writeFile(listString, ca.fileName);
-            logger.info("Добавили данные в файл {}",ca.fileName);
-
+            logger.info("Добавили данные в файл {}", ca.fileName);
 
             return "string " + textAdd + " was added";
-        }//end  if(ca.fileName.matches(".+\\.txt"))
-        else{
+        } else {
             Helper.checkInvalidFileName();
-            logger.error("Некорректное расширение файла {} операция не была произведена",ca.fileName);
+            logger.error("Некорректное расширение файла {} операция не была произведена", ca.fileName);
 
             return "can not add operation";
         }
     }
-    
 }

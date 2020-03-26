@@ -19,51 +19,45 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Класс Filter предоставляет метод парсинга команды, введенной с консоли
+ * Предоставляет метод парсинга команды, введенной с консоли
  */
 public class Filter {
 
-    /**
-     * Консруктор по умолчанию
-     */
-    public Filter(){
+    public Filter() {
     }
 
     /**
      * Парсит команду command, проверяет ее на корректность
      * Если command имеет неверный формат, генерирует {@link InvalidCommandException}
      * запускает выполнение команды
+     *
      * @param command команда, введенная с консоли
      */
-    public void execute(String command){
+    public void execute(String command) {
         Logger logger = LoggerFactory.getLogger(Filter.class);
 
         String[] args = command.split(" ");
-        if(args.length<2){
-
+        if (args.length < 2) {
             try {
                 throw new InvalidCommandException("Строка команды имеет неверный формат");
-            }catch(InvalidCommandException e){
-                //++ вывести через логгер c исключением:
-                System.out.println("Строка команды имеет неверный формат");
-                logger.error("Строка команды имеет неверный формат, количество параметров не может быть меньше 2");
+            } catch (InvalidCommandException e) {
+                 System.out.println("Строка команды имеет неверный формат");
+                 logger.error("Строка команды имеет неверный формат, количество параметров не может быть меньше 2");
             }
-
-        }else {
+        } else {
             String operation = args[0];
-            if(operation.equals("add") || operation.equals("print") || operation.equals("delete")){
-                //System.out.println(handlerMap.get(operation).handler(command));
-                if (operation.equals("add")){
+            if (operation.equals("add") || operation.equals("print") || operation.equals("delete")) {
+                if (operation.equals("add")) {
                     System.out.println(Add.typeCommand().handler(command));
-                }else if (operation.equals("print")){
+                } else if (operation.equals("print")) {
                     System.out.println(Print.typeCommand().handler(command));
-                }else if (operation.equals("delete")){
+                } else if (operation.equals("delete")) {
                     System.out.println(Delete.typeCommand().handler(command));
                 }
 
-            }else{
-                System.out.println("Некорректная команда");
-                logger.info("Некорректная комманда");
+            } else {
+                 System.out.println("Некорректная команда");
+                 logger.info("Некорректная комманда");
             }
         }
     }

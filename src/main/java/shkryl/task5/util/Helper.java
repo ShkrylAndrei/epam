@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Утилитарный класс помошник
+ * Утилитарный класс - помошник
  */
 public class Helper {
     /**
-     * Проверяет наличие файла, если его нет создаем пустой
+     * Проверяет наличие файла, если его нет, создаем пустой
      * @param nameFile принимает имя проверяемого файла
      */
     public static void checkFileExist(String nameFile){
@@ -37,7 +37,7 @@ public class Helper {
     /**
      * Считывает файл в коллекцию построчно
      * @param fileName имя файла
-     * @return коллекция строк считанных из переданного файла
+     * @return коллекция строк, считанных из переданного файла
      */
     public static List<String> readFileStrings(String fileName){
         List<String> listString = new ArrayList<>();
@@ -83,7 +83,7 @@ public class Helper {
 
     /**
      * Исключение на проверку корректного номера строки
-     * @param listString коллекция содержащая строки
+     * @param listString коллекция, содержащая строки
      * @param numberString номер обрабатываемой строки
      */
     public static void checkInvalidNumberStringException(List<String> listString, int numberString){

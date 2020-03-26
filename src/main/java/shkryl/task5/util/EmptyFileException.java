@@ -5,10 +5,11 @@ package shkryl.task5.util;
  */
 public class EmptyFileException extends RuntimeException {
     /**
-     * Конструктор принимает текст исключения
+     * Конструктор, принимает текст исключения
+     *
      * @param msg текст исключения
      */
-    EmptyFileException(String msg){
+    EmptyFileException(String msg) {
         super(msg);
     }
 }

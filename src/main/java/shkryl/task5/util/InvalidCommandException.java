@@ -5,7 +5,8 @@ package shkryl.task5.util;
  */
 public class InvalidCommandException extends RuntimeException{
     /**
-     * Конструктор принимает текст исключения
+     * Конструктор, принимает текст исключения
+     *
      * @param msg текст исключения
      */
     public InvalidCommandException(String msg){

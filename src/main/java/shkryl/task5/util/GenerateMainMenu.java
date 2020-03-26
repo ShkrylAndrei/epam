@@ -7,18 +7,18 @@ import shkryl.task5.filter.Filter;
 import java.util.Scanner;
 
 /**
- * Класс генерации главного меню программы
+ * Генерация главного меню программы
  */
 public class GenerateMainMenu {
 
     /**
-     *  Генерирует меню
+     * Генерирует меню
      */
-    public static void generate(){
+    public static void generate() {
         Logger logger = LoggerFactory.getLogger(GenerateMainMenu.class);
         Filter filter = new Filter();
-        boolean m=true;
-        while (m){
+        boolean m = true;
+        while (m) {
             System.out.println("");
             System.out.println("Меню");
             System.out.println("1. добавить строку. ");
@@ -27,50 +27,44 @@ public class GenerateMainMenu {
             System.out.println("4. Выход");
 
             Scanner sc;
-            int parameter=-1;
+            int parameter = -1;
 
-            while (parameter==-1) {
+            while (parameter == -1) {
                 try {
-                    sc=new Scanner(System.in);
+                    sc = new Scanner(System.in);
                     parameter = sc.nextInt();
                 } catch (Exception e) {
                     System.out.println("Неверно выбранный пункт меню, повторите попытку");
-                    logger.error("EXCEPTION: Неверно выбранный пункт меню, повторите попытку, пользователь ввел {}",parameter);
+                    logger.error("EXCEPTION: Неверно выбранный пункт меню, повторите попытку, пользователь ввел {}",
+                                  parameter);
                 }
-
             }
 
-            if (parameter==1){
+            if (parameter == 1) {
                 String command = Helper.getCommandFromUser("Введите комманду для добавления - формат команды add НОМЕР_СТРОКИ ИМЯ_ФАЙЛА \"ТЕКСТ\"");
-
-                System.out.println("Введенная комманда "+command);
-                logger.info("Пользователь ввел комманду {}",command);
+                System.out.println("Введенная комманда " + command);
+                logger.info("Пользователь ввел комманду {}", command);
                 filter.execute(command);
             }
 
-
-            if (parameter==2){
+            if (parameter == 2) {
                 String command = Helper.getCommandFromUser("Введите комманду для удаления - формат команды delete НОМЕР_СТРОКИ ИМЯ_ФАЙЛА ");
-
-
-                System.out.println("Введенная комманда "+command);
-                logger.info("Пользователь ввел комманду {}",command);
+                System.out.println("Введенная комманда " + command);
+                logger.info("Пользователь ввел комманду {}", command);
                 filter.execute(command);
             }
 
-            if (parameter==3){
+            if (parameter == 3) {
                 String command = Helper.getCommandFromUser("Введите комманду для печати - формат команды print НОМЕР_СТРОКИ ИМЯ_ФАЙЛА ");
-                System.out.println("Введенная комманда "+command);
-                logger.info("Пользователь ввел комманду {}",command);
+                System.out.println("Введенная комманда " + command);
+                logger.info("Пользователь ввел комманду {}", command);
                 filter.execute(command);
             }
 
-            if (parameter==4){
-                m=false;
+            if (parameter == 4) {
+                m = false;
                 logger.info("Произошел выход из системы");
             }
-
         }
     }
-
 }

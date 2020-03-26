@@ -18,9 +18,10 @@ import java.util.Scanner;
 public class Delete implements HandlerCommand {
     /**
      * Создает объект класса Delete
+     *
      * @return возвращает созданный объект класса Delete
      */
-    public static Delete typeCommand(){
+    public static Delete typeCommand() {
         return new Delete();
     }
 
@@ -29,17 +30,17 @@ public class Delete implements HandlerCommand {
         Logger logger = LoggerFactory.getLogger(GenerateMainMenu.class);
 
         //Отладочная информация
-        System.out.println("Мы в методе handler класса Delete получили комманду "+command);
+        System.out.println("Мы в методе handler класса Delete получили комманду " + command);
 
         ParseCommand parseCommand = new ParseCommand();
-        CommandArgs ca  = parseCommand.parsePrintDeleteCommand(command);
+        CommandArgs ca = parseCommand.parsePrintDeleteCommand(command);
 
-        if(ca.fileName.matches(".+\\.txt")) {
+        if (ca.fileName.matches(".+\\.txt")) {
             int numberString = -1;
             if (ca.lineNumber != null) {
                 numberString = Integer.parseInt(ca.lineNumber);
-                if (numberString<=0){
-                    numberString=-2;
+                if (numberString <= 0) {
+                    numberString = -2;
                     //Здесь обрабатываю сразу так как метод унаследованный от интерфейса
                     Helper.checkMinusNumberString();
                 }
@@ -52,22 +53,19 @@ public class Delete implements HandlerCommand {
             }
             Helper.checkInvalidNumberStringException(listString, numberString);
 
-            if (listString.size() > 0 && numberString!=-2 && listString.size()>=numberString) {
+            if (listString.size() > 0 && numberString != -2 && listString.size() >= numberString) {
                 listString.remove(numberString - 1);
                 Helper.writeFile(listString, ca.fileName);
 
-                logger.info("Строка {} была удалена из файла",numberString);
+                logger.info("Строка {} была удалена из файла", numberString);
                 return "string  was delete";
             }
-
-
-        }else{
+        } else {
             Helper.checkInvalidFileName();
-            logger.error("Некорректное расширение файла {} операция не была произведена",ca.fileName);
+            logger.error("Некорректное расширение файла {} операция не была произведена", ca.fileName);
         }
 
-        logger.info("Строка {} не была удалена из файла",ca.lineNumber);
+        logger.info("Строка {} не была удалена из файла", ca.lineNumber);
         return "can not delete line";
-
     }
 }
