@@ -13,7 +13,15 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс для работы со Stax
+ */
 public class Stax {
+    /**
+     * Парсит XML файл
+     * @param fileName имя файла
+     * @return коллекция объектов Plant
+     */
     public static List<Plant> parseXmlFile(String fileName) {
         List<Plant> plantList = new ArrayList<>();
         Plant plant = null;
@@ -31,12 +39,10 @@ public class Stax {
                     e.printStackTrace();
                 }
 
-
                 if (xmlEvent.isStartElement()) {
                     StartElement startElement = xmlEvent.asStartElement();
                     if (startElement.getName().getLocalPart().equals("PLANT")) {
                         plant = new Plant();
-
                     } else if (startElement.getName().getLocalPart().equals("COMMON")) {
                         xmlEvent = reader.nextEvent();
                         plant.setCommon(xmlEvent.asCharacters().getData());
@@ -56,8 +62,6 @@ public class Stax {
                         xmlEvent = reader.nextEvent();
                         plant.setAvailability(xmlEvent.asCharacters().getData());
                     }
-
-
                 }
                 // если цикл дошел до закрывающего элемента Plant,
                 // то добавляем считанного из файла объектаа в список
@@ -73,5 +77,5 @@ public class Stax {
             e.printStackTrace();
         }
         return plantList;
-    }//end private static List<Plant> parseXMLfile(String fileName)
+    }
 }

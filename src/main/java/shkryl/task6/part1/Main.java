@@ -3,6 +3,7 @@ package shkryl.task6.part1;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import shkryl.task6.Plant;
+
 import java.util.List;
 
 public class Main {
@@ -31,7 +32,6 @@ public class Main {
 
         System.out.println("---------------------------==");
 
-
         //DOM
         List<Plant> plantUseDomList;
         plantUseDomList = Dom.parseXmlFile(fileName);
@@ -43,7 +43,5 @@ public class Main {
         } else {
             System.out.println("Вывод не возможен");
         }
-    }//end -main
-
-
+    }
 }

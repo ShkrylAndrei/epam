@@ -1,5 +1,6 @@
 package shkryl.task6;
 
+
 public class Plant {
     private String common;
     private String botanical;
@@ -55,6 +56,7 @@ public class Plant {
     public void setAvailability(String availability) {
         this.availability = availability;
     }
+
 
     @Override
     public String toString() {

@@ -30,10 +30,8 @@ public class Main {
             Element rootElement =
                     doc.createElementNS("", "books");
 
-
             rootElement.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
             rootElement.setAttribute("xsi:noNamespaceSchemaLocation", "book.xsd");
-
 
             // добавляем корневой элемент в объект Document
             doc.appendChild(rootElement);
@@ -66,14 +64,11 @@ public class Main {
         }
 
         System.out.println(CheckValidateXml.check("book.xsd", nameXmlFileForCreate));
-
     }
 
     // метод для создания нового узла XML-файла
     private static Node getBook(Document doc, String id, String firstname, String lastName, String secondname, String pagecount, String namebook, String publisher) {
         Element book = doc.createElement("book");
-
-
         // устанавливаем атрибут id
         book.setAttribute("bookid", id);
 
@@ -85,7 +80,6 @@ public class Main {
 
         return book;
     }
-
 
     private static Node getAuthor(Document doc, String firstname, String lastname, String secondname) {
         Element author = doc.createElement("author");
@@ -104,6 +98,4 @@ public class Main {
         node.appendChild(doc.createTextNode(value));
         return node;
     }
-
-
 }
