@@ -99,11 +99,7 @@ public class HumanDto {
         this.room = room;
     }
 
-    /**
-     * Формирует строку содержащую поля id,name,birthDate,city,street,house,room
-     *
-     * @return возвращает сформированную строку
-     */
+
     @Override
     public String toString() {
         SimpleDateFormat birthDateFormat = new SimpleDateFormat("dd.MM.yyyy");

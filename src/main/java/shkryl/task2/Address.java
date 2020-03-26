@@ -52,11 +52,6 @@ public class Address {
     }
 
 
-    /**
-     * Формирует строку содержащую поля city, street, house, room
-     *
-     * @return возвращает сформированную строку
-     */
     @Override
     public String toString() {
         return "AddressEntity{" +

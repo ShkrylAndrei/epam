@@ -63,11 +63,7 @@ public class Human {
         this.birthDate = birthDate;
     }
 
-    /**
-     * Формирует строку содержащую поля id,name,address,birthDate
-     *
-     * @return возвращает сформированную строку
-     */
+
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
