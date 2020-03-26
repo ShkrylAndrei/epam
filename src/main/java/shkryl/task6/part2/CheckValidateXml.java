@@ -28,7 +28,6 @@ public class CheckValidateXml {
         } else {
             return "Файл " + xml + " не прошел валидацию";
         }
-
     }
 
     /**

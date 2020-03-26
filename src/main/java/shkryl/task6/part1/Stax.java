@@ -39,12 +39,10 @@ public class Stax {
                     e.printStackTrace();
                 }
 
-
                 if (xmlEvent.isStartElement()) {
                     StartElement startElement = xmlEvent.asStartElement();
                     if (startElement.getName().getLocalPart().equals("PLANT")) {
                         plant = new Plant();
-
                     } else if (startElement.getName().getLocalPart().equals("COMMON")) {
                         xmlEvent = reader.nextEvent();
                         plant.setCommon(xmlEvent.asCharacters().getData());
@@ -64,8 +62,6 @@ public class Stax {
                         xmlEvent = reader.nextEvent();
                         plant.setAvailability(xmlEvent.asCharacters().getData());
                     }
-
-
                 }
                 // если цикл дошел до закрывающего элемента Plant,
                 // то добавляем считанного из файла объектаа в список

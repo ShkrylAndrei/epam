@@ -43,9 +43,7 @@ public class Dom {
         } catch (Exception exc) {
             exc.printStackTrace();
         }
-
         return null;
-
     }
 
     /**
@@ -64,7 +62,6 @@ public class Dom {
             plant.setPrice(getTagValue("PRICE", element));
             plant.setAvailability(getTagValue("AVAILABILITY", element));
         }
-
         return plant;
     }
 
@@ -79,5 +76,4 @@ public class Dom {
         Node node = (Node) nodeList.item(0);
         return node.getNodeValue();
     }
-
 }

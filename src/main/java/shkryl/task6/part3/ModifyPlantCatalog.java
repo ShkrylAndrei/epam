@@ -5,6 +5,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import shkryl.task6.Plant;
 import shkryl.task6.part1.Dom;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -15,7 +16,11 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.util.List;
 
+/**
+ * Создание нового xml файла, на основе plant_catalog.xml
+ */
 public class ModifyPlantCatalog {
+
     public static void modify(String file_name) {
         String nameXmlFileForCreate = file_name;
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -30,7 +35,6 @@ public class ModifyPlantCatalog {
             Element rootElement =
                     doc.createElementNS("", "CATALOG");
 
-
             // добавляем корневой элемент в объект Document
             doc.appendChild(rootElement);
 
@@ -44,7 +48,6 @@ public class ModifyPlantCatalog {
                             plant.getLight(), plant.getPrice(), plant.getAvailability()));
                 }
             }
-
 
             //создаем объект TransformerFactory для печати в консоль
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -61,12 +64,10 @@ public class ModifyPlantCatalog {
             transformer.transform(source, console);
             transformer.transform(source, file);
             System.out.println("Создание XML файла закончено");
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     // метод для создания нового узла XML-файла
     private static Node getPlant(Document doc, String common, String botanical, String zone, String light, String price, String availability) {

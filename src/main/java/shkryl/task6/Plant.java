@@ -1,8 +1,6 @@
 package shkryl.task6;
 
-/**
- * Класс Plant
- */
+
 public class Plant {
     private String common;
     private String botanical;
@@ -59,10 +57,7 @@ public class Plant {
         this.availability = availability;
     }
 
-    /**
-     * Формирует строку содержащую поля common, botanical, zone, light, price, availability
-     * @return возвращает сформированную строку
-     */
+
     @Override
     public String toString() {
         return "Plant{" +
