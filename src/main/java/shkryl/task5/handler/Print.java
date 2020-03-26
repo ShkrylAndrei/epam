@@ -12,8 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Класс-обработчик команды печати выбранной строки, реализует интерфейст {@link HandlerCommand}
+ */
 public class Print implements HandlerCommand {
-    public static Print typeCommand(){
+    /**
+     * Создает объект класса Print
+     *
+     * @return возвращает объект класса Print
+     */
+    public static Print typeCommand() {
         return new Print();
     }
 
@@ -22,20 +30,19 @@ public class Print implements HandlerCommand {
         Logger logger = LoggerFactory.getLogger(Print.class);
 
         //Отладочная информация
-        System.out.println("Мы в методе handler класса Print получили комманду "+command);
+        System.out.println("Мы в методе handler класса Print получили комманду " + command);
 
         ParseCommand parseCommand = new ParseCommand();
-        CommandArgs ca  = parseCommand.parsePrintDeleteCommand(command);
+        CommandArgs ca = parseCommand.parsePrintDeleteCommand(command);
 
-        if(ca.fileName.matches(".+\\.txt")) {
+        if (ca.fileName.matches(".+\\.txt")) {
             int numberString = -1;
             if (ca.lineNumber != null) {
                 numberString = Integer.parseInt(ca.lineNumber);
-                if (numberString<=0){
-                    numberString=-2;
+                if (numberString <= 0) {
+                    numberString = -2;
                     //Здесь обрабатываю сразу так как метод унаследованный от интерфейса
                     Helper.checkMinusNumberString();
-                    //logger.info("Некорректный номер строки {}",ca.lineNumber);
                 }
             }
 
@@ -43,30 +50,28 @@ public class Print implements HandlerCommand {
             List<String> listString = Helper.readFileStrings(ca.fileName);
             Helper.checkInvalidNumberStringException(listString, numberString);
 
-            if (listString.size() > 0 && listString.size()>=numberString) {
+            if (listString.size() > 0 && listString.size() >= numberString) {
                 if (numberString == -1) {
                     int lastIndex = listString.size() - 1;
                     System.out.println("Печатаем строку: " + listString.get(lastIndex));
-                } else if (numberString == -2){
+                } else if (numberString == -2) {
                     System.out.println("Нечего выводить строка имеет отрицательное значение или равна нулю");
                     //logger.info("Некорректный номер строки {}",ca.lineNumber);
                     logger.info("Операция print не была выполнена");
                     return "can not print line";
-                }else {
+                } else {
                     System.out.println("Печатаем строку: " + listString.get(numberString - 1));
                 }
 
-                logger.info("Строка {} была выведена на экран",ca.lineNumber);
+                logger.info("Строка {} была выведена на экран", ca.lineNumber);
                 return "string  was print";
             }
-        }else{
+        } else {
             Helper.checkInvalidFileName();
-            logger.error("Некорректное расширение файла {} операция не была произведена",ca.fileName);
+            logger.error("Некорректное расширение файла {} операция не была произведена", ca.fileName);
         }
 
         logger.info("Строка не была напечатана на экране");
         return "can not print line";
-
-
     }
 }

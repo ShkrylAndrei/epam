@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package shkryl.task5.util;
 
 import java.util.ArrayList;
@@ -12,12 +6,17 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Класс для парсинга комманд удаления и печати
  *
- * @author Admin
  */
 public class ParseCommand {
 
-
+    /**
+     * Парсит комманду удаления и печати строки
+      * @param str комманда
+     * @return экземпляр класса CommandArgs который содержит распарсенную строку по полям
+     * lineNumber, fileName, command, text
+     */
     public CommandArgs parsePrintDeleteCommand(String str){
         //вынести в отдельное поле
         CommandArgs ca = new CommandArgs();
@@ -52,6 +51,13 @@ public class ParseCommand {
         return ca;
     }
 
+    /**
+     *
+     ** Парсит комманду добавления строки
+     *       * @param str комманда
+     *      * @return экземпляр класса CommandArgs который содержит распарсенную строку по полям
+     *      * lineNumber, fileName, command, text
+     */
     public CommandArgs parseAddCommand(String str){
         CommandArgs ca = new CommandArgs();
 

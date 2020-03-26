@@ -1,7 +1,15 @@
 package shkryl.task5.util;
 
+/**
+ * Исключение на проверку корректности файла
+ */
 public class InvalidFileName extends Exception {
-    public InvalidFileName(String msg){
+    /**
+     * Конструктор, принимает текст исключения
+     *
+     * @param msg текст исключения
+     */
+    public InvalidFileName(String msg) {
         super(msg);
     }
 }
