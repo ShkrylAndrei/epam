@@ -3,6 +3,9 @@ package shkryl.task2;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * DTO для сущности Human
+ */
 public class HumanDto {
 
     private int id;
@@ -15,10 +18,20 @@ public class HumanDto {
     private int house;
     private int room;
 
-
     public HumanDto() {
     }
 
+    /**
+     * Конструктор с параметрами
+     *
+     * @param id        - id
+     * @param name      - имя
+     * @param birthDate - дата рождения
+     * @param city      - город
+     * @param street    - улица
+     * @param house     - номер дома
+     * @param room      - квартира
+     */
     public HumanDto(int id, String name, Date birthDate, String city, String street, int house, int room) {
         this.id = id;
         this.name = name;
@@ -87,15 +100,14 @@ public class HumanDto {
     }
 
 
-
     @Override
     public String toString() {
-        SimpleDateFormat sdf=new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat birthDateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
         return "HumanDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", birthDate='" + sdf.format(birthDate) + '\'' +
+                ", birthDate='" + birthDateFormat.format(birthDate) + '\'' +
                 ", city='" + city + '\'' +
                 ", street='" + street + '\'' +
                 ", house=" + house +

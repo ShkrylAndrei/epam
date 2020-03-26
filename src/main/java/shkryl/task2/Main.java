@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-
         HumanServiceImpl service = new HumanServiceImpl();
         System.out.println("GENERATE ONE ENTITY");
         HumanDto dto = service.getOneEntity();
@@ -15,8 +14,5 @@ public class Main {
         System.out.println("GENERATE LIST ENTITIES");
         List<HumanDto> listDTO = service.getAllEntity();
         service.saveAllEntity(listDTO);
-
     }
-
-
 }

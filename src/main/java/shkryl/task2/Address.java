@@ -1,5 +1,8 @@
 package shkryl.task2;
 
+/**
+ * Описывает адрес для класса {@link Human}
+ */
 public class Address {
     private String city;
     private String street;
@@ -47,6 +50,7 @@ public class Address {
     public void setRoom(int room) {
         this.room = room;
     }
+
 
     @Override
     public String toString() {

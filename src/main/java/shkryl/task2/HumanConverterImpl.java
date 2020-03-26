@@ -1,8 +1,11 @@
 package shkryl.task2;
 
+/**
+ * Реализует интерфейс конвертер для сущности Human
+ */
 public class HumanConverterImpl implements Converter<Human, HumanDto> {
     @Override
-    public HumanDto convetToDTO(Human entity) {
+    public HumanDto convertToDTO(Human entity) {
         HumanDto dto = new HumanDto();
         dto.setId(entity.getId());
         dto.setName(entity.getName());
