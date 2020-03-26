@@ -1,13 +1,20 @@
 package shkryl.task3;
 
-import java.util.Comparator;
 import java.util.Objects;
+
 
 public class Human {
     private String fio;
     private int age;
     private Address address;
 
+    /**
+     * Конструктор, инициализирует поля класса
+     *
+     * @param fio     фио
+     * @param age     возраст
+     * @param address адрес
+     */
     public Human(String fio, int age, Address address) {
         this.fio = fio;
         this.age = age;
@@ -38,6 +45,7 @@ public class Human {
         this.address = address;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -49,6 +57,7 @@ public class Human {
         }
         return false;
     }
+
 
     @Override
     public int hashCode() {
@@ -64,8 +73,6 @@ public class Human {
                 ", address=" + address +
                 '}';
     }
-
-
 
 
 }

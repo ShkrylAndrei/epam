@@ -1,13 +1,22 @@
 package shkryl.task3;
 
-
-
-public class Address implements Comparable<Address>{
+/**
+ * Описывает адрес для Human
+ */
+public class Address implements Comparable<Address> {
     private String city;
     private String street;
     private int house;
     private int room;
 
+    /**
+     * Конструктор инициализирует поля класса
+     *
+     * @param city   название города
+     * @param street улица
+     * @param house  номер дома
+     * @param room   квартира
+     */
     public Address(String city, String street, int house, int room) {
         this.city = city;
         this.street = street;
@@ -47,15 +56,16 @@ public class Address implements Comparable<Address>{
         this.room = room;
     }
 
+
     @Override
-    public boolean equals(Object o){
-        if (this==o) return true;
-        if (o instanceof Address){
-            Address address=(Address)o;
-            return  city.equals(address.city) &&
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o instanceof Address) {
+            Address address = (Address) o;
+            return city.equals(address.city) &&
                     street.equals(address.street) &&
-                    house==address.house &&
-                    room==address.room;
+                    house == address.house &&
+                    room == address.room;
 
         }
         return false;
@@ -64,9 +74,10 @@ public class Address implements Comparable<Address>{
 
     @Override
     public int hashCode() {
-        return 31*(city.charAt(0)+street.charAt(0)+house+room);
+        return 31 * (city.charAt(0) + street.charAt(0) + house + room);
 
     }
+
 
     @Override
     public String toString() {
@@ -78,14 +89,15 @@ public class Address implements Comparable<Address>{
                 '}';
     }
 
+
     @Override
     public int compareTo(Address o) {
         int diff = city.compareTo(o.city);
-        if(diff == 0){
+        if (diff == 0) {
             diff = street.compareTo(o.street);
-            if(diff==0){
+            if (diff == 0) {
                 diff = house - o.house;
-                if(diff==0){
+                if (diff == 0) {
                     return room - o.room;
                 }
                 return diff;
