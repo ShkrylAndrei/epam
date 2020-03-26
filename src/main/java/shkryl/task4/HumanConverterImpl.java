@@ -3,11 +3,14 @@ package shkryl.task4;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Реализует интерфейс конвертер для сущности Human
+ */
 public class HumanConverterImpl implements Converter<Human, HumanDto> {
     private Logger onlyFileLogger = LoggerFactory.getLogger(HumanConverterImpl.class);
 
     @Override
-    public HumanDto convetToDTO(Human entity) {
+    public HumanDto convertToDTO(Human entity) {
         HumanDto dto = new HumanDto();
         dto.setId(entity.getId());
         dto.setName(entity.getName());

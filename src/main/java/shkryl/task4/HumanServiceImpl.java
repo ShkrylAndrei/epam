@@ -6,13 +6,22 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-//Этот сервис работает с репозиторием
-//через конвертер
+/**
+ * Реализация сервиса для HumanDto, работает с репозитарием через конвертер
+ */
 public class HumanServiceImpl implements Service<HumanDto>{
 
-
+    /**
+     * Репозиторий для сущности Human
+     */
     private HumanRepoImpl humanRepo = new HumanRepoImpl();
+    /**
+     * Конвертер для сущности Human
+     */
     private HumanConverterImpl converter = new HumanConverterImpl();
+    /**
+     * Логгер для класса HumanServiceImpl
+     */
     private Logger consoleLogger = LoggerFactory.getLogger(HumanServiceImpl.class);
 
 
@@ -26,7 +35,7 @@ public class HumanServiceImpl implements Service<HumanDto>{
             consoleLogger.debug("EXCEPTION: "+e.toString());
             return null;
         }
-        return converter.convetToDTO(human);
+        return converter.convertToDTO(human);
     }
 
     @Override
@@ -35,7 +44,7 @@ public class HumanServiceImpl implements Service<HumanDto>{
         List<Human> listEntity = humanRepo.getAllEntity();
         List<HumanDto> listDTO = new ArrayList<>();
         for (Human human : listEntity) {
-            listDTO.add(converter.convetToDTO(human));
+            listDTO.add(converter.convertToDTO(human));
         }
         consoleLogger.debug("All entities are generated");
         return listDTO;
