@@ -13,7 +13,7 @@ public interface Converter<E, D> {
      * @param entity сущность, которая будет сконвертирована в DTO
      * @return возвращает DTO сущности entity
      */
-    D convetToDTO(E entity);
+    D convertToDTO(E entity);
     /**
      * Конвертируем DTO в entity
      * @param dto объект, который будет сконвертирован в сущность

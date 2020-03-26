@@ -17,9 +17,6 @@ public class HumanDto {
     private int house;
     private int room;
 
-    /**
-     * Конструктор без параметров
-     */
     public HumanDto() {
     }
 
@@ -101,18 +98,14 @@ public class HumanDto {
     }
 
 
-    /**
-     * Формирует строку содержащую поля id,name,birthDate,city,street,house,room
-     * @return возвращает сформированную строку
-     */
     @Override
     public String toString() {
-        SimpleDateFormat sdf=new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat birthDateFormat=new SimpleDateFormat("dd.MM.yyyy");
 
         return "HumanDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", birthDate='" + sdf.format(birthDate) + '\'' +
+                ", birthDate='" + birthDateFormat.format(birthDate) + '\'' +
                 ", city='" + city + '\'' +
                 ", street='" + street + '\'' +
                 ", house=" + house +

@@ -5,7 +5,7 @@ package shkryl.task4;
  */
 public class EntityNotFound extends Exception {
     /**
-     * Конструктор принимает текст исключения
+     * Конструктор, принимает текст исключения
      * @param message текст исключения
      */
     public EntityNotFound(String message){

@@ -13,12 +13,18 @@ public class Human {
     //Как правильно дату сделать, сделал пока String
     private Date birthDate;
 
-    /**
-     * Конструктор без параметров
-     */
+
     public Human() {
     }
 
+    /**
+     * Конструктор с параметрами
+     *
+     * @param id        - id
+     * @param name      - имя
+     * @param address   - адрес
+     * @param birthDate - дата рождения
+     */
     public Human(int id, String name, Address address, Date birthDate) {
         this.id = id;
         this.name = name;
@@ -59,18 +65,14 @@ public class Human {
         this.birthDate = birthDate;
     }
 
-    /**
-     * Формирует строку содержащую поля id,name,address,birthDate
-     * @return возвращает сформированную строку
-     */
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat birthDateFormat = new SimpleDateFormat("dd.MM.yyyy");
         return "HumanEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", address=" + address +
-                ", birthDate='" + sdf.format(birthDate) + '\'' +
+                ", birthDate='" + birthDateFormat.format(birthDate) + '\'' +
                 '}';
     }
 }

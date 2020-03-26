@@ -5,7 +5,7 @@ package shkryl.task4;
  */
 public class CanNotSaveEntity extends RuntimeException {
     /**
-     * Конструктор принимает текст исключения
+     * Конструктор, принимает текст исключения
      * @param message текст исключения
      */
     public CanNotSaveEntity(String message){

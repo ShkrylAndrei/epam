@@ -35,7 +35,7 @@ public class HumanServiceImpl implements Service<HumanDto>{
             consoleLogger.debug("EXCEPTION: "+e.toString());
             return null;
         }
-        return converter.convetToDTO(human);
+        return converter.convertToDTO(human);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class HumanServiceImpl implements Service<HumanDto>{
         List<Human> listEntity = humanRepo.getAllEntity();
         List<HumanDto> listDTO = new ArrayList<>();
         for (Human human : listEntity) {
-            listDTO.add(converter.convetToDTO(human));
+            listDTO.add(converter.convertToDTO(human));
         }
         consoleLogger.debug("All entities are generated");
         return listDTO;
