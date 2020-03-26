@@ -2,7 +2,6 @@ package shkryl.task7.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import shkryl.task7.part3.CustomClassLoader;
 
 import java.io.*;
 
@@ -15,7 +14,7 @@ public final class Utils {
      * Логгер
      */
     private static Logger logger = LoggerFactory.getLogger(Utils.class);
-    ;
+   
 
     /**
      * Приватный конструктор по умолчанию
@@ -23,6 +22,7 @@ public final class Utils {
     private Utils() {
 
     }
+
 
     /**
      * Возращает имя файл из абсолютного пути
