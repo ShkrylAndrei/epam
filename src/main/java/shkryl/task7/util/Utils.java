@@ -6,18 +6,36 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 
 
+/**
+ * Содержит вспомогательные методы
+ */
 public final class Utils {
-    private static Logger logger = LoggerFactory.getLogger(Utils.class);;
 
+    private static Logger logger = LoggerFactory.getLogger(Utils.class);
+
+    /**
+     * Приватный конструктор по умолчанию
+     */
     private Utils() {
-
     }
 
+    /**
+     * Возращает имя файл из абсолютного пути
+     *
+     * @param path абсолютный путь к файлу
+     * @return имя файла
+     */
     public static String getFileNameFromAbsoluteFileName(String path) {
         File f = new File(path);
         return f.getName();
     }
 
+    /**
+     * Возращает имя файла без расширения из абсолютного пути или пустую строку если путь неккореткный
+     *
+     * @param file файл
+     * @return абсолютный путь к указанному файлу без расширения
+     */
     public static String getFileAbsolutePathWithoutExtension(File file) {
         String filePath = file.getAbsolutePath();
         if (filePath.lastIndexOf(".") != -1 && filePath.lastIndexOf(".") != 0) {
@@ -25,6 +43,14 @@ public final class Utils {
         } else return "";
     }
 
+    /**
+     * Читает файл скомпилированного класса и возращаем в виде массива байт
+     * или null если считать не удалось
+     *
+     * @param fileName имя файла
+     * @return массив байт
+     * @throws ClassNotFoundException
+     */
     public static byte[] readFile(String fileName) throws ClassNotFoundException {
 
         File f = new File(fileName + ".class");
@@ -49,7 +75,6 @@ public final class Utils {
                 logger.error(e.toString());
                 System.out.println(e.toString());
             }
-            ;
         }
         return null;
     }

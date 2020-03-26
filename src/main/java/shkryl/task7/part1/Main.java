@@ -15,7 +15,7 @@ public class Main {
             arrayOfInt = new Integer[Integer.MAX_VALUE];
             //конец убивающей строчки
             arrayList.add(arrayOfInt);
-            System.out.println("Добавлен объект "+count);
+            System.out.println("Добавлен объект " + count);
             count++;
         }
     }

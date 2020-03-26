@@ -6,9 +6,13 @@ public class Main {
         recursion(0);
     }
 
-    //Метод который будет вызываться рекурсивно
-    public static void recursion(long par){
-        System.out.println("Передали параметр "+par);
+    /**
+     * Метод, который вызывается рекурсивно
+     *
+     * @param par любое числовое значение не превышающее диапазан long
+     */
+    public static void recursion(long par) {
+        System.out.println("Передали параметр " + par);
         par++;
         recursion(par);
     }

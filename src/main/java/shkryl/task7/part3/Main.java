@@ -18,8 +18,8 @@ public class Main {
         String className = "TestClass";
         String folderPath = "C:\\myClasses\\";
 
-
         CustomClassLoader classLoader = new CustomClassLoader();
+
         List<Class> listClasses = new ArrayList();
         try {
             File root = new File(folderPath);
@@ -28,7 +28,6 @@ public class Main {
                     listClasses.add(classLoader.loadClass(Utils.getFileAbsolutePathWithoutExtension(file)));
                 }
             }
-
         } catch (Exception e) {
             logger.error(e.toString());
             System.out.println(e.toString());
