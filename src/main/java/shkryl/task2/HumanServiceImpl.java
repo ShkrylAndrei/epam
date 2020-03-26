@@ -20,7 +20,7 @@ public class HumanServiceImpl implements Service<HumanDto> {
     @Override
     public HumanDto getOneEntity() {
         Human human = humanRepo.getOneEntity();
-        return converter.convetToDTO(human);
+        return converter.convertToDTO(human);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class HumanServiceImpl implements Service<HumanDto> {
         List<Human> listEntity = humanRepo.getAllEntity();
         List<HumanDto> listDTO = new ArrayList<>();
         for (Human human : listEntity) {
-            listDTO.add(converter.convetToDTO(human));
+            listDTO.add(converter.convertToDTO(human));
         }
         return listDTO;
     }

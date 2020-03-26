@@ -12,17 +12,15 @@ public class Human {
     private Address address;
     private Date birthDate;
 
-    /**
-     * Конструктор без параметров
-     */
     public Human() {
     }
 
     /**
      * Конструктор с параметрами
-     * @param id - id
-     * @param name - имя
-     * @param address - адрес
+     *
+     * @param id        - id
+     * @param name      - имя
+     * @param address   - адрес
      * @param birthDate - дата рождения
      */
     public Human(int id, String name, Address address, Date birthDate) {
@@ -67,6 +65,7 @@ public class Human {
 
     /**
      * Формирует строку содержащую поля id,name,address,birthDate
+     *
      * @return возвращает сформированную строку
      */
     @Override

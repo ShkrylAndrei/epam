@@ -1,8 +1,7 @@
 package shkryl.task2;
 
 /**
- * Класс описывающий адрес для класса {@link Human}
- *
+ * Описывает адрес для класса {@link Human}
  */
 public class Address {
     private String city;
@@ -52,6 +51,12 @@ public class Address {
         this.room = room;
     }
 
+
+    /**
+     * Формирует строку содержащую поля city, street, house, room
+     *
+     * @return возвращает сформированную строку
+     */
     @Override
     public String toString() {
         return "AddressEntity{" +
