@@ -14,8 +14,6 @@ public class CustomClassLoader extends ClassLoader {
         logger = LoggerFactory.getLogger(CustomClassLoader.class);
     }
 
-    //Переопределяем метод findClass, которому надо передать путь к файлу с расширением .class
-
     /**
      * Считывает класс по его абсолютному пути absoluteFileName и генерирует Class объект на основе данного класса
      *
@@ -34,6 +32,4 @@ public class CustomClassLoader extends ClassLoader {
         logger.error("Проблемы с байт кодом");
         throw new ClassNotFoundException("Проблемы с байт кодом");
     }
-
-
 }

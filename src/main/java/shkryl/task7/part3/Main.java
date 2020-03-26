@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    /**
-     * Логгер
-     */
     private static Logger logger;
 
     public static void main(String[] args) throws IllegalAccessException, InstantiationException {
@@ -20,7 +17,6 @@ public class Main {
 
         String className = "TestClass";
         String folderPath = "C:\\myClasses\\";
-
 
         CustomClassLoader classLoader = new CustomClassLoader();
 
@@ -32,7 +28,6 @@ public class Main {
                     listClasses.add(classLoader.loadClass(Utils.getFileAbsolutePathWithoutExtension(file)));
                 }
             }
-
         } catch (Exception e) {
             logger.error(e.toString());
             System.out.println(e.toString());
