@@ -1,12 +1,11 @@
 package shkryl.task9.part1.prototype;
 
 
-
 /**
  *
  * @author Admin
  */
-public class IndividualCar implements CarI{
+public class IndividualCar implements MyClonable {
     private String model;
     private String color;
     private int maxSpeed;
@@ -26,8 +25,12 @@ public class IndividualCar implements CarI{
     
     
     @Override
-    public CarI getCopy() throws CloneNotSupportedException {
-        return (CarI)super.clone();
+    public MyClonable getCopy()  {
+        IndividualCar cloneObject = new IndividualCar();
+        cloneObject.setModel(model);
+        cloneObject.setColor(color);
+        cloneObject.setMaxSpeed(maxSpeed);
+        return cloneObject;
     }
 
     @Override

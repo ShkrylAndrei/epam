@@ -4,10 +4,10 @@ package shkryl.task9.part2.adapter;
  *
  * @author Admin
  */
-public class ListenMusicAdapter implements ListenMusicI{
+public class CassetteMusicAdapter implements Music {
     private CassetteListenMusic cassetteListenMusic;
     
-    public ListenMusicAdapter(String type){
+    public CassetteMusicAdapter(String type){
         if (type.equalsIgnoreCase("CASSETTE")){
             cassetteListenMusic = new CassetteListenMusic();
         }

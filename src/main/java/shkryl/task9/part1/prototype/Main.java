@@ -10,15 +10,30 @@ public class Main {
         carLada.setModel("Лада");
         carLada.setColor("Красный");
         carLada.setMaxSpeed(180);
-        System.out.println("Выводим на экран объект 1");
+
+        IndividualCar carClone=(IndividualCar)carLada.getCopy();
+
+        System.out.println("Выводим на экран исходный объект");
         System.out.println(carLada);
-        
-        IndividualCar carMersedes=(IndividualCar)carLada.getCopy();
-        carMersedes.setModel("Мерседес");
-        carMersedes.setMaxSpeed(300);
-        System.out.println("");
-        System.out.println("Выводим на экран объект 2 - Лада преобразованная в Мерседес");
-        System.out.println(carMersedes);
+        System.out.println("Выводим на экран склонированный объект");
+        System.out.println(carClone);
+
+        System.out.println("Внесем изменение в исходный объект и проверим, что они не повлияли на клон");
+        carLada.setModel("Мерседес");
+
+        System.out.println("Выводим на экран измененный исходный объект");
+        System.out.println(carLada);
+        System.out.println("Выводим на экран склонированный объект");
+        System.out.println(carClone);
+
+
+        System.out.println("#################");
+        Phone phone = new Phone("Iphone X", 50000);
+
+        Phone phoneClone = (Phone)phone.getCopy();
+        phone.setModel("Sumsung"); //изменим поле
+        System.out.println(phone);
+        System.out.println(phoneClone);
     }
  
 }

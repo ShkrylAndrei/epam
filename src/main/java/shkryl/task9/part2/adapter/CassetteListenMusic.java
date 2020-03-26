@@ -4,7 +4,7 @@ package shkryl.task9.part2.adapter;
  *
  * @author Admin
  */
-public class CassetteListenMusic implements CassetteListenMusicI{
+public class CassetteListenMusic implements CassetteMusic {
 
     @Override
     public void listenCassette(String track) {

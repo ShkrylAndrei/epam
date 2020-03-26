@@ -1,4 +1,4 @@
-package shkryl.task9.part1.prototype.develop;
+package shkryl.task9.part1.prototype;
 
 /**
  *
