@@ -1,4 +1,4 @@
-package shkryl.task10;
+package shkryl.task10.part2;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -9,4 +9,5 @@ import java.lang.annotation.Target;
 @Target({ ElementType.FIELD, ElementType.METHOD })
 public @interface Value {
     String name() default "";
+    String pathToFile() default "";
 }

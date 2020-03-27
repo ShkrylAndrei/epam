@@ -1,10 +1,13 @@
-package shkryl.task10;
+package shkryl.task10.part2;
 
-@Entity
+
+import shkryl.task10.part2.Value;
+
+
 public class Human {
     @Value
     private int age;
-    @Value(name = "Peter")
+    @Value(name = "Peter", pathToFile = "list_value.txt")
     private String name;
 
     public int getAge() {
