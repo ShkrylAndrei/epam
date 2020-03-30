@@ -2,9 +2,9 @@ package shkryl.task10;
 
 @Entity
 public class Human {
-    @Value
+    @Value(pathToFile = "list_value.txt")
     private int age;
-    @Value(name = "Peter")
+
     private String name;
 
     public int getAge() {
@@ -18,7 +18,7 @@ public class Human {
     public String getName() {
         return name;
     }
-
+    @Value (pathToFile = "list_value.txt")
     public void setName(String name) {
         this.name = name;
     }

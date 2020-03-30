@@ -4,7 +4,7 @@ package shkryl.task10.part2;
 import shkryl.task10.part2.Value;
 
 
-public class Human {
+public class Human2 {
     @Value
     private int age;
     @Value(name = "Peter", pathToFile = "list_value.txt")

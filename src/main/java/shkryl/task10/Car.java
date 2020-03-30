@@ -1,9 +1,11 @@
 package shkryl.task10;
 
-
+@Entity
 public class Car {
+    @Value
     private String model;
-    private int age;
+    @Value
+    private int maxSpeed;
 
     public String getModel() {
         return model;
@@ -13,11 +15,11 @@ public class Car {
         this.model = model;
     }
 
-    public int getAge() {
-        return age;
+    public int getMaxSpeed() {
+        return maxSpeed;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setMaxSpeed(int maxSpeed) {
+        this.maxSpeed = maxSpeed;
     }
 }
