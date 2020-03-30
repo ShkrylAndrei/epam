@@ -2,26 +2,24 @@ package shkryl.task9.part3.iterator.author;
 
 import shkryl.task9.part3.iterator.myiterator.MyIterator;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 public class AuthorIterator implements MyIterator<Author> {
-    private List<Author> authorsList;
+    private Author[] authorsArr;
     private int currentIndex;
+    private int size;
 
-    public AuthorIterator(List<Author> authors) {
-        authorsList = authors;
+    public AuthorIterator(Library library)
+    {
+        authorsArr = library.getAuthorArr();
+        this.size = library.size();
     }
 
     @Override
     public boolean hasNext() {
-        return currentIndex < authorsList.size();
+        return currentIndex < size;
     }
 
     @Override
     public Author getNext() {
-        return authorsList.get(currentIndex++);
+        return authorsArr[currentIndex++];
     }
 }

@@ -3,22 +3,33 @@ package shkryl.task9.part3.iterator.author;
 import shkryl.task9.part3.iterator.myiterator.MyIterable;
 import shkryl.task9.part3.iterator.myiterator.MyIterator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class Library implements MyIterable<Author> {
-    List<Author> authors;
+    private Author[] authors;
+    private int currentIndex;
 
     public Library() {
-        authors = new ArrayList<>();
-        authors.addAll(Arrays.asList(new Author("Иванов"), new Author("Петров"),
-                new Author("Семенов"), new Author("Игорев"), new Author("Бобров")));
+        authors = new Author[100];
+        add(new Author("Иванов"));
+        add(new Author("Петров"));
+        add(new Author("Семенов"));
+        add(new Author("Игорев"));
+        add(new Author("Бобров"));
     }
 
+    private void add(Author author) {
+        authors[currentIndex++] = author;
+    }
+
+    public int size(){
+        return currentIndex;
+    }
+
+    public Author[] getAuthorArr(){
+        return authors;
+    }
 
     @Override
     public MyIterator<Author> getIterator() {
-        return new AuthorIterator(authors);
+        return new AuthorIterator(this);
     }
 }

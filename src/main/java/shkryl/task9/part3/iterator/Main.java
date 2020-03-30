@@ -16,7 +16,7 @@ public class Main {
         }
         System.out.println("------------------------");
 
-        //Перебор книг в библиотеке по авторам в прямом и обратном порядке через итератор
+        //Перебор книг в библиотеке по авторам
         Library library = new Library();
         MyIterator<Author> iter1 = library.getIterator();
         while (iter1.hasNext()) {

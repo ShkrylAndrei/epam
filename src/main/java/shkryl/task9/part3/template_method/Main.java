@@ -6,12 +6,11 @@ public class Main {
         MakeEngine engine;
 
         engine = new EnginePetrol();
-        engine.processEngine();
+        engine.processEngine("Бензиновый двигатель", "Лада", 180);
         System.out.println("");
 
         engine = new EngineGas();
-        engine.processEngine();
+        engine.processEngine("Газовый двигатель", "Nissan", 280);
         System.out.println("");
-
     }
 }
