@@ -25,7 +25,6 @@ public class FileUtil {
             String name = lines.get(i++).split("=")[1];
             result.add(new FileEntityWrapper(name, Integer.parseInt(age)));
         }
-
         return result;
     }
 }

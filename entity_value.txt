@@ -1,2 +1,2 @@
 age=20
-name=2name
+name=name_from_file

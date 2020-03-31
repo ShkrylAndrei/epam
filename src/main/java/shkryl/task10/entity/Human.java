@@ -6,7 +6,6 @@ import shkryl.task10.annotation.Value;
 @Entity
 public class Human {
     @Value(pathToFile = "list_values.txt")
-
     private int age;
 
     private String name;
@@ -23,7 +22,7 @@ public class Human {
         return name;
     }
 
-    @Value (pathToFile = "list_values.txt")
+    @Value(pathToFile = "list_values.txt")
     public void setName(String name) {
         this.name = name;
     }

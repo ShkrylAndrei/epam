@@ -2,7 +2,6 @@ package shkryl.task10.logic;
 
 import shkryl.task10.exceptions.NoValueAnnotationException;
 import shkryl.task10.util.Analyzer;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -11,11 +10,9 @@ public class Service<T> {
         if(Analyzer.checkEntityAnnotation(clazz)){
             try {
                 Analyzer.checkNoValueAnnotationException(clazz);
-
                 try {
                     List<T> list = (List<T>)Analyzer.initFieldsByAnnotaionValue(clazz);
                     return list;
-
                 }catch(Exception e){
                     e.printStackTrace();
                 }

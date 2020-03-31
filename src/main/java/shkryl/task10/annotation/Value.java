@@ -11,6 +11,4 @@ public @interface Value {
     String stringValue() default "default name";
     int intValue() default 0;
     String pathToFile() default "";
-
-
 }
