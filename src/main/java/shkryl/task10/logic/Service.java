@@ -1,20 +1,27 @@
-package shkryl.task10;
+package shkryl.task10.logic;
 
-//????? Нужен ли сервис, если по заданию сущностей максимум 2 (или не 2? )
+import shkryl.task10.exceptions.NoValueAnnotationException;
+import shkryl.task10.util.Analyzer;
+
+import java.io.IOException;
+import java.util.List;
+
 public class Service<T> {
-    public T getInstance(Class<?> clazz){
+    public List<T> getInstance(Class<?> clazz){
         if(Analyzer.checkEntityAnnotation(clazz)){
             try {
                 Analyzer.checkNoValueAnnotationException(clazz);
-                //????????  временный try catch
+
                 try {
-                    T t  = (T)Analyzer.initFieldsByAnnotaionValue(clazz);
-                    return t;
+                    List<T> list = (List<T>)Analyzer.initFieldsByAnnotaionValue(clazz);
+                    return list;
 
                 }catch(Exception e){
                     e.printStackTrace();
                 }
             }catch(NoValueAnnotationException e){
+                System.out.println(e.toString());
+            }catch(IOException e){
                 System.out.println(e.toString());
             }
         }else{

@@ -1,4 +1,4 @@
-package shkryl.task10;
+package shkryl.task10.exceptions;
 
 public class NoValueAnnotationException extends RuntimeException {
     public NoValueAnnotationException(String message){

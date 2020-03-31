@@ -1,6 +1,10 @@
 package shkryl.task10;
 
 
+import shkryl.task10.entity.Human;
+import shkryl.task10.logic.Service;
+
+import java.util.List;
 
 public class Main {
     public Character aCharacter;
@@ -9,8 +13,10 @@ public class Main {
     public static void main(String[] args) {
 //через сервис:
         Service<Human> service = new Service<>();
-        Human h = service.getInstance(Human.class);
-        System.out.println(h.getName()+" "+h.getAge());
+        List<Human> list  = service.getInstance(Human.class);
+        for(Human h : list) {
+            System.out.println(h.getName() + " " + h.getAge());
+        }
 //
 //        Service<Car> service2 = new Service<>();
 //        Car car = service2.getInstance(Car.class);

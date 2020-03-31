@@ -1,8 +1,12 @@
-package shkryl.task10;
+package shkryl.task10.entity;
+
+import shkryl.task10.annotation.Entity;
+import shkryl.task10.annotation.Value;
 
 @Entity
 public class Human {
-    @Value(pathToFile = "list_value.txt")
+    @Value(pathToFile = "list_values.txt")
+
     private int age;
 
     private String name;
@@ -18,7 +22,8 @@ public class Human {
     public String getName() {
         return name;
     }
-    @Value (pathToFile = "list_value.txt")
+
+    @Value (pathToFile = "list_values.txt")
     public void setName(String name) {
         this.name = name;
     }

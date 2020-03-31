@@ -1,4 +1,7 @@
-package shkryl.task10;
+package shkryl.task10.entity;
+
+import shkryl.task10.annotation.Entity;
+import shkryl.task10.annotation.Value;
 
 @Entity
 public class Car {

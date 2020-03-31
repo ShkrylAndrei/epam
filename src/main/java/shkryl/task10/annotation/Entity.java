@@ -1,4 +1,4 @@
-package shkryl.task10;
+package shkryl.task10.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
