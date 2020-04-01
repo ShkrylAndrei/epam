@@ -54,11 +54,11 @@ public class Analyzer {
         Set<Field> fields = fieldAnnotationMap.keySet();
         try {
             initValuesFromFile();
-        }catch(IllegalArgumentException e){
-            System.out.println(e.toString());
+        } catch (IllegalArgumentException e) {
+            logger.error(e.toString());
             return listResult;
-        }catch(IndexOutOfBoundsException e){
-            System.out.println(e.getClass().getName()+": Файл параметров заполнен некорректно");
+        } catch (IndexOutOfBoundsException e) {
+            logger.error("{} : Файл параметров заполнен некорректно", e.getClass().getName());
             return listResult;
         }
         int i = 0;
@@ -102,11 +102,9 @@ public class Analyzer {
      */
     public static boolean checkEntityAnnotation(Class<?> clazz) {
         if (!clazz.isAnnotationPresent(Entity.class)) {
-            System.err.println(clazz.getName() + " has no Entity annotation");
             logger.error("{} has no Entity annotation", clazz.getName());
             return false;
         }
-        System.out.println("Класс " + clazz.getName() + " имеет аннотацияю Entity");
         logger.info("Класс {} имеет аннотацию Entity", clazz.getName());
         return true;
 
@@ -114,7 +112,8 @@ public class Analyzer {
 
     /**
      * Забирает значение из аннотации и оборачивает его в обертку AnnotationWrapper
-     * @param clazz обрабатываемый класс сущности
+     *
+     * @param clazz      обрабатываемый класс сущности
      * @param annotation обрабатываемая аннотация
      * @return возвращает обертку AnnotationWrapper
      * @throws IOException
@@ -125,16 +124,16 @@ public class Analyzer {
             String filePath = annotation.pathToFile();
             wrapper = new AnnotationWrapper("pathToFile", filePath);
         } else {
-            if(!annotation.stringValue().equals("default name")){
+            if (!annotation.stringValue().equals("default name")) {
                 if (clazz == int.class) {
                     int age = Integer.parseInt(annotation.stringValue());
                     wrapper = new AnnotationWrapper("intValue", age);
-                }else if (clazz == String.class) {
+                } else if (clazz == String.class) {
                     wrapper = new AnnotationWrapper("stringValue", annotation.stringValue());
                 }
-            }else if (clazz == int.class) {
+            } else if (clazz == int.class) {
                 wrapper = new AnnotationWrapper("intValue", annotation.intValue());
-            }else if (clazz == String.class) {
+            } else if (clazz == String.class) {
                 wrapper = new AnnotationWrapper("stringValue", annotation.stringValue());
             }
         }
@@ -153,25 +152,22 @@ public class Analyzer {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             if (!field.isAnnotationPresent(Value.class)) {
-
-
                 Method method = getAnnotatedSetterForField(field, clazz);
                 Value value = method.getAnnotation(Value.class);
                 Parameter setterParameter = method.getParameters()[0];
                 fieldAnnotationMap.put(field, getAnnoWrapper(setterParameter.getType(), value));
-
             } else {
                 Value value = field.getAnnotation(Value.class);
                 fieldAnnotationMap.put(field, getAnnoWrapper(field.getType(), value));
             }
         }
-        System.out.println("Все поля класса " + clazz.getName() + " имеют аннотацию Value");
         logger.info("Все поля класса {} имеют аннотацию Value", clazz.getName());
         return true;
     }
 
     /**
      * Проверяет наличие аннотации Value в классе, не имеющим аннотации Entity
+     *
      * @param clazz обрабатываемый класс
      * @return true если поля не имеют аннотации Value, иначе - false
      */
@@ -186,7 +182,8 @@ public class Analyzer {
                     if (getAnnotatedSetterForField(field, clazz) != null) {
                         throw new IllegalStateException("Поле " + field.getName() + " не должно иметь аннотации Value, так как класс не является сущностью");
                     }
-                }catch(NoValueAnnotationException e){}
+                } catch (NoValueAnnotationException e) {
+                }
             }
         }
         return true;
@@ -194,6 +191,7 @@ public class Analyzer {
 
     /**
      * Ищет сеттер для поля без аннотации Value и проверяет, что сеттер помечен аннотацией Value
+     *
      * @param field проверяемое поле
      * @param clazz орабатываемый класс
      * @return возвращает метод, если он помечен аннотацией Value, иначе - выбрасывает исключение NoValueAnnotationException
@@ -209,6 +207,5 @@ public class Analyzer {
             }
         }
         throw new NoValueAnnotationException("Поле " + field.getName() + " не имеет аннотации Value");
-
     }
 }

@@ -12,7 +12,6 @@ public class AnnotationWrapper {
         this.parameterValue = parameterValue;
     }
 
-
     public String getParameterName() {
         return parameterName;
     }

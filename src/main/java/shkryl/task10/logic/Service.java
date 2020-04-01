@@ -1,5 +1,8 @@
 package shkryl.task10.logic;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import shkryl.task10.Main;
 import shkryl.task10.exceptions.NoValueAnnotationException;
 import shkryl.task10.util.Analyzer;
 
@@ -13,6 +16,8 @@ import java.util.List;
  * @param <T> тип создаваемого объекта
  */
 public class Service<T> {
+    private static Logger logger = LoggerFactory.getLogger(Main.class);
+
     /**
      * Создает объект класса
      * @param clazz Class создаваемого объекта
@@ -27,20 +32,20 @@ public class Service<T> {
                     list = (List<T>)Analyzer.initFieldsByAnnotaionValue(clazz);
                     return list;
                 }catch(Exception e){
-                    System.out.println(e.getMessage());
+                    logger.error(e.getMessage());
                 }
             }catch(NoValueAnnotationException e){
-                System.out.println(e.toString());
+                logger.error(e.toString());
             }catch(IOException e){
-                System.out.println(e.toString());
+                logger.error(e.toString());
             }catch(NumberFormatException e){
-                System.out.println(e.toString());
+                logger.error(e.toString());
             }
         }else{
             try{
                 Analyzer.checkIllegalStateException(clazz);
             }catch(IllegalStateException e){
-                System.out.println(e.toString());
+                logger.info(e.toString());
             }
         }
         return list;
