@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import shkryl.task10.entity.Car;
 import shkryl.task10.entity.Human;
 import shkryl.task10.logic.Service;
+
+
 import java.util.List;
 
 public class Main {
@@ -16,8 +18,8 @@ public class Main {
         for (Human h : list) {
             logger.info(h.getName() + " " + h.getAge());
         }
-
-        logger.info("");
+//
+//        logger.info("");
 
         Service<Car> service2 = new Service<>();
         List<Car> listCar = service2.getInstance(Car.class);

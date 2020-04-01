@@ -1,5 +1,8 @@
 package shkryl.task10.util;
 
+/**
+ * Обертка для параметров из файла
+ */
 public class AnnotationWrapper {
     private String parameterName;
     private Object parameterValue;

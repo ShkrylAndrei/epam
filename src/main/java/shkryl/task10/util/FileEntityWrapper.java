@@ -1,5 +1,8 @@
 package shkryl.task10.util;
 
+/**
+ * Обертка для параметров сущности
+ */
 public class FileEntityWrapper {
     private String name;
     private int age;

@@ -13,6 +13,9 @@
     <logger name="shkryl.task10.Main" level="debug" additivity="false">
         <appender-ref ref="CONSOLE"/>
     </logger>
+    <logger name="shkryl.task10.util.Analyzer" level="debug" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
 
     <root level="info">
         <appender-ref ref="CONSOLE"/>
