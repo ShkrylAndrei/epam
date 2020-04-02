@@ -26,6 +26,7 @@ public class Main {
             e.printStackTrace();
         }
 
+
         //Одним стримом считать этот файл и посчитать количество элементов UUID, в которых сумма цифр > 100
        // Path path = Paths.get("random_elements.txt");
         System.out.println();
