@@ -19,7 +19,6 @@ public class Main {
             logger.info(h.getName() + " " + h.getAge());
         }
 
-
         Service<Car> service2 = new Service<>();
         List<Car> listCar = service2.getInstance(Car.class);
         for (Car car : listCar) {
