@@ -13,9 +13,6 @@ public class Sausage {
         this.cost = cost;
     }
 
-
-
-
     public Sausage(List<String> list) {
         this(list.get(0).replace("'", ""),
                 Integer.parseInt(list.get(1)),
