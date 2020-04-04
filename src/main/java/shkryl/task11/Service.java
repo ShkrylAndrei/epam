@@ -21,6 +21,10 @@ import java.util.stream.Stream;
 public class Service {
     private static Logger logger = LoggerFactory.getLogger(Service.class);
 
+    /**
+     * Генерирует коллекцию с 10000 раномными элементами UUID
+     * @return возращает сгенерированную коллекцию
+     */
     public static List<String> generateUIID() {
         UUID uuid = UUID.randomUUID();
         List<UUID> uuids = Stream.generate(UUID::randomUUID)
@@ -33,6 +37,11 @@ public class Service {
         return uuidsString;
     }
 
+    /**
+     * Сохраняет переданную коллекцию, в качестве параметра, в файл
+     * @param fileName имя файла
+     * @param uuidsString обрабатываемая коллекция
+     */
     public static void uuidsStringSaveToFile(String fileName, List<String> uuidsString) {
         Path path = Paths.get(fileName);
         try {
@@ -42,6 +51,10 @@ public class Service {
         }
     }
 
+    /**
+     * Считает количетсво элементов в файле, содержащим UUID строки, у которых сумма цифр больше 100
+     * @param fileName имя обрабатываемого файла
+     */
     public static void countUUIDMoreThan100(String fileName) {
         Path path = Paths.get(fileName);
         try {
@@ -56,6 +69,9 @@ public class Service {
         }
     }
 
+    /**
+     * Рассчитывает дату конца света, на основе первых четырех цифр текущей даты
+     */
     public static void calculationEndOfTheWorld() {
         ZoneId zoneId = ZoneId.of("America/Los_Angeles");
         ZonedDateTime dateNow = ZonedDateTime.now(zoneId);
@@ -69,6 +85,10 @@ public class Service {
         logger.info("Дата конца света: {}", lastDate);
     }
 
+    /**
+     * Создает объекты типа Sausage, данные для полей объектов
+     * берутся из файла File.txt, декодируются из формата base64
+     */
     public static void createSausages() {
         Base64.Decoder decoder = Base64.getDecoder();
         Path pathCodedFile = Paths.get("File.txt");
