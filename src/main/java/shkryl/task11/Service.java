@@ -23,6 +23,7 @@ public class Service {
 
     /**
      * Генерирует коллекцию с 10000 раномными элементами UUID
+     *
      * @return возращает сгенерированную коллекцию
      */
     public static List<String> generateUIID() {
@@ -39,7 +40,8 @@ public class Service {
 
     /**
      * Сохраняет переданную коллекцию, в качестве параметра, в файл
-     * @param fileName имя файла
+     *
+     * @param fileName    имя файла
      * @param uuidsString обрабатываемая коллекция
      */
     public static void uuidsStringSaveToFile(String fileName, List<String> uuidsString) {
@@ -53,12 +55,15 @@ public class Service {
 
     /**
      * Считает количетсво элементов в файле, содержащим UUID строки, у которых сумма цифр больше 100
+     *
      * @param fileName имя обрабатываемого файла
+     * @return количество строк UUID, в которых сумма чисел больше 100
      */
-    public static void countUUIDMoreThan100(String fileName) {
+    public static long countUUIDMoreThan100(String fileName) {
         Path path = Paths.get(fileName);
+        long count = 0;
         try {
-            long count = Files.lines(path)
+            count = Files.lines(path)
                     .map(x -> x.replaceAll("\\D", ""))
                     .map(x -> x.chars().map(ch -> Character.getNumericValue(ch)).sum())
                     .filter(sum -> sum > 100)
@@ -67,18 +72,40 @@ public class Service {
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
+        return count;
     }
 
     /**
-     * Рассчитывает дату конца света, на основе первых четырех цифр текущей даты
+     * Добавляет лидирующие нули, если длина числа count меньше 4
+     *
+     * @param count количество строк UUID, в которых сумма чисел больше 100
+     * @return строку count длиной 4 символа
      */
-    public static void calculationEndOfTheWorld() {
+    private static String getValidCount(long count) {
+        String countString = String.valueOf(count);
+        StringBuilder sb = new StringBuilder();
+
+        while (sb.length() + countString.length() < 4) {
+            sb.append(0);
+        }
+        return sb.toString() + countString;
+    }
+
+    /**
+     * Рассчитывает дату конца света на основе count
+     *
+     * @param count количество строк UUID, в которых сумма чисел больше 100
+     */
+    public static void calculationEndOfTheWorld(long count) {
         ZoneId zoneId = ZoneId.of("America/Los_Angeles");
         ZonedDateTime dateNow = ZonedDateTime.now(zoneId);
         String startDate = dateNow.format(DateTimeFormatter.ISO_DATE_TIME);
-
-        int n = Integer.valueOf(startDate.substring(0, 2).replaceAll("\\D", ""));
-        int m = Integer.valueOf(startDate.substring(2, 4).replaceAll("\\D", ""));
+        logger.info("Текущая дата: {}", startDate);
+        String countString = getValidCount(count);
+        int n = Integer.parseInt(countString.substring(0, 2));
+        int m = Integer.parseInt(countString.substring(2, 4));
+        logger.info("n = {}", n);
+        logger.info("m = {}", m);
 
         dateNow = dateNow.plusMonths(n).plusDays(m);
         String lastDate = dateNow.format(DateTimeFormatter.ISO_DATE_TIME);
