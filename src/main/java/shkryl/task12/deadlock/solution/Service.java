@@ -1,10 +1,9 @@
 package shkryl.task12.deadlock.solution;
 
-
 public class Service {
     /**
      * Эмулирует ситуацию deadlock
-      */
+     */
     public static void makeDeadLock() {
         CallStatus callStatus = new CallStatus();
         Abonent abonent1 = new Abonent("Ivan", callStatus);

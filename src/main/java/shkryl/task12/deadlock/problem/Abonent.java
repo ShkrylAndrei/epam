@@ -1,7 +1,13 @@
 package shkryl.task12.deadlock.problem;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import shkryl.task12.racecondition.problem.Counter;
+
 public class Abonent {
     private String name;
+
+    private static Logger logger = LoggerFactory.getLogger(Abonent.class);
 
     public Abonent(String name) {
         this.name = name;
@@ -17,11 +23,11 @@ public class Abonent {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Набираем номер "+abonent.getName());
+        logger.info("Набираем номер {}",abonent.getName());
         abonent.switchMusicOn();
     }
 
     public synchronized void switchMusicOn(){
-        System.out.println("Включаем музыку на телефоне "+getName());
+        logger.info("Включаем музыку на телефоне {}",getName());
     }
 }

@@ -29,13 +29,33 @@
         </rollingPolicy>
     </appender>
 
-    <logger name="shkryl.task12.chat.Main" level="debug" additivity="false">
-        <appender-ref ref="CONSOLE"/>
-    </logger>
-    <logger name="shkryl.task12.chat.thread.Writer" level="debug" additivity="false">
+    <logger name="shkryl.task12.racecondition.problem.Counter" level="debug" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="ONLY-FILE"/>
     </logger>
+    <logger name="shkryl.task12.racecondition.solution.Counter" level="debug" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ONLY-FILE"/>
+    </logger>
+
+    <logger name="shkryl.task12.deadlock.problem.Abonent" level="debug" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ONLY-FILE"/>
+    </logger>
+    <logger name="shkryl.task12.deadlock.solution.Abonent" level="debug" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ONLY-FILE"/>
+    </logger>
+
+    <logger name="shkryl.task12.chat.Chat" level="debug" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ONLY-FILE"/>
+    </logger>
+    <logger name="shkryl.task12.chat.service.Service" level="debug" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ONLY-FILE"/>
+    </logger>
+
 
     <root level="info">
         <appender-ref ref="CONSOLE"/>
