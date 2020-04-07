@@ -1,21 +1,13 @@
 package shkryl.task12.decisionracecondition;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 public class Main {
 
 
     public static void main(String[] args) {
-        ExecutorService executorService = Executors.newFixedThreadPool(4);
-
-        executorService.submit(new RunCounter());
-        executorService.submit(new RunCounter());
-        executorService.submit(new RunCounter());
-        executorService.submit(new RunCounter());
-
-
-        executorService.shutdown();
+        Thread thread1 = new Thread(new RunCounter());
+        Thread thread2 = new Thread(new RunCounter());
+        thread1.start();
+        thread2.start();
 
     }
 

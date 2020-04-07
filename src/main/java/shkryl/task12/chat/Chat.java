@@ -4,43 +4,48 @@ import shkryl.task12.chat.exception.NoExistingSmsException;
 import shkryl.task12.chat.exception.NoFreeSpaceException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 //Может статическим класс сделать подумать
 public class Chat {
-    private List<String> sms = new ArrayList<>();
-    private static int currentSms = 0;
-    private static final int barrierForSms = 25;
+    private List<String> chatSmsList = Collections.synchronizedList(new ArrayList<>());
+    private List<String> smsBuffer = Collections.synchronizedList(new ArrayList<>());
+    private final int capacity = 25;
 
 
-    public Boolean addOneSms(String text){
+    public synchronized boolean addSms(String text){
 
-        if (sms.size()<=barrierForSms){
-            sms.add(text);
-            currentSms++;
-
+        if (chatSmsList.size() < capacity){
+            chatSmsList.add(text);
             return true;
         }else{
-
-            throw new NoFreeSpaceException("Хранилище смс переполнено, нельзя добавить новое");
+            smsBuffer.add(text);
+            System.out.println(text+" добавлено в буфер");
+            return false;
         }
     }
 
-    public String readOneSms(){
-        if (currentSms==0){
-            throw new NoExistingSmsException("В хранилище нет ни одного SMS, операция чтения невозможна");
-        }else{
-            String returnSms = sms.get(currentSms);
-            sms.remove(currentSms);
-            currentSms--;
-            return  returnSms;
+    public synchronized String readSms(){
+        if(chatSmsList.size()>0) {
+            String sms = chatSmsList.remove(0);
+            if(smsBuffer.size()!=0){
+                chatSmsList.add(smsBuffer.remove(0));
+            }
+            return sms;
         }
+        throw new NoExistingSmsException("Нет сообщений для считывания");
     }
 
-    public Boolean updateOneSms(){
-        //Пока не знаю
-        //запоминаем индекс меняем и сохраняем, но другие потоки могут уже убить это сообщение, как быть???
-        return true;
+    public synchronized void updateSms(){
+        if(chatSmsList.size()>0) {
+            int randomIndex = new Random().nextInt(chatSmsList.size());
+            String text = chatSmsList.get(randomIndex);
+            System.out.println("Изменено: "+text);
+            chatSmsList.set(randomIndex, text + " modified");
+        }
+
     }
 
 
