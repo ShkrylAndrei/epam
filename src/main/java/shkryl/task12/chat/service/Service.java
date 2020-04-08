@@ -1,26 +1,30 @@
 package shkryl.task12.chat.service;
 
+import shkryl.task12.chat.chat.Chat;
+import shkryl.task12.chat.task.Task;
+import shkryl.task12.chat.task.ReaderTask;
+import shkryl.task12.chat.task.UpdaterTask;
+import shkryl.task12.chat.task.WriterTask;
+import shkryl.task12.chat.executors.ReaderExecutor;
+import shkryl.task12.chat.executors.ChatExecutor;
+import shkryl.task12.chat.executors.UpdaterExecutor;
+import shkryl.task12.chat.executors.WriterExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import shkryl.task12.chat.Chat;
-import shkryl.task12.chat.exception.NoExistingSmsException;
-import shkryl.task12.chat.exception.NoFreeSpaceException;
 
-import java.util.Random;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Service {
     private Chat chat;
     private AtomicInteger atomicInteger;
     //Количество Writer
-    private static final int writerCount = 3;
+    private static final int WRITER_COUNT = 4;
     //Количество Reader
-    private static final int readerCount = 3;
+    private static final int READER_COUNT = 4;
     //Количество Updater
-    private static final int updaterCount = 1;
+    private static final int UPDATER_COUNT = 1;
 
     private static Logger logger = LoggerFactory.getLogger(Service.class);
 
@@ -29,62 +33,39 @@ public class Service {
         atomicInteger = new AtomicInteger(0);
     }
 
-    public void startChat(){
-        Callable writer = ()->{
-            int i = 0;
-            while (i == 0) {
-                int time = new Random().nextInt(40000) + 20000;
-                Thread.sleep(time);
-                String text = "сообщение №"+String.valueOf(atomicInteger.incrementAndGet());
-                try {
-                    chat.addSms(text);
-                    logger.info("Добавлено: " + text);
-                }catch(NoFreeSpaceException e){
-                    logger.error("В чате нет свободного места для добавления сообщений");
-                }
-            }
-            return "";
-        };
+    public void startChat()  {
+        Task writerTask = new WriterTask(chat, atomicInteger);
+        Task readerTask = new ReaderTask(chat);
+        Task updaterTask = new UpdaterTask(chat);
 
-        Callable reader = ()->{
-            int i = 0;
-            while (i == 0) {
-                int time = new Random().nextInt(20000) + 30000;
-                Thread.sleep(time);
-                try {
-                    String text = chat.readSms();
-                    logger.info("Считано: " + text);
-                }catch(NoExistingSmsException e){
-                    logger.error("Нет сообщений для считывания");
-                }
-            }
-            return "";
-        };
+        ChatExecutor writerExecutor = new WriterExecutor(writerTask,  20, 60);
+        ChatExecutor readerExecutor = new ReaderExecutor(readerTask,  30, 50);
+        ChatExecutor updaterExecutor = new UpdaterExecutor(updaterTask,  40);
 
-        Callable updater = ()->{
-            int i = 0;
-            while (i == 0) {
-                int time = 40000;
-                Thread.sleep(time);
-                chat.updateSms();
-            }
-            return "";
-        };
+        ExecutorService executorServiceWriter = Executors.newFixedThreadPool(2);
+        ExecutorService executorServiceReader = Executors.newFixedThreadPool(2);
+        ExecutorService executorServiceUpdater = Executors.newFixedThreadPool(2);
 
-        //Запускаем потоки
-        ExecutorService executorService = Executors.newFixedThreadPool(writerCount+readerCount+updaterCount);
 
-        for (int i = 0; i < writerCount; i++) {
-            executorService.submit(writer);
-        }
-        for (int i = 0; i < readerCount; i++) {
-            executorService.submit(reader);
+
+
+        for (int i = 0; i < WRITER_COUNT; i++) {
+            executorServiceWriter.execute(writerExecutor);
         }
 
-        for (int i = 0; i < updaterCount; i++) {
-            executorService.submit(updater);
+        for (int i = 0; i < READER_COUNT; i++) {
+            executorServiceReader.execute(readerExecutor);
+        }
+        for (int i = 0; i < UPDATER_COUNT; i++) {
+            executorServiceUpdater.execute(updaterExecutor);
         }
 
-        executorService.shutdown();
+        executorServiceWriter.shutdown();
+        executorServiceReader.shutdown();
+        executorServiceUpdater.shutdown();
+
+
+
+
     }
 }
