@@ -47,15 +47,11 @@
         <appender-ref ref="ONLY-FILE"/>
     </logger>
 
-    <logger name="shkryl.task12.chat.executors.WriterExecutor" level="debug" additivity="false">
+    <logger name="shkryl.task12.chat.executors.WriterTaskExecutor" level="debug" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="ONLY-FILE"/>
     </logger>
-    <logger name="shkryl.task12.chat.executors.WriterExecutor" level="debug" additivity="false">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="ONLY-FILE"/>
-    </logger>
-    <logger name="shkryl.task12.chat.executors.UpdaterExecutor" level="debug" additivity="false">
+    <logger name="shkryl.task12.chat.executors.UpdaterTaskExecutor" level="debug" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="ONLY-FILE"/>
     </logger>
@@ -63,7 +59,11 @@
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="ONLY-FILE"/>
     </logger>
-    <logger name="shkryl.task12.chat.chat.ChatBack" level="debug" additivity="false">
+    <logger name="shkryl.task12.chat.chat.Chat" level="debug" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ONLY-FILE"/>
+    </logger>
+    <logger name="shkryl.task12.chat.executors.TaskExecutor" level="debug" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="ONLY-FILE"/>
     </logger>

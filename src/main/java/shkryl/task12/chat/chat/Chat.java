@@ -6,67 +6,71 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingDeque;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Chat {
 
-    private BlockingQueue<SMS> chatSmsQueue = new LinkedBlockingDeque<>();
-    private BlockingQueue<SMS> bufferSmsQueue = new LinkedBlockingDeque<>();
+    private List<SMS> chatSmsList = Collections.synchronizedList(new ArrayList());
+    private List<SMS> bufferSmsList = Collections.synchronizedList(new ArrayList());
     private final int capacity = 25;
-    private static Logger logger = LoggerFactory.getLogger(ChatBack.class);
+    private static Logger logger = LoggerFactory.getLogger(Chat.class);
     private Lock lock = new ReentrantLock();
 
     public String addSMS(String text) {
-//        try {
-//            lock.lock();
-        if (chatSmsQueue.size() < capacity) {
-//            System.out.println("Запись: Writer "+Thread.currentThread().getName()+": Записано: "+text);
-            chatSmsQueue.add(new SMS(text));
-        } else {
-            bufferSmsQueue.add(new SMS(text));
-//            System.out.println("Запись: Writer "+Thread.currentThread().getName()+": Записано в буфер: "+text);
-            //logger.info(text + " добавлено в буфер");
+        lock.lock();
+        try {
+            if (chatSmsList.size() < capacity) {
+                chatSmsList.add(new SMS(text));
+                logger.info("Добавлено сообщение в чат {}", text);
+            } else {
+                bufferSmsList.add(new SMS(text));
+                logger.info("Добавлено сообщение в буфер {}", text);
+            }
+        } finally {
+            lock.unlock();
         }
-//        }finally {
-//            lock.unlock();
-//        }
         return text;
     }
 
     public String readSms() throws InterruptedException {
-//        try {
-//            lock.lock();
-        SMS sms = chatSmsQueue.take();
-
-        //System.out.println("Ридер "+Thread.currentThread().getName()+" достал смс: "+sms.getText());
-        if (!bufferSmsQueue.isEmpty()) {
-            chatSmsQueue.add(bufferSmsQueue.take());
+        lock.lock();
+        try {
+            if (!chatSmsList.isEmpty()) {
+                SMS sms = chatSmsList.remove(0);
+                if (!bufferSmsList.isEmpty()) {
+                    chatSmsList.add(bufferSmsList.remove(0));
+                }
+                logger.info("Размер чата: {}", chatSmsList.size());
+                logger.info("Размер буфера: {}", bufferSmsList.size());
+                logger.info("Прочитанно сообщение {}",sms.getText());
+                return sms.getText();
+            }
+        } finally {
+            lock.unlock();
         }
-        return sms.getText();
-//        }finally {
-//            lock.unlock();
-//        }
+        throw new NoExistingSmsException("Не удалось считать смс, чат пуст");
     }
 
     public String updateSms() {
-//        try {
-//            lock.lock();
-        if (!chatSmsQueue.isEmpty()) {
-            int randomIndex = ThreadLocalRandom.current().nextInt(chatSmsQueue.size());
-            SMS sms = (SMS) chatSmsQueue.toArray()[randomIndex];
-            //logger.info("Изменено: {}", sms.getText());
-//              System.out.println("Изменение: Updater : "+sms.getText()+ " modified");
-            sms.setText(sms.getText() + " modified");
-            return sms.getText();
-        }
-//        }finally {
-//            lock.unlock();
-//        }
+        lock.lock();
+        try {
 
+            if (!chatSmsList.isEmpty()) {
+                int randomIndex = ThreadLocalRandom.current().nextInt(chatSmsList.size());
+                SMS sms = chatSmsList.get(randomIndex);
+                sms.setText(sms.getText() + " modified");
+                logger.info("Измененно сообщение {}",sms.getText());
+                return sms.getText();
+            }
+        } finally {
+            lock.unlock();
+        }
         throw new NoExistingSmsException("Изменение сообщения не удалость, список сообщений пуст");
+
     }
 }
