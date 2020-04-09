@@ -23,14 +23,14 @@ public class Chat {
     public String addSMS(String text) {
 //        try {
 //            lock.lock();
-            if (chatSmsQueue.size() < capacity) {
+        if (chatSmsQueue.size() < capacity) {
 //            System.out.println("Запись: Writer "+Thread.currentThread().getName()+": Записано: "+text);
-                chatSmsQueue.add(new SMS(text));
-            } else {
-                bufferSmsQueue.add(new SMS(text));
+            chatSmsQueue.add(new SMS(text));
+        } else {
+            bufferSmsQueue.add(new SMS(text));
 //            System.out.println("Запись: Writer "+Thread.currentThread().getName()+": Записано в буфер: "+text);
-                //logger.info(text + " добавлено в буфер");
-            }
+            //logger.info(text + " добавлено в буфер");
+        }
 //        }finally {
 //            lock.unlock();
 //        }
@@ -40,13 +40,13 @@ public class Chat {
     public String readSms() throws InterruptedException {
 //        try {
 //            lock.lock();
-            SMS sms = chatSmsQueue.take();
+        SMS sms = chatSmsQueue.take();
 
-            //System.out.println("Ридер "+Thread.currentThread().getName()+" достал смс: "+sms.getText());
-            if (!bufferSmsQueue.isEmpty()) {
-                chatSmsQueue.add(bufferSmsQueue.take());
-            }
-            return sms.getText();
+        //System.out.println("Ридер "+Thread.currentThread().getName()+" достал смс: "+sms.getText());
+        if (!bufferSmsQueue.isEmpty()) {
+            chatSmsQueue.add(bufferSmsQueue.take());
+        }
+        return sms.getText();
 //        }finally {
 //            lock.unlock();
 //        }
@@ -55,14 +55,14 @@ public class Chat {
     public String updateSms() {
 //        try {
 //            lock.lock();
-            if (!chatSmsQueue.isEmpty()) {
-                int randomIndex = ThreadLocalRandom.current().nextInt(chatSmsQueue.size());
-                SMS sms = (SMS) chatSmsQueue.toArray()[randomIndex];
-                //logger.info("Изменено: {}", sms.getText());
+        if (!chatSmsQueue.isEmpty()) {
+            int randomIndex = ThreadLocalRandom.current().nextInt(chatSmsQueue.size());
+            SMS sms = (SMS) chatSmsQueue.toArray()[randomIndex];
+            //logger.info("Изменено: {}", sms.getText());
 //              System.out.println("Изменение: Updater : "+sms.getText()+ " modified");
-                sms.setText(sms.getText() + " modified");
-                return sms.getText();
-            }
+            sms.setText(sms.getText() + " modified");
+            return sms.getText();
+        }
 //        }finally {
 //            lock.unlock();
 //        }

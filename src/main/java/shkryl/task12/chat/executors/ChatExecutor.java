@@ -24,7 +24,4 @@ public abstract class ChatExecutor implements Runnable {
         this.task = task;
         this.period = period;
     }
-
-
-
 }

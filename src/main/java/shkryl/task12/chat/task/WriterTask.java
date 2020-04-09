@@ -14,8 +14,7 @@ public class WriterTask extends Task {
 
     @Override
     public String call() throws Exception {
-        String text = "сообщение №"+String.valueOf(atomicInteger.incrementAndGet());
+        String text = "сообщение №" + String.valueOf(atomicInteger.incrementAndGet());
         return chat.addSMS(text);
-//      logger.info("Добавлено: " + text);
     }
 }

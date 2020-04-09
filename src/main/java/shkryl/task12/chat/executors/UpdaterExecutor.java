@@ -1,5 +1,7 @@
 package shkryl.task12.chat.executors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import shkryl.task12.chat.task.Task;
 
 import java.util.Random;
@@ -7,6 +9,7 @@ import java.util.concurrent.*;
 
 public class UpdaterExecutor extends ChatExecutor {
 
+    private static Logger logger = LoggerFactory.getLogger(UpdaterExecutor.class);
 
     public UpdaterExecutor(Task task, int period) {
         super(task, period);
@@ -15,20 +18,20 @@ public class UpdaterExecutor extends ChatExecutor {
     @Override
     public void run() {
         Random rnd = new Random();
-        while(true){
+        while (true) {
             FutureTask<String> futureTask = new FutureTask<>(task);
-
+            logger.info("Time: Updater "+Thread.currentThread().getName()+": time=" + period);
             try {
                 Thread.sleep(TimeUnit.SECONDS.toMillis(period));
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
             }
             executorService.execute(futureTask);
             try {
                 String modifiedSmsText = futureTask.get();
-                System.out.println("Изменение: Updater : "+modifiedSmsText);
+                logger.info("Изменение Updater : {}",modifiedSmsText);
             } catch (Exception e) {
-                System.out.println(e);
+                logger.error(e.getMessage());
             }
         }
     }

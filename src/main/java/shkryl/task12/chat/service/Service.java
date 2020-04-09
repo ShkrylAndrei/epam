@@ -20,11 +20,11 @@ public class Service {
     private Chat chat;
     private AtomicInteger atomicInteger;
     //Количество Writer
-    private static final int WRITER_COUNT = 4;
+    private static final int WRITER_COUNT = 3;
     //Количество Reader
-    private static final int READER_COUNT = 4;
+    private static final int READER_COUNT = 3;
     //Количество Updater
-    private static final int UPDATER_COUNT = 1;
+    private static final int UPDATER_COUNT = 3;
 
     private static Logger logger = LoggerFactory.getLogger(Service.class);
 
@@ -33,20 +33,18 @@ public class Service {
         atomicInteger = new AtomicInteger(0);
     }
 
-    public void startChat()  {
+    public void startChat() {
         Task writerTask = new WriterTask(chat, atomicInteger);
         Task readerTask = new ReaderTask(chat);
         Task updaterTask = new UpdaterTask(chat);
 
-        ChatExecutor writerExecutor = new WriterExecutor(writerTask,  20, 60);
-        ChatExecutor readerExecutor = new ReaderExecutor(readerTask,  30, 50);
-        ChatExecutor updaterExecutor = new UpdaterExecutor(updaterTask,  40);
+        ChatExecutor writerExecutor = new WriterExecutor(writerTask, 20, 60);
+        ChatExecutor readerExecutor = new ReaderExecutor(readerTask, 30, 50);
+        ChatExecutor updaterExecutor = new UpdaterExecutor(updaterTask, 40);
 
         ExecutorService executorServiceWriter = Executors.newFixedThreadPool(2);
         ExecutorService executorServiceReader = Executors.newFixedThreadPool(2);
         ExecutorService executorServiceUpdater = Executors.newFixedThreadPool(2);
-
-
 
 
         for (int i = 0; i < WRITER_COUNT; i++) {
@@ -63,8 +61,6 @@ public class Service {
         executorServiceWriter.shutdown();
         executorServiceReader.shutdown();
         executorServiceUpdater.shutdown();
-
-
 
 
     }

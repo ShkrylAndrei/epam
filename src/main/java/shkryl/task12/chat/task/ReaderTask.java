@@ -11,6 +11,5 @@ public class ReaderTask extends Task {
     @Override
     public String call() throws Exception {
         return chat.readSms();
-//      logger.info("Считано: " + text);
     }
 }

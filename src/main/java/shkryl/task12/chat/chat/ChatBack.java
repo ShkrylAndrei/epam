@@ -3,6 +3,7 @@ package shkryl.task12.chat.chat;
 import shkryl.task12.chat.exception.NoFreeSpaceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import shkryl.task12.chat.executors.ReaderExecutor;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -12,34 +13,33 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ChatBack {
 
+    private static Logger logger = LoggerFactory.getLogger(ChatBack.class);
     private BlockingQueue<SMS> chatSmsQueue = new LinkedBlockingDeque<>();
     private BlockingQueue<SMS> bufferSmsQueue = new LinkedBlockingDeque<>();
     private final int capacity = 2;
-    private static Logger logger = LoggerFactory.getLogger(ChatBack.class);
     private Lock lock = new ReentrantLock();
     private Lock lock2 = new ReentrantLock();
 
     public boolean addSMS(String text) {
         boolean result = false;
-        System.out.println("Writer start");
+        logger.info("Writer start");
         lock.lock();
-        System.out.println("Writer lock");
+        logger.info("Writer lock");
         if (chatSmsQueue.size() < capacity) {
-            System.out.println("writer if");
-            System.out.println("Записано: "+text);
+            logger.info("writer if");
+            logger.info("Записано: {}",text);
             chatSmsQueue.add(new SMS(text));
-            System.out.println("writer if end");
+            logger.info("writer if end");
             result = true;
         } else {
-            System.out.println("writer else");
+            logger.info("writer else");
             bufferSmsQueue.add(new SMS(text));
-            System.out.println("Записано в буфер: "+text);
-            //logger.info(text + " добавлено в буфер");
+            logger.info("Записано в буфер: {}",text);
         }
 
         lock.unlock();
-        System.out.println("writer finish");
-        if(result){
+        logger.info("writer finish");
+        if (result) {
             return result;
         }
 
@@ -48,9 +48,9 @@ public class ChatBack {
 
     public String readSms() throws InterruptedException {
         lock2.lock();
-        System.out.println("Ридер ждет смс");
+        logger.info("Ридер ждет смс");
         SMS sms = chatSmsQueue.take();
-        System.out.println("Ридер достал смс: "+sms.getText());
+        logger.info("Ридер достал смс: {}",sms.getText());
 
         if (!bufferSmsQueue.isEmpty()) {
             chatSmsQueue.add(bufferSmsQueue.take());
@@ -64,8 +64,7 @@ public class ChatBack {
         if (!chatSmsQueue.isEmpty()) {
             int randomIndex = ThreadLocalRandom.current().nextInt(chatSmsQueue.size());
             SMS sms = (SMS) chatSmsQueue.toArray()[randomIndex];
-            //logger.info("Изменено: {}", sms.getText());
-            sms.setText(sms.getText()+ " modified");
+            sms.setText(sms.getText() + " modified");
         }
         lock.unlock();
     }
