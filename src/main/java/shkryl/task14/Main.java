@@ -9,5 +9,6 @@ public class Main {
     public static void main(String[] args) {
             logger.info("Message 1");
             logger.info("Message 2");
+            logger.info("Message 3");
     }
 }
