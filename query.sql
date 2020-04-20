@@ -14,8 +14,9 @@ select * from products p2
 where price between 10 and 20;
 
 
-select * from orders
-where orderdate between '2004-01-05' and '2004-02-05';
+select * from orders where
+to_char(orderdate ,'YYYY-MM-DD')
+between '2004-01-05' and '2004-02-05';
 
 
 select customerid ,count(customerid) from orders
@@ -24,11 +25,11 @@ order by customerid;
 
 
 select customerid ,orderdate,sum(totalamount) from orders
-where totalamount >100
-group by customerid,orderdate;
+group by customerid,orderdate,totalamount
+having totalamount >100
 
 
-select distinct c.firstname || ' ' || c.lastname as fullname,o.orderdate from customers c
+select distinct c.firstname || ' ' || c.lastname as fullname,p.title ,o.orderdate from customers c
 join orders o on o.customerid = c.customerid
 join orderlines ol on ol.orderid = o.orderid
 join products p on p.prod_id = ol.prod_id ;
