@@ -14,9 +14,8 @@ select * from products p2
 where price between 10 and 20;
 
 
-select * from orders where
-to_char(orderdate ,'YYYY-MM-DD')
-between '2004-01-05' and '2004-02-05';
+select * from orders where orderdate
+between date '2004-01-05' and date '2004-02-05';
 
 
 select customerid ,count(customerid) from orders
