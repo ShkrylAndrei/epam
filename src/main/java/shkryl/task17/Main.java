@@ -21,7 +21,7 @@ public class Main {
             System.out.println("2. Редактировать выбранную запись");
             System.out.println("3. Удалить выбранную запись");
             System.out.println("4. Посмотреть записи по указанному title");
-            System.out.println("Выход");
+            System.out.println("5. Выход");
 
             Scanner sc = new Scanner(System.in);
 
@@ -79,6 +79,7 @@ public class Main {
                         .forEach(System.out::println);
             } else if (choose == 5) {
                 logger.info("Пользователь выбрал выход из системы");
+                menu=false;
             }
         }
 
