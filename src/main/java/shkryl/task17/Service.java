@@ -1,5 +1,7 @@
 package shkryl.task17;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +11,10 @@ public class Service {
     private final String LOGIN = "postgres";
     private final String PASSWORD = "1";
     private Connection connection;
+    PreparedStatement ps;
+    ResultSet rs;
 
+    private static Logger logger = LoggerFactory.getLogger(Service.class);
 
 
     public Service() throws SQLException {
@@ -19,16 +24,17 @@ public class Service {
     public List<Product> readAllProductsByTitle(String title) throws SQLException {
         List<Product> productList = new ArrayList<>();
         String query = "SELECT * FROM products where title LIKE  ?";
-        PreparedStatement ps = connection.prepareStatement(query);
-        ps.setString(1, "%"+title+"%");
-        ResultSet rs = ps.executeQuery();
-        while(rs.next()){
+        ps = connection.prepareStatement(query);
+        ps.setString(1, "%" + title + "%");
+        rs = ps.executeQuery();
+        while (rs.next()) {
             Product product = new Product();
             product.setProd_id(rs.getInt("prod_id"));
             product.setTitle(rs.getString("title"));
             product.setActor(rs.getString("actor"));
             product.setPrice(rs.getDouble("price"));
-            product.setSpecial(rs.getInt("special"));;
+            product.setSpecial(rs.getInt("special"));
+            ;
             product.setCommon_prod_id(rs.getInt("common_prod_id"));
             productList.add(product);
         }
@@ -37,9 +43,9 @@ public class Service {
 
     public boolean removeProductById(int id) throws SQLException {
         String query = "DELETE FROM products WHERE prod_id = ?";
-        PreparedStatement ps = connection.prepareStatement(query);
+        ps = connection.prepareStatement(query);
         ps.setInt(1, id);
-        if(ps.executeUpdate()==0){
+        if (ps.executeUpdate() == 0) {
             return false;
         }
         return true;
@@ -47,17 +53,44 @@ public class Service {
 
     public boolean editProductById(int id, String newTitle) throws SQLException {
         String query = "UPDATE products SET title = ? where prod_id = ?";
-        PreparedStatement ps = connection.prepareStatement(query);
+        ps = connection.prepareStatement(query);
         ps.setString(1, newTitle);
         ps.setInt(2, id);
-        if(ps.executeUpdate()==0){
+        if (ps.executeUpdate() == 0) {
             return false;
         }
         return true;
     }
 
 
+    public boolean addProductById(int category, String title, String actor, int price, int common_prod_id) throws SQLException {
+        String query = "INSERT INTO products(category,title,actor,price,common_prod_id) VALUES(?,?,?,?,?)";
 
+        ps = connection.prepareStatement(query);
+        ps.setInt(1, category);
+        ps.setString(2, title);
+        ps.setString(3, actor);
+        ps.setInt(4, price);
+        ps.setInt(5, common_prod_id);
+        if (ps.executeUpdate() == 0) {
+            return false;
+        }
+        return true;
+    }
 
-
+    public void disconnect() {
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
+            logger.error("Произошло исключение, при попытке закрыть базу данных");
+        }
+    }
 }

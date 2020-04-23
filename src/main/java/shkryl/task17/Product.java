@@ -10,9 +10,10 @@ public class Product {
     private int common_prod_id;
 
 
-    public Product(){
+    public Product() {
 
     }
+
     public Product(int prod_id, int category, String title, String actor, double price, int special, int common_prod_id) {
         this.prod_id = prod_id;
         this.category = category;
