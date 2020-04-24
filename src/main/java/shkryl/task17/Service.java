@@ -11,8 +11,8 @@ public class Service {
     private final String LOGIN = "postgres";
     private final String PASSWORD = "1";
     private Connection connection;
-    PreparedStatement ps;
-    ResultSet rs;
+    private PreparedStatement ps;
+    private ResultSet rs;
 
     private static Logger logger = LoggerFactory.getLogger(Service.class);
 
@@ -29,13 +29,13 @@ public class Service {
         rs = ps.executeQuery();
         while (rs.next()) {
             Product product = new Product();
-            product.setProd_id(rs.getInt("prod_id"));
+            product.setProdId(rs.getInt("prod_id"));
+            product.setCategory(rs.getInt("category"));
             product.setTitle(rs.getString("title"));
             product.setActor(rs.getString("actor"));
             product.setPrice(rs.getDouble("price"));
             product.setSpecial(rs.getInt("special"));
-            ;
-            product.setCommon_prod_id(rs.getInt("common_prod_id"));
+            product.setCommonProdId(rs.getInt("common_prod_id"));
             productList.add(product);
         }
         return productList;
